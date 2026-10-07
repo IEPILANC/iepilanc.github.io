@@ -1,4 +1,5 @@
 {
+  "id": "./",
   "name": "Iglesia Evangélica Pentecostés Internacional LAN-C",
   "short_name": "IEPI LAN-C",
   "description": "Anuncios, horarios de culto, estudio bíblico y plan de lectura de la iglesia.",
@@ -10,8 +11,27 @@
   "background_color": "#f4f5f8",
   "theme_color": "#1f2f52",
   "icons": [
-    {"src": "icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": [
+    "lifestyle",
+    "education"
   ]
 }
