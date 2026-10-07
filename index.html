@@ -3,37 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#7a5a17">
+<meta name="theme-color" content="#1f2f52">
 <meta name="description" content="Anuncios, horarios de culto, estudio bíblico y plan de lectura de la Iglesia Evangélica Pentecostés Internacional LAN-C.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icono-192.png">
 <link rel="apple-touch-icon" href="icono-192.png">
 <title>Iglesia al Día</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:wght@400;700&display=swap">
 <style>
 /* Layout: app de una columna, encabezado de la iglesia, contenido por pestañas y barra inferior fija como en una app de teléfono */
 :root{
-  --bg:#f6f4ef; --surface:#ffffff; --ink:#2a2418; --muted:#6c6352;
-  --pine:#7a5a17; --pine-soft:#f0e6cf; --gold:#9c6f1c; --line:#e3dccb; --done:#2f7a52;
-  --display:"Alegreya", Georgia, serif;
-  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bg:#f4f5f8; --surface:#ffffff; --ink:#1c2540; --muted:#5d6578;
+  --pine:#1f2f52; --pine-soft:#e4e8f2; --gold:#a07a2c; --line:#d9dde8; --done:#2f7a52;
+  --band:#1f2f52; --band-ink:#ffffff; --band-gold:#d9b25f;
+  --red:#9b1c24; --sh-1:0 1px 2px rgba(20,32,64,.06), 0 4px 14px rgba(20,32,64,.08); --sh-2:0 2px 4px rgba(20,32,64,.08), 0 10px 24px rgba(20,32,64,.12); --on-pine:#ffffff;
+  --display:"Cinzel", "Trajan Pro", Georgia, serif;
+  --body:"Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#15120c; --surface:#201b12; --ink:#efe8da; --muted:#b0a48c;
-  --pine:#e2bb68; --pine-soft:#2f2715; --gold:#e2bb68; --line:#3a3120; --done:#6cc596; color-scheme:dark}}
+  --bg:#0f1420; --surface:#182033; --ink:#e6e9f2; --muted:#9aa3b8;
+  --pine:#d9b25f; --pine-soft:#22304d; --gold:#d9b25f; --line:#2a3550; --done:#6cc596;
+  --band:#16223e; --band-ink:#ffffff; --band-gold:#d9b25f;
+  --red:#a8262e; --sh-1:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.35); --sh-2:0 2px 4px rgba(0,0,0,.45), 0 10px 24px rgba(0,0,0,.45); --on-pine:#16223e; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#15120c; --surface:#201b12; --ink:#efe8da; --muted:#b0a48c;
-  --pine:#e2bb68; --pine-soft:#2f2715; --gold:#e2bb68; --line:#3a3120; --done:#6cc596; color-scheme:dark}
+  --bg:#0f1420; --surface:#182033; --ink:#e6e9f2; --muted:#9aa3b8;
+  --pine:#d9b25f; --pine-soft:#22304d; --gold:#d9b25f; --line:#2a3550; --done:#6cc596;
+  --band:#16223e; --band-ink:#ffffff; --band-gold:#d9b25f;
+  --red:#a8262e; --sh-1:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.35); --sh-2:0 2px 4px rgba(0,0,0,.45), 0 10px 24px rgba(0,0,0,.45); --on-pine:#16223e; color-scheme:dark}
 *{box-sizing:border-box}
 html,body{background:var(--bg)}
 body{color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0 96px}
+.wrap > header.top + *{margin-top:0}
 .wrap{max-width:560px;margin:0 auto}
-header.top{padding-block:22px 14px;display:flex;align-items:center;gap:12px}
-.logo{width:68px;height:68px;border-radius:16px;flex:none;object-fit:cover;box-shadow:0 2px 8px rgba(80,55,10,.25)}
-header h1{font-family:var(--display);font-size:1.3rem;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+header.top{padding-block:18px;display:flex;align-items:center;gap:12px;background:var(--band);color:var(--band-ink);margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50% + 16px);margin-bottom:20px}
+header.top .eyebrow{color:var(--band-gold)}
+body{overflow-x:clip}
+.logo{width:68px;height:68px;border-radius:16px;flex:none;object-fit:cover;box-shadow:0 0 0 2px var(--band-gold)}
+header h1{font-family:var(--display);font-size:1.12rem;letter-spacing:.02em;line-height:1.15;margin:2px 0 0;text-wrap:balance}
 header p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
-h2{font-family:var(--display);font-size:1.45rem;margin:8px 0 4px;text-wrap:balance}
+h2{font-family:var(--display);font-size:1.3rem;letter-spacing:.02em;margin:8px 0 4px;text-wrap:balance}
 .lead{color:var(--muted);margin:0 0 16px}
 .eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700}
 .list{display:flex;flex-direction:column;gap:12px}
@@ -49,7 +58,7 @@ details.item summary .ref{color:var(--muted);font-size:.9rem;white-space:nowrap}
 details.item[open] summary{margin-bottom:10px}
 .qs{margin:8px 0 0;padding-left:1.2em}
 .qs li{margin-bottom:4px}
-.verse{white-space:pre-line;font-family:var(--display);font-size:1.1rem;line-height:1.6;margin:6px 0 0}
+.verse{white-space:pre-line;font-size:1.1rem;line-height:1.6;margin:6px 0 0}
 .search{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);margin-bottom:14px}
 .progress{height:10px;border-radius:99px;background:var(--pine-soft);overflow:hidden;margin:6px 0 16px}
 .progress span{display:block;height:100%;background:var(--done);transition:width .3s}
@@ -63,18 +72,68 @@ details.item[open] summary{margin-bottom:10px}
 .sched{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:22px}
 .times{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .times li{background:var(--pine-soft);border-radius:12px;padding:10px 8px;text-align:center;display:flex;flex-direction:column}
-.times b{font-family:var(--display);font-size:1.15rem;color:var(--pine)}
+.times b{font-family:var(--display);font-size:1rem;color:var(--pine)}
 .times span{font-variant-numeric:tabular-nums;font-size:.95rem}
 .addr{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .addr p{margin:2px 0 0;font-weight:700}
 a.btn{text-decoration:none;display:inline-block}
 .item.featured{border:2px solid var(--gold)}
+.album{margin-bottom:22px}
+.album h3{font-family:var(--display);font-size:1rem;letter-spacing:.02em;margin:0 0 10px}
+.fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.fotos button{padding:0;border:0;background:var(--surface);border-radius:14px;overflow:hidden;box-shadow:var(--sh-1);cursor:pointer;aspect-ratio:4/3;max-width:100%}
+.fotos img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s}
+.fotos button:active img{transform:scale(.97)}
+.visor{position:fixed;inset:0;z-index:20;background:rgba(8,12,24,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 56px) 16px calc(env(safe-area-inset-bottom,0px) + 24px)}
+.visor img{max-width:100%;max-height:75vh;border-radius:12px;object-fit:contain}
+.visor p{color:#fff;margin:14px 0 0;text-align:center}
+.vbtn{position:absolute;background:rgba(255,255,255,.15);color:#fff;border:0;width:48px;height:48px;border-radius:50%;font-size:28px;line-height:1;cursor:pointer}
+.cerrar{top:calc(env(safe-area-inset-top,0px) + 12px);right:16px;font-size:22px}
+.prev{left:10px;top:50%}.next{right:10px;top:50%}
+.cal{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.ev{display:flex;align-items:stretch;background:var(--surface);border-radius:14px;box-shadow:var(--sh-1);overflow:hidden;min-height:68px}
+.ev .dia{flex:none;width:86px;background:var(--band);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;clip-path:polygon(0 0,86% 0,100% 50%,86% 100%,0 100%)}
+.ev.especial .dia{background:var(--red)}
+.ev .dia small{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
+.ev .dia b{font-family:var(--display);font-size:1.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.ev .txt{padding:10px 14px 10px 8px;align-self:center;border-left:2px solid var(--gold);margin-left:8px;min-width:0}
+.ev.pasado{opacity:.55}
+.ev.pasado .txt::after{content:"Ya se realizó";display:block;font-size:.78rem;color:var(--muted)}
+.ev.hoy{box-shadow:inset 0 0 0 2px var(--gold),var(--sh-2)}
+.ev.hoy .txt::after{content:"Hoy";display:block;font-size:.78rem;font-weight:700;color:var(--gold)}
+.ev .roles{display:grid;gap:2px;font-size:.95rem}
+.ev .roles span{color:var(--muted);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+.ev .hora{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.diacono{display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px 16px;border-radius:14px;background:var(--surface);box-shadow:inset 0 0 0 2px var(--gold),var(--sh-1)}
+.diacono svg{width:28px;height:28px;color:var(--gold);flex:none}
+.diacono p{margin:0}
 .howto{margin-top:22px;background:var(--pine-soft);border-radius:14px;padding:14px 16px}
 .howto ol{margin:6px 0 0;padding-left:1.2em}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
 nav.tabs button{font:inherit;font-size:.78rem;background:none;border:0;color:var(--muted);padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 nav.tabs button svg{width:24px;height:24px}
 nav.tabs button[aria-selected="true"]{color:var(--pine);font-weight:700}
+
+/* Relieve: tarjetas elevadas, pestañas con indicador y botones con volumen */
+.item,.sched,.day{border-color:transparent;box-shadow:var(--sh-1)}
+.item{border-radius:16px;padding:16px 18px;border-top:3px solid var(--gold)}
+details.item{border-top-color:var(--pine)}
+.item.featured{border:2px solid var(--gold);box-shadow:var(--sh-2)}
+.sched{border-radius:18px;box-shadow:var(--sh-2)}
+.times li{background:var(--band);color:var(--band-ink);box-shadow:inset 0 -3px 0 var(--band-gold)}
+.times b{color:var(--band-gold)}
+.tag{background:var(--gold);color:var(--on-pine)}
+.btn{background:var(--pine);color:var(--on-pine);border:0;box-shadow:0 2px 0 rgba(0,0,0,.25),var(--sh-1);padding:10px 16px;transition:transform .1s, box-shadow .1s}
+.btn:active{transform:translateY(2px);box-shadow:0 0 0 rgba(0,0,0,.25),var(--sh-1)}
+.day{transition:transform .1s}
+.day:active{transform:scale(.98)}
+.day.checked{border-color:transparent;box-shadow:inset 0 0 0 2px var(--done),var(--sh-1)}
+.search{box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+.howto{box-shadow:inset 0 0 0 1px var(--line)}
+nav.tabs{box-shadow:0 -6px 20px rgba(20,32,64,.12);border-top:0;padding-top:6px}
+nav.tabs button{margin:0 3px 4px;border-radius:14px;position:relative;transition:background .2s,color .2s}
+nav.tabs button[aria-selected="true"]{background:var(--pine-soft);color:var(--pine)}
+nav.tabs button[aria-selected="true"]::before{content:"";position:absolute;top:-6px;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--gold)}
 button:focus-visible,summary:focus-visible,.day:focus-within,.search:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -107,13 +166,20 @@ button:focus-visible,summary:focus-visible,.day:focus-within,.search:focus-visib
       </div>
     </div>
 
-    <span class="eyebrow">Esta semana</span>
-    <h2>Anuncios y actividades</h2>
-    <div class="list">
-      <article class="item featured"><span class="tag">Convención</span><h3>Convención de Dorcas 2026</h3><p>Reserva estas fechas en tu calendario.</p><div class="meta"><span>Viernes 13, sábado 14 y domingo 15 de noviembre</span><span>Gimnasio del Colegio Blanca Estela, Hualpén</span></div><p style="margin-top:10px"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Colegio+Blanca+Estela+Hualp%C3%A9n" target="_blank" rel="noopener">Cómo llegar</a></p></article>
-      <p class="example" style="margin:4px 0 0">Los dos anuncios siguientes son de muestra.</p>
-      <article class="item"><span class="tag">Estudio</span><h3>Estudio bíblico: Evangelio de Marcos</h3><p>Seguimos con la sesión 2. Trae tu Biblia; no se necesita conocimiento previo.</p></article>
-      <article class="item"><span class="tag">Coro</span><h3>Ensayo del coro</h3><p>Repaso de los himnos para el domingo.</p></article>
+    <div id="semanaBox" hidden>
+      <span class="eyebrow">Esta semana</span>
+      <h2>Cultos de la semana</h2>
+      <ol class="cal" id="semana"></ol>
+    </div>
+
+    <div id="destacados" class="list" style="margin-top:22px"></div>
+
+    <span class="eyebrow" style="display:block;margin-top:22px">Calendario</span>
+    <h2 id="mesTitulo">Actividades del mes</h2>
+    <ol class="cal" id="cal"><li class="lead">Cargando actividades…</li></ol>
+    <div class="diacono" id="diacono" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5zM12 6v14"/></svg>
+      <p><b>Diácono de turno:</b> <span id="diaconoNom"></span></p>
     </div>
     <div class="howto">
       <b>Tener esta app en tu teléfono</b>
@@ -176,6 +242,13 @@ en este trance agudo.</p>
     <div class="days" id="days"></div>
     <p style="margin-top:16px"><button class="btn" id="reset" type="button">Reiniciar plan</button></p>
   </section>
+  <!-- FOTOS -->
+  <section id="fotos" data-panel hidden>
+    <span class="eyebrow">Galería</span>
+    <h2>Fotos de la iglesia</h2>
+    <p class="example">Las imágenes actuales son de muestra.</p>
+    <div id="galeria"><p class="lead">Cargando fotos…</p></div>
+  </section>
 </div>
 
 <nav class="tabs" role="tablist" aria-label="Secciones">
@@ -183,7 +256,15 @@ en este trance agudo.</p>
   <button role="tab" data-tab="estudio" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5zM12 6v14"/></svg>Estudio</button>
   <button role="tab" data-tab="cancionero" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Cancionero</button>
   <button role="tab" data-tab="lectura" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Lectura</button>
+  <button role="tab" data-tab="fotos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>Fotos</button>
 </nav>
+<div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="vbtn cerrar" id="vCerrar" type="button" aria-label="Cerrar">✕</button>
+  <button class="vbtn prev" id="vPrev" type="button" aria-label="Foto anterior">‹</button>
+  <img id="vImg" alt="">
+  <button class="vbtn next" id="vNext" type="button" aria-label="Foto siguiente">›</button>
+  <p id="vTxt"></p>
+</div>
 
 <script>
 (function(){
@@ -222,6 +303,64 @@ en este trance agudo.</p>
   }
   document.getElementById('reset').addEventListener('click',function(){read={};store.set('marcos','{}');render()});
   render();
+
+  // Anuncios y calendario (lista en anuncios.json)
+  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML}
+  fetch('anuncios.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
+    var dest=document.getElementById('destacados');
+    dest.innerHTML=(d.destacados||[]).map(function(a){
+      return '<article class="item featured"><span class="tag">Destacado</span><h3>'+esc(a.titulo)+'</h3>'+(a.texto?'<p>'+esc(a.texto)+'</p>':'')+
+      '<div class="meta">'+(a.fecha?'<span>'+esc(a.fecha)+'</span>':'')+(a.lugar?'<span>'+esc(a.lugar)+'</span>':'')+'</div>'+
+      (a.mapa?'<p style="margin-top:10px"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a.mapa)+'">Cómo llegar</a></p>':'')+'</article>';
+    }).join('');
+    if(d.mes)document.getElementById('mesTitulo').textContent='Actividades de '+d.mes.charAt(0).toLowerCase()+d.mes.slice(1);
+    var hoy=new Date();hoy.setHours(0,0,0,0);
+    var dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    var acts=(d.actividades||[]).slice().sort(function(a,b){return a.fecha<b.fecha?-1:1});
+    var sem=(d.cultos_semana||[]).slice().sort(function(a,b){return a.fecha<b.fecha?-1:1});
+    if(sem.length){
+      document.getElementById('semana').innerHTML=sem.map(function(c){
+        var p=String(c.fecha).split('-'),f=new Date(+p[0],+p[1]-1,+p[2]);
+        var cls='ev'+(f.getDay()===0?' especial':'')+(f<hoy?' pasado':'')+(+f===+hoy?' hoy':'');
+        return '<li class="'+cls+'"><div class="dia"><small>'+dias[f.getDay()]+'</small><b>'+String(f.getDate()).padStart(2,'0')+'</b></div><div class="txt roles">'+
+          (c.hora?'<div class="hora">'+esc(c.hora)+' hrs</div>':'')+
+          '<div><span>Coordina</span>'+esc(c.coordinador)+'</div><div><span>Predica</span><b>'+esc(c.predicador)+'</b></div></div></li>';
+      }).join('');
+      document.getElementById('semanaBox').hidden=false;
+    }
+    document.getElementById('cal').innerHTML=acts.length?acts.map(function(a){
+      var p=String(a.fecha).split('-'),f=new Date(+p[0],+p[1]-1,+p[2]);
+      var cls='ev'+(a.especial?' especial':'')+(f<hoy?' pasado':'')+(+f===+hoy?' hoy':'');
+      return '<li class="'+cls+'"><div class="dia"><small>'+dias[f.getDay()]+'</small><b>'+String(f.getDate()).padStart(2,'0')+'</b></div><div class="txt">'+esc(a.texto)+'</div></li>';
+    }).join(''):'<li class="lead">Pronto se publicarán las actividades del mes.</li>';
+    if(d.diacono){document.getElementById('diaconoNom').textContent=d.diacono;document.getElementById('diacono').hidden=false}
+  }).catch(function(){document.getElementById('cal').innerHTML='<li class="lead">No se pudieron cargar los anuncios. Revisa tu conexión a internet.</li>'});
+
+  // Galería de fotos (lista en fotos.json)
+  var fotos=[],actual=0,gal=document.getElementById('galeria'),visor=document.getElementById('visor');
+  function abrir(i){actual=(i+fotos.length)%fotos.length;var f=fotos[actual];document.getElementById('vImg').src=f.archivo;document.getElementById('vImg').alt=f.titulo||'';document.getElementById('vTxt').textContent=(f.titulo||'')+(f.album?' · '+f.album:'');visor.hidden=false}
+  function cerrar(){visor.hidden=true}
+  document.getElementById('vCerrar').onclick=cerrar;
+  document.getElementById('vPrev').onclick=function(){abrir(actual-1)};
+  document.getElementById('vNext').onclick=function(){abrir(actual+1)};
+  visor.addEventListener('click',function(e){if(e.target===visor)cerrar()});
+  document.addEventListener('keydown',function(e){if(visor.hidden)return;if(e.key==='Escape')cerrar();if(e.key==='ArrowLeft')abrir(actual-1);if(e.key==='ArrowRight')abrir(actual+1)});
+  var x0=null;visor.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  visor.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)abrir(actual+(dx<0?1:-1));x0=null});
+  fetch('fotos.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
+    fotos=d.fotos||[];
+    if(!fotos.length){gal.innerHTML='<p class="lead">Pronto habrá fotos de las actividades de la iglesia.</p>';return}
+    var albums={},orden=[];
+    fotos.forEach(function(f,i){var a=f.album||'Fotos';if(!albums[a]){albums[a]=[];orden.push(a)}albums[a].push(i)});
+    gal.innerHTML='';
+    orden.forEach(function(a){
+      var div=document.createElement('div');div.className='album';
+      var h=document.createElement('h3');h.textContent=a;div.appendChild(h);
+      var g=document.createElement('div');g.className='fotos';
+      albums[a].forEach(function(i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ver '+(fotos[i].titulo||'foto'));var im=document.createElement('img');im.src=fotos[i].archivo;im.alt=fotos[i].titulo||'';im.loading='lazy';b.appendChild(im);b.onclick=function(){abrir(i)};g.appendChild(b)});
+      div.appendChild(g);gal.appendChild(div);
+    });
+  }).catch(function(){gal.innerHTML='<p class="lead">No se pudieron cargar las fotos. Revisa tu conexión a internet.</p>'});
 })();
 </script>
 <script>
