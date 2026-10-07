@@ -1,6 +1,11 @@
 {
   "fotos": [
     {
+      "archivo": "fiestas-patrias-2026-1.jpg",
+      "titulo": "Celebración de Fiestas Patrias",
+      "album": "Fiestas Patrias"
+    },
+    {
       "archivo": "ejemplo-1.jpg",
       "titulo": "Foto de ejemplo 1",
       "album": "Convención de Dorcas 2025"
