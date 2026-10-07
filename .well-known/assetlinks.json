@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.iepilanc.twa",
+        "sha256_cert_fingerprints": ["96:44:B1:E6:21:64:A4:FC:FD:D2:AF:32:68:B6:43:E1:FD:59:44:20:CA:56:45:5F:9F:CA:47:12:74:F4:65:19"]
+      }
+    }]
