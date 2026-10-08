@@ -109,6 +109,18 @@ a.btn{text-decoration:none;display:inline-block}
 .nuevo.enfoto{position:absolute;top:8px;left:8px}
 nav.tabs button.conNuevo::after{content:"";position:absolute;top:6px;right:calc(50% - 18px);width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 0 2px var(--surface)}
 .afiche{display:block;width:100%;border-radius:12px;margin:0 0 12px}
+.versiculo{margin:8px 0 0;padding:20px 20px 16px;border-radius:16px;background:var(--band);color:var(--band-ink);box-shadow:var(--sh-2)}
+.versiculo p{margin:0;font-size:1.12rem;line-height:1.6}
+.versiculo cite{display:block;margin-top:10px;font-style:normal;font-family:var(--display);color:var(--band-gold);letter-spacing:.04em}
+.motivos{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.motivos li.mot{background:var(--surface);border-radius:14px;box-shadow:var(--sh-1);padding:12px 16px 12px 44px;position:relative}
+.motivos li.mot::before{content:"";position:absolute;left:18px;top:19px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.peticion{margin-top:26px;padding:18px;border-radius:16px;background:var(--surface);box-shadow:inset 0 0 0 2px var(--gold),var(--sh-1)}
+.peticion label{display:block;font-weight:700;font-size:.9rem;margin:10px 0 6px}
+.peticion textarea{resize:vertical;min-height:110px;font:inherit}
+.peticion .search{margin-bottom:4px}
+.peticion .btn{margin-top:12px;width:100%}
+.error{color:var(--red);font-size:.88rem;margin:4px 0 0}
 .diacono{display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px 16px;border-radius:14px;background:var(--surface);box-shadow:inset 0 0 0 2px var(--gold),var(--sh-1)}
 .diacono svg{width:28px;height:28px;color:var(--gold);flex:none}
 .diacono p{margin:0}
@@ -117,7 +129,7 @@ nav.tabs button.conNuevo::after{content:"";position:absolute;top:6px;right:calc(
 .sub-lectura{margin-top:32px;padding-top:24px;border-top:2px solid var(--line)}
 .howto{margin-top:22px;background:var(--pine-soft);border-radius:14px;padding:14px 16px}
 .howto ol{margin:6px 0 0;padding-left:1.2em}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
 nav.tabs button{font:inherit;font-size:.78rem;background:none;border:0;color:var(--muted);padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 nav.tabs button svg{width:24px;height:24px}
 nav.tabs button[aria-selected="true"]{color:var(--pine);font-weight:700}
@@ -231,6 +243,28 @@ button:focus-visible,summary:focus-visible,.day:focus-within,.search:focus-visib
     </div>
   </section>
 
+  <!-- ORACION -->
+  <section id="oracion" data-panel hidden>
+    <span class="eyebrow">Versículo del día</span>
+    <blockquote class="versiculo" id="versiculo"><p>Cargando…</p></blockquote>
+
+    <span class="eyebrow" style="display:block;margin-top:26px">Oremos juntos</span>
+    <h2>Motivos de oración</h2>
+    <ul class="motivos" id="motivos"><li class="lead">Cargando motivos…</li></ul>
+
+    <div class="peticion">
+      <h2 style="margin-top:0">Enviar una petición</h2>
+      <p class="lead">Tu petición llega en privado por WhatsApp. No se publica en la app.</p>
+      <form id="formPeticion" novalidate>
+        <label for="petNombre">Tu nombre (opcional)</label>
+        <input class="search" id="petNombre" type="text" autocomplete="name" placeholder="Ej.: Hna. María">
+        <label for="petTexto">Petición de oración</label>
+        <textarea class="search" id="petTexto" rows="4" placeholder="Escribe aquí por qué quieres que oremos"></textarea>
+        <p class="error" id="petError" hidden>Escribe tu petición antes de enviarla.</p>
+        <button class="btn" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </section>
   <!-- CANCIONERO -->
   <section id="cancionero" data-panel hidden>
     <span class="eyebrow">Coro</span>
@@ -263,6 +297,7 @@ en este trance agudo.</p>
 <nav class="tabs" role="tablist" aria-label="Secciones">
   <button role="tab" data-tab="anuncios" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Anuncios</button>
   <button role="tab" data-tab="estudio" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5zM12 6v14"/></svg>Estudio</button>
+  <button role="tab" data-tab="oracion" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.2-8.6C1.3 9.5 3 6 6.4 6c2 0 3.6 1.2 4.4 2.6h2.4C14 7.2 15.6 6 17.6 6 21 6 22.7 9.5 21.2 12.4 19 16.6 12 21 12 21z"/></svg>Oración</button>
   <button role="tab" data-tab="cancionero" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Cancionero</button>
   <button role="tab" data-tab="fotos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>Fotos</button>
 </nav>
@@ -362,6 +397,28 @@ en este trance agudo.</p>
     if(d.diacono){document.getElementById('diaconoNom').innerHTML=esc(d.diacono)+' '+N('x|'+d.diacono);document.getElementById('diacono').hidden=false}
     marcar('anuncios',hayNuevo);
   }).catch(function(){document.getElementById('cal').innerHTML='<li class="lead">No se pudieron cargar los anuncios. Revisa tu conexión a internet.</li>'});
+
+  // Oración: versículo del día, motivos y petición por WhatsApp (oracion.json)
+  var wa='56957339029';
+  fetch('oracion.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
+    if(d.whatsapp)wa=String(d.whatsapp).replace(/\D/g,'');
+    var vs=d.versiculos||[];
+    if(vs.length){var h=new Date(),ini=new Date(h.getFullYear(),0,0),dia=Math.floor((h-ini)/864e5),v=vs[dia%vs.length];
+      document.getElementById('versiculo').innerHTML='<p>«'+esc(v.texto)+'»</p><cite>'+esc(v.cita)+' (RVR1960)</cite>';}
+    var ms=d.motivos||[],nv=visto('visto-motivos',ms.map(function(m){return m.texto})),hayM=false;
+    document.getElementById('motivos').innerHTML=ms.length?ms.map(function(m){var n=nv(m.texto);if(n)hayM=true;return '<li class="mot">'+(n?NUEVO:'')+esc(m.texto)+'</li>'}).join(''):'<li class="lead">Pronto se publicarán los motivos de oración.</li>';
+    marcar('oracion',hayM);
+  }).catch(function(){document.getElementById('motivos').innerHTML='<li class="lead">No se pudieron cargar los motivos. Revisa tu conexión a internet.</li>'});
+  var pt=document.getElementById('petTexto'),pe=document.getElementById('petError');
+  pt.addEventListener('input',function(){pe.hidden=true});
+  document.getElementById('formPeticion').addEventListener('submit',function(e){
+    e.preventDefault();
+    var t=pt.value.trim(),n=document.getElementById('petNombre').value.trim();
+    if(!t){pe.hidden=false;pt.focus();return}
+    var msg='Petición de oración (app IEPI LAN-C)'+(n?'\nDe: '+n:'')+'\n\n'+t;
+    var url='https://wa.me/'+wa+'?text='+encodeURIComponent(msg);
+    var w=window.open(url,'_blank');if(!w)location.href=url;
+  });
 
   // Galería de fotos (lista en fotos.json)
   var fotos=[],actual=0,gal=document.getElementById('galeria'),visor=document.getElementById('visor');
