@@ -114,9 +114,10 @@ nav.tabs button.conNuevo::after{content:"";position:absolute;top:6px;right:calc(
 .diacono p{margin:0}
 .credito{text-align:center;color:var(--muted);font-size:.85rem;margin:22px 0 0}
 .credito a{color:var(--pine);font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums}
+.sub-lectura{margin-top:32px;padding-top:24px;border-top:2px solid var(--line)}
 .howto{margin-top:22px;background:var(--pine-soft);border-radius:14px;padding:14px 16px}
 .howto ol{margin:6px 0 0;padding-left:1.2em}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
 nav.tabs button{font:inherit;font-size:.78rem;background:none;border:0;color:var(--muted);padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 nav.tabs button svg{width:24px;height:24px}
 nav.tabs button[aria-selected="true"]{color:var(--pine);font-weight:700}
@@ -218,6 +219,16 @@ button:focus-visible,summary:focus-visible,.day:focus-within,.search:focus-visib
         <p>El final del Evangelio: la muerte de Jesús y el anuncio de su resurrección.</p>
         <ol class="qs"><li>¿Qué reconoce el centurión romano al pie de la cruz?</li><li>¿Cómo reaccionan las mujeres ante la tumba vacía?</li></ol></details>
     </div>
+
+    <div id="lectura" class="sub-lectura">
+    <span class="eyebrow">Plan de lectura</span>
+    <h2>Marcos en 16 días</h2>
+    <p class="lead">Un capítulo por día. Marca lo que vas leyendo; tu avance queda guardado en este teléfono.</p>
+    <div class="progress" aria-hidden="true"><span id="bar" style="width:0%"></span></div>
+    <p id="count" style="margin:-8px 0 14px;color:var(--muted);font-size:.9rem">0 de 16 leídos</p>
+    <div class="days" id="days"></div>
+    <p style="margin-top:16px"><button class="btn" id="reset" type="button">Reiniciar plan</button></p>
+    </div>
   </section>
 
   <!-- CANCIONERO -->
@@ -240,16 +251,6 @@ en este trance agudo.</p>
     </div>
   </section>
 
-  <!-- PLAN DE LECTURA -->
-  <section id="lectura" data-panel hidden>
-    <span class="eyebrow">Plan de lectura</span>
-    <h2>Marcos en 16 días</h2>
-    <p class="lead">Un capítulo por día. Marca lo que vas leyendo; tu avance queda guardado en este teléfono.</p>
-    <div class="progress" aria-hidden="true"><span id="bar" style="width:0%"></span></div>
-    <p id="count" style="margin:-8px 0 14px;color:var(--muted);font-size:.9rem">0 de 16 leídos</p>
-    <div class="days" id="days"></div>
-    <p style="margin-top:16px"><button class="btn" id="reset" type="button">Reiniciar plan</button></p>
-  </section>
   <!-- FOTOS -->
   <section id="fotos" data-panel hidden>
     <span class="eyebrow">Galería</span>
@@ -263,7 +264,6 @@ en este trance agudo.</p>
   <button role="tab" data-tab="anuncios" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Anuncios</button>
   <button role="tab" data-tab="estudio" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5zM12 6v14"/></svg>Estudio</button>
   <button role="tab" data-tab="cancionero" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Cancionero</button>
-  <button role="tab" data-tab="lectura" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Lectura</button>
   <button role="tab" data-tab="fotos" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>Fotos</button>
 </nav>
 <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
@@ -284,7 +284,7 @@ en este trance agudo.</p>
     store.set('tab',id); window.scrollTo(0,0);
   }
   tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.tab)})});
-  var start=(location.hash||'').slice(1)||store.get('tab');
+  var start=(location.hash||'').slice(1)||store.get('tab');if(start==='lectura')start='estudio';
   if(start&&document.getElementById(start))show(start);
 
   // Buscador del cancionero
