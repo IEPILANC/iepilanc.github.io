@@ -2,7 +2,7 @@
   "destacados": [
     {
       "titulo": "Reunión de Asamblea",
-      "fecha": "21 de octubre · 19:00 hrs",
+      "fecha": "Miércoles 21 de octubre · 19:00 hrs",
       "imagen": "afiche-asamblea-2026-10.jpg",
       "texto": "«Hagámoslo todo decentemente y con orden» (1 Corintios 14:40). Tu participación es importante."
     },
@@ -26,6 +26,7 @@
     { "fecha": "2026-10-09", "texto": "Ensayo del grupo de coro." },
     { "fecha": "2026-10-14", "texto": "Estudio bíblico. Expositor: Hno. Rudy Fuentes." },
     { "fecha": "2026-10-16", "texto": "Actividad del Grupo de Jóvenes en la iglesia." },
+    { "fecha": "2026-10-21", "texto": "Reunión de Asamblea. Inicio: 19:00 horas.", "especial": true },
     { "fecha": "2026-10-23", "texto": "Ensayo del coro de niños." },
     { "fecha": "2026-10-24", "texto": "Servicio de Primicias." },
     { "fecha": "2026-10-31", "texto": "Día Nacional de las Iglesias Evangélicas y Protestantes. Inicio: 18:00 horas.", "especial": true }
