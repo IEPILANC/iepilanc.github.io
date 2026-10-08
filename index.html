@@ -209,7 +209,7 @@ button:focus-visible,summary:focus-visible,.day:focus-within,.search:focus-visib
         <li>Elige <b>«Agregar a la pantalla principal»</b>.</li>
       </ol>
     </div>
-    <p class="credito">Desarrollado por Hno. Rudy Fuentes<br>Contacto: <a href="tel:+56957339029">+56 9 5733 9029</a></p>
+    <p class="credito">Desarrollado por Hno. Rudy Fuentes<br>Contacto: <a href="tel:+56956339029">+56 9 5633 9029</a></p>
   </section>
 
   <!-- ESTUDIO -->
@@ -399,7 +399,7 @@ en este trance agudo.</p>
   }).catch(function(){document.getElementById('cal').innerHTML='<li class="lead">No se pudieron cargar los anuncios. Revisa tu conexión a internet.</li>'});
 
   // Oración: versículo del día, motivos y petición por WhatsApp (oracion.json)
-  var wa='56957339029';
+  var wa='56956339029';
   fetch('oracion.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
     if(d.whatsapp)wa=String(d.whatsapp).replace(/\D/g,'');
     var vs=d.versiculos||[];
