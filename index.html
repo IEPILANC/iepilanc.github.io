@@ -121,6 +121,13 @@ nav.tabs button.conNuevo::after{content:"";position:absolute;top:6px;right:calc(
 .peticion .search{margin-bottom:4px}
 .peticion .btn{margin-top:12px;width:100%}
 .error{color:var(--red);font-size:.88rem;margin:4px 0 0}
+.estudio-pdf{background:var(--surface);border-radius:16px;box-shadow:var(--sh-1);padding:16px;margin-bottom:26px}
+.estudio-pdf h3{font-family:var(--display);font-size:1.1rem;margin:4px 0 2px;letter-spacing:.02em}
+.estudio-pdf .sub{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+.diapos{display:flex;flex-direction:column;gap:10px}
+.diapos button{padding:0;border:0;background:none;border-radius:10px;overflow:hidden;cursor:pointer;box-shadow:var(--sh-1);aspect-ratio:16/9;max-width:100%}
+.diapos img{width:100%;height:100%;object-fit:cover;display:block}
+.estudio-pdf .acciones{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px;font-size:.85rem;color:var(--muted)}
 .diacono{display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px 16px;border-radius:14px;background:var(--surface);box-shadow:inset 0 0 0 2px var(--gold),var(--sh-1)}
 .diacono svg{width:28px;height:28px;color:var(--gold);flex:none}
 .diacono p{margin:0}
@@ -206,6 +213,7 @@ button:focus-visible,summary:focus-visible,.day:focus-within,.search:focus-visib
 
   <!-- ESTUDIO -->
   <section id="estudio" data-panel hidden>
+    <div id="estudiosPdf"></div>
     <span class="eyebrow">Estudio bíblico</span>
     <h2>Conociendo el Evangelio de Marcos</h2>
     <p class="lead">Para quienes se acercan a la Biblia por primera vez. Toca cada sesión para ver las preguntas.</p>
@@ -413,8 +421,8 @@ en este trance agudo.</p>
   });
 
   // Galería de fotos (lista en fotos.json)
-  var fotos=[],actual=0,gal=document.getElementById('galeria'),visor=document.getElementById('visor');
-  function abrir(i){actual=(i+fotos.length)%fotos.length;var f=fotos[actual];document.getElementById('vImg').src=f.archivo;document.getElementById('vImg').alt=f.titulo||'';document.getElementById('vTxt').textContent=(f.titulo||'')+(f.album?' · '+f.album:'');visor.hidden=false}
+  var fotos=[],lista=[],actual=0,gal=document.getElementById('galeria'),visor=document.getElementById('visor');
+  function abrir(i){actual=(i+lista.length)%lista.length;var f=lista[actual];document.getElementById('vImg').src=f.archivo;document.getElementById('vImg').alt=f.titulo||'';document.getElementById('vTxt').textContent=(f.titulo||'')+(f.album?' · '+f.album:'');visor.hidden=false}
   function cerrar(){visor.hidden=true}
   document.getElementById('vCerrar').onclick=cerrar;
   document.getElementById('vPrev').onclick=function(){abrir(actual-1)};
@@ -434,11 +442,27 @@ en este trance agudo.</p>
       var div=document.createElement('div');div.className='album';
       var h=document.createElement('h3');h.textContent=a;div.appendChild(h);
       var g=document.createElement('div');g.className='fotos';
-      albums[a].forEach(function(i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ver '+(fotos[i].titulo||'foto'));var im=document.createElement('img');im.src=fotos[i].archivo;im.alt=fotos[i].titulo||'';im.loading='lazy';b.appendChild(im);if(fNuevo(fotos[i].archivo)){hayF=true;var e=document.createElement('em');e.className='nuevo enfoto';e.textContent='Nuevo';b.appendChild(e)}b.onclick=function(){abrir(i)};g.appendChild(b)});
+      albums[a].forEach(function(i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ver '+(fotos[i].titulo||'foto'));var im=document.createElement('img');im.src=fotos[i].archivo;im.alt=fotos[i].titulo||'';im.loading='lazy';b.appendChild(im);if(fNuevo(fotos[i].archivo)){hayF=true;var e=document.createElement('em');e.className='nuevo enfoto';e.textContent='Nuevo';b.appendChild(e)}b.onclick=function(){lista=fotos;abrir(i)};g.appendChild(b)});
       div.appendChild(g);gal.appendChild(div);
     });
     marcar('fotos',hayF);
   }).catch(function(){gal.innerHTML='<p class="lead">No se pudieron cargar las fotos. Revisa tu conexión a internet.</p>'});
+
+  // Estudios en PDF (estudios.json): se muestran como diapositivas
+  fetch('estudios.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
+    var es=d.estudios||[],box=document.getElementById('estudiosPdf');if(!es.length)return;
+    var nv=visto('visto-estudios',es.map(function(e){return e.pdf||e.titulo})),hay=false;
+    es.forEach(function(e){
+      var sl=(e.paginas||[]).map(function(src,k,arr){return {archivo:src,titulo:'Diapositiva '+(k+1)+' de '+arr.length,album:e.titulo}});
+      var n=nv(e.pdf||e.titulo);if(n)hay=true;
+      var c=document.createElement('article');c.className='estudio-pdf';
+      c.innerHTML='<span class="tag">Estudio</span> '+(n?NUEVO:'')+'<h3>'+esc(e.titulo)+'</h3>'+(e.subtitulo?'<p class="sub">'+esc(e.subtitulo)+'</p>':'')+'<div class="diapos"></div><div class="acciones"><span>Toca una diapositiva para verla en grande.</span>'+(e.pdf?'<a class="btn" href="'+esc(e.pdf)+'" target="_blank" rel="noopener">Descargar PDF</a>':'')+'</div>';
+      var g=c.querySelector('.diapos');
+      sl.forEach(function(f,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ver '+f.titulo);var im=document.createElement('img');im.src=f.archivo;im.alt=e.titulo+', '+f.titulo.toLowerCase();im.loading='lazy';b.appendChild(im);b.onclick=function(){lista=sl;abrir(i)};g.appendChild(b)});
+      box.appendChild(c);
+    });
+    marcar('estudio',hay);
+  }).catch(function(){});
 })();
 </script>
 <script>

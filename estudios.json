@@ -1,0 +1,17 @@
+{
+  "estudios": [
+    {
+      "titulo": "Introducción al Evangelio de Mateo",
+      "subtitulo": "Estudio bíblico · julio 2026",
+      "pdf": "estudios/mateo-2026-07.pdf",
+      "paginas": [
+        "estudios/mateo-2026-07-1.jpg",
+        "estudios/mateo-2026-07-2.jpg",
+        "estudios/mateo-2026-07-3.jpg",
+        "estudios/mateo-2026-07-4.jpg",
+        "estudios/mateo-2026-07-5.jpg",
+        "estudios/mateo-2026-07-6.jpg"
+      ]
+    }
+  ]
+}
