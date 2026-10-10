@@ -1,17 +1,26 @@
 {
+  "horarios": [
+    { "dia": "Jueves", "hora": "19:30" },
+    { "dia": "Sábado", "hora": "19:30" },
+    { "dia": "Domingo", "hora": "10:30" }
+  ],
+  "direccion": "Corral 8021, Lan-C",
+  "mapa": "Corral 8021 Lan-C",
   "destacados": [
     {
       "titulo": "Reunión de Asamblea",
       "fecha": "Miércoles 21 de octubre · 19:00 hrs",
       "imagen": "afiche-asamblea-2026-10-v2.jpg",
-      "texto": "«Hagámoslo todo decentemente y con orden» (1 Corintios 14:40). Tu participación es importante."
+      "texto": "«Hagámoslo todo decentemente y con orden» (1 Corintios 14:40). Tu participación es importante.",
+      "hasta": "2026-10-21"
     },
     {
       "titulo": "Convención de Dorcas 2026",
       "fecha": "Viernes 13, sábado 14 y domingo 15 de noviembre",
       "lugar": "Gimnasio del Colegio Blanca Estela, Hualpén",
       "mapa": "Colegio Blanca Estela Hualpén",
-      "texto": "Reserva estas fechas en tu calendario."
+      "texto": "Reserva estas fechas en tu calendario.",
+      "hasta": "2026-11-15"
     }
   ],
   "cultos_semana": [

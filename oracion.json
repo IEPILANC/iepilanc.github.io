@@ -1,10 +1,10 @@
 {
   "whatsapp": "56956339029",
   "motivos": [
-    { "texto": "Por la Convención de Dorcas 2026: por las hermanas que la preparan y por quienes asistirán." },
-    { "texto": "Por la Reunión de Asamblea del miércoles 21 de octubre: sabiduría, unidad y orden." },
-    { "texto": "Por los hermanos enfermos de la congregación y sus familias." },
-    { "texto": "Por los niños y jóvenes de la iglesia." }
+    { "texto": "Por la Convención de Dorcas 2026: por las hermanas que la preparan y por quienes asistirán.", "categoria": "Iglesia y actividades" },
+    { "texto": "Por la Reunión de Asamblea del miércoles 21 de octubre: sabiduría, unidad y orden.", "categoria": "Iglesia y actividades" },
+    { "texto": "Por los hermanos enfermos de la congregación y sus familias.", "categoria": "Salud" },
+    { "texto": "Por los niños y jóvenes de la iglesia.", "categoria": "Familias y nuevas generaciones" }
   ],
   "versiculos": [
     { "cita": "Salmos 23:1", "texto": "Jehová es mi pastor; nada me faltará." },

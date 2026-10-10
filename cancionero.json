@@ -1,0 +1,30 @@
+{
+  "himnos": [
+    {
+      "numero": 1,
+      "titulo": "Castillo fuerte es nuestro Dios",
+      "autor": "M. Lutero",
+      "nota": "Trad. J. B. Cabrera. Estrofas 2 a 4: por agregar.",
+      "letra": [
+        [
+          "Castillo fuerte es nuestro Dios,",
+          "defensa y buen escudo;",
+          "con su poder nos librará",
+          "en este trance agudo."
+        ]
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Santo, santo, santo",
+      "autor": "R. Heber",
+      "letra": []
+    },
+    {
+      "numero": 3,
+      "titulo": "Cuán grande es Él",
+      "autor": "Himno",
+      "letra": []
+    }
+  ]
+}

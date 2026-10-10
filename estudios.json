@@ -2,7 +2,9 @@
   "estudios": [
     {
       "titulo": "Introducción al Evangelio de Mateo",
-      "subtitulo": "Estudio bíblico · julio 2026",
+      "fecha": "Julio 2026",
+      "expositor": "Hno. Rudy Fuentes",
+      "descripcion": "Quién escribió este evangelio y para quién, cómo presenta a Jesús y el mapa de sus cinco grandes discursos.",
       "pdf": "estudios/mateo-2026-07.pdf",
       "paginas": [
         "estudios/mateo-2026-07-1.jpg",
@@ -13,5 +15,56 @@
         "estudios/mateo-2026-07-6.jpg"
       ]
     }
-  ]
+  ],
+  "series": [
+    {
+      "titulo": "Conociendo el Evangelio de Marcos",
+      "descripcion": "Para quienes se acercan a la Biblia por primera vez.",
+      "sesiones": [
+        {
+          "titulo": "¿Quién es Jesús?",
+          "cita": "Marcos 1:1–15",
+          "resumen": "Marcos abre su libro presentando a Jesús como el Mesías e Hijo de Dios, anunciado por Juan el Bautista.",
+          "preguntas": [
+            "¿Cómo empieza Marcos su relato? ¿Qué te llama la atención?",
+            "¿Qué anuncia Jesús en el versículo 15?",
+            "¿Qué significa para ti la palabra «arrepentirse»?"
+          ]
+        },
+        {
+          "titulo": "Jesús llama a seguirle",
+          "cita": "Marcos 1:16–20; 2:13–17",
+          "resumen": "Pescadores y un cobrador de impuestos: Jesús llama a personas comunes.",
+          "preguntas": [
+            "¿Qué dejaron los discípulos para seguir a Jesús?",
+            "¿Por qué molestó que Jesús comiera con «pecadores»?"
+          ]
+        },
+        {
+          "titulo": "Autoridad para sanar y perdonar",
+          "cita": "Marcos 2:1–12",
+          "resumen": "Cuatro amigos llevan a un paralítico a Jesús por el techo.",
+          "preguntas": [
+            "¿Qué hicieron los amigos y qué vio Jesús en ellos?",
+            "¿Qué es más difícil: sanar o perdonar? ¿Por qué?"
+          ]
+        },
+        {
+          "titulo": "La cruz y la tumba vacía",
+          "cita": "Marcos 15:33–16:8",
+          "resumen": "El final del Evangelio: la muerte de Jesús y el anuncio de su resurrección.",
+          "preguntas": [
+            "¿Qué reconoce el centurión romano al pie de la cruz?",
+            "¿Cómo reaccionan las mujeres ante la tumba vacía?"
+          ]
+        }
+      ]
+    }
+  ],
+  "plan_lectura": {
+    "titulo": "Marcos en 16 días",
+    "libro": "Marcos",
+    "capitulos": 16,
+    "abreviatura": "Mc"
+  }
 }
