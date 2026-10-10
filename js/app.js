@@ -30,6 +30,15 @@
     sol: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
     luna: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
     auto: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"/>',
+    reunion: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+    dorcas: '<path d="M12 22c4-3 8-6.5 8-11a8 8 0 0 0-16 0c0 4.5 4 8 8 11Z"/><path d="M12 7v8M8 11h8"/>',
+    convencion: '<path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/><path d="M12 5V2"/>',
+    jovenes: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+    escuela: '<path d="m22 10-10-5-10 5 10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+    marcador: '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
+    compartir: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
+    izquierda: '<path d="m15 18-6-6 6-6"/>',
+    alerta: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/>',
     diapos: '<rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/>'
   };
   function ic(nombre, clase) { return '<svg class="ic ' + (clase || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONOS[nombre] || '') + '</svg>'; }
@@ -116,9 +125,9 @@
   }
   function cerrarCapaSuperior() {
     var c = pila.pop(); if (!c) return;
-    if (c.el === hoja && !reduceMov) {
-      hoja.classList.add('sale');
-      setTimeout(function () { hoja.classList.remove('sale'); if (pila.indexOf(c) === -1 && pila.every(function (x) { return x.el !== hoja; })) hoja.hidden = true; }, 160);
+    if (c.el.classList.contains('hoja') && !reduceMov) {
+      var el = c.el; el.classList.add('sale');
+      setTimeout(function () { el.classList.remove('sale'); if (pila.every(function (x) { return x.el !== el; })) el.hidden = true; }, 160);
     } else c.el.hidden = true;
     if (!pila.length) document.body.classList.remove('bloqueo');
     if (c.foco && c.foco.focus) c.foco.focus({ preventScroll: true });
@@ -204,34 +213,36 @@
       '<div class="rol"><span>Coordina</span><span>' + esc(c.coordinador) + '</span></div>' +
       '<div class="rol"><span>Predica</span><b>' + esc(c.predicador) + '</b></div></div></li>';
   }
-  function filaActividad(a, hoy, nuevo) {
-    var f = D.fecha(a.fecha), n = D.diasEntre(hoy, f);
-    var cls = 'fila tarjeta' + (a.especial ? ' especial' : '') + (n === 0 ? ' hoy' : '');
-    return '<li class="' + cls + '"><div class="fecha-bloque"><small>' + D.DIAS_CORTOS[f.getDay()] + '</small><b>' + f.getDate() + '</b></div>' +
-      '<div class="fila-cuerpo"><span>' + esc(a.texto) + '</span><div class="fila-top"><span class="muted">' + esc(D.fechaLarga(f)) + '</span>' +
-      (n === 0 ? '<span class="chip chip-oro">Hoy</span>' : nuevo ? CHIP_NUEVO : '') + '</div></div></li>';
-  }
-
-  function dibujarInicio(d) {
-    var hoy = D.inicioDia(ahora);
+  function dibujarInicio(d, ag) {
+    var A = window.AgendaDatos, hoy = D.inicioDia(ahora), hoyIso = D.iso(ahora);
+    d.cultos_semana = ag.asignaciones_cultos || [];
+    var proximas = A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 120)).filter(function (o) { return o.tipo === 'actividad' && o.fechaFin >= hoyIso; });
     var claves = [];
     (d.destacados || []).forEach(function (a) { claves.push('d|' + a.titulo + '|' + a.fecha); });
     (d.cultos_semana || []).forEach(function (c) { claves.push('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador); });
-    (d.actividades || []).forEach(function (a) { claves.push('a|' + a.fecha + '|' + a.texto); });
+    proximas.forEach(function (o) { claves.push('e|' + o.id + '|' + o.fecha + '|' + (o.hora || '') + '|' + o.estado); });
     if (d.diacono) claves.push('x|' + d.diacono);
     var esNuevo = D.marcadorNuevos('visto-anuncios', claves), hayNuevo = false;
     function nuevo(k) { var n = esNuevo(k); if (n) hayNuevo = true; return n; }
 
     /* Próximo culto */
-    var px = D.proximoCulto(d.horarios, ahora), hero = $('proximo');
+    var px = null, hero = $('proximo');
+    A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 8)).some(function (o) {
+      if (o.tipo !== 'culto' || o.estado === 'cancelada' || !o.hora) return false;
+      var hm = o.hora.split(':'), ini = D.fecha(o.fecha); ini.setHours(+hm[0], +hm[1], 0, 0);
+      if (ini.getTime() + 2 * 3600e3 <= ahora.getTime()) return false;
+      px = { inicio: ini, hora: o.hora, enCurso: ahora >= ini, ocurrencia: o }; return true;
+    });
     if (px) {
-      var cs = (d.cultos_semana || []).filter(function (c) { return c.fecha === D.iso(px.inicio); })[0];
+      var cs = px.ocurrencia.coordinador || px.ocurrencia.predicador ? px.ocurrencia : null;
       var dia = D.diaRelativo(px.inicio, ahora);
       hero.innerHTML = '<p class="kicker">' + ic('calendario', 'ic-sm') + (px.enCurso ? 'Culto en curso <span class="chip chip-vivo">Ahora</span>' : 'Próximo culto') + '</p>' +
         '<p class="hero-dia">' + esc(dia) + '</p>' +
         '<p class="hero-hora">' + esc(px.hora) + ' hrs</p>' + (dia === 'Hoy' || dia === 'Mañana' ? '<p class="hero-fecha">' + esc(D.fechaLarga(px.inicio)) + '</p>' : '') +
-        (cs ? '<div class="hero-roles"><div class="rol"><span>Coordina</span>' + esc(cs.coordinador) + '</div><div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div></div>' : '') +
-        '<div class="hero-acciones"><a class="btn btn-oro" target="_blank" rel="noopener" href="' + esc(enlaceMapa(d.mapa || d.direccion || 'Corral 8021 Lan-C')) + '">' + ic('pin', 'ic-sm') + 'Cómo llegar</a></div>';
+        (cs ? '<div class="hero-roles">' + (cs.coordinador ? '<div class="rol"><span>Coordina</span>' + esc(cs.coordinador) + '</div>' : '') + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + '</div>' : '') +
+        '<div class="hero-acciones"><a class="btn btn-oro" target="_blank" rel="noopener" href="' + esc(enlaceMapa(d.mapa || d.direccion || 'Corral 8021 Lan-C')) + '">' + ic('pin', 'ic-sm') + 'Cómo llegar</a>' +
+        '<button class="btn btn-sec" type="button" data-evento="' + esc(px.ocurrencia.id) + '">Ver detalle</button></div>';
+      hero.querySelector('[data-evento]').onclick = function () { window.Agenda.abrirFicha(px.ocurrencia.id); };
     } else {
       hero.innerHTML = '<p class="kicker">Próximo culto</p><p class="hero-dia">Horario por confirmar</p>';
     }
@@ -260,27 +271,27 @@
     $('semanaBox').hidden = !sem.length;
     $('semana').innerHTML = sem.map(function (c) { nuevo('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador); return filaCulto(c, hoy); }).join('');
 
-    /* Actividades */
-    var sep = D.separarPorFecha(d.actividades, ahora);
-    $('mesNombre').textContent = d.mes || '';
-    if (sep.proximas.length) {
-      $('agenda').innerHTML = sep.proximas.map(function (a) { return filaActividad(a, hoy, nuevo('a|' + a.fecha + '|' + a.texto)); }).join('');
+    /* Próximas actividades (desde la agenda) */
+    var lista = proximas.slice(0, 4);
+    proximas.forEach(function (o) { nuevo('e|' + o.id + '|' + o.fecha + '|' + (o.hora || '') + '|' + o.estado); });
+    if (lista.length) {
+      $('agenda').innerHTML = lista.map(function (o) { return window.Agenda.fila(o, { nuevo: esNuevo('e|' + o.id + '|' + o.fecha + '|' + (o.hora || '') + '|' + o.estado) }); }).join('');
+      window.Agenda.enlazarFilas($('agenda'));
     } else {
       estadoVacio($('agenda'), 'calendario', 'No hay actividades próximas publicadas por ahora.');
     }
-    $('anterioresBox').hidden = !sep.anteriores.length;
-    $('anterioresTit').textContent = 'Actividades anteriores (' + sep.anteriores.length + ')';
-    $('anteriores').innerHTML = sep.anteriores.map(function (a) { nuevo('a|' + a.fecha + '|' + a.texto); return filaActividad(a, hoy, false).replace('class="fila tarjeta', 'class="fila tarjeta pasada'); }).join('');
+    var mesAct = A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 30)).filter(function (o) { return o.estado !== 'cancelada'; }).length;
+    $('agendaResumen').textContent = mesAct ? mesAct + ' cultos y actividades en los próximos 30 días' : 'Calendario de cultos y actividades';
 
     /* Horarios, ubicación y diácono */
-    $('horarios').innerHTML = (d.horarios || []).map(function (h) { return '<div class="horario"><small>' + esc(h.dia) + '</small><b>' + esc(h.hora) + '</b></div>'; }).join('');
+    $('horarios').innerHTML = (ag.cultos_regulares || []).map(function (h) { return '<div class="horario"><small>' + esc(h.dia) + '</small><b>' + esc(h.hora) + '</b></div>'; }).join('');
     if (d.direccion) $('direccion').textContent = d.direccion;
     $('mapa').href = enlaceMapa(d.mapa || d.direccion || 'Corral 8021 Lan-C');
     if (d.diacono) { $('diaconoNom').textContent = d.diacono; $('diacono').hidden = false; nuevo('x|' + d.diacono); }
     marcarPestana('inicio', hayNuevo);
   }
   function cargarInicio() {
-    D.cargar('anuncios.json').then(dibujarInicio).catch(function () {
+    Promise.all([D.cargar('anuncios.json'), window.Agenda.cargar()]).then(function (r) { dibujarInicio(r[0], r[1]); }).catch(function () {
       estadoError($('destacados'), 'No se pudieron cargar los anuncios. Revisa tu conexión a internet.', cargarInicio);
       $('agenda').innerHTML = '';
       $('proximo').innerHTML = '<p class="kicker">Próximo culto</p><p class="hero-dia">Sin conexión</p><p class="hero-hora">Vuelve a intentarlo en un momento.</p>';
@@ -531,6 +542,11 @@
     });
   }
 
+  /* ---------- Utilidades compartidas con la agenda ---------- */
+  window.App = { $: $, esc: esc, ic: ic, ICONOS: ICONOS, CHIP_NUEVO: CHIP_NUEVO, avisar: avisar, abrirCapa: abrirCapa, pedirCierre: pedirCierre,
+    abrirVisor: abrirVisor, img: img, estadoVacio: estadoVacio, estadoError: estadoError, enlaceMapa: enlaceMapa, marcarPestana: marcarPestana };
+
   /* ---------- Inicio de la app ---------- */
-  cargarInicio(); cargarEstudio(); cargarOracion(); cargarCancionero(); cargarFotos();
+  window.addEventListener('agenda-lista', function () { cargarInicio(); });
+  cargarEstudio(); cargarOracion(); cargarCancionero(); cargarFotos();
 })();

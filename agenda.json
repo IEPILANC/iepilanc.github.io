@@ -1,0 +1,199 @@
+{
+  "zona_horaria": "America/Santiago",
+  "categorias": [
+    {
+      "id": "cultos",
+      "nombre": "Cultos generales",
+      "corto": "Cultos",
+      "icono": "iglesia"
+    },
+    {
+      "id": "estudios",
+      "nombre": "Estudios bíblicos",
+      "corto": "Estudios",
+      "icono": "libro"
+    },
+    {
+      "id": "reuniones",
+      "nombre": "Reuniones administrativas",
+      "corto": "Reuniones",
+      "icono": "reunion"
+    },
+    {
+      "id": "coro",
+      "nombre": "Coro y ensayos",
+      "corto": "Coro",
+      "icono": "musica"
+    },
+    {
+      "id": "dorcas",
+      "nombre": "Dorcas",
+      "corto": "Dorcas",
+      "icono": "dorcas"
+    },
+    {
+      "id": "convenciones",
+      "nombre": "Convenciones",
+      "corto": "Convenciones",
+      "icono": "convencion"
+    },
+    {
+      "id": "jovenes",
+      "nombre": "Jóvenes",
+      "corto": "Jóvenes",
+      "icono": "jovenes"
+    },
+    {
+      "id": "escuela",
+      "nombre": "Escuela dominical",
+      "corto": "Escuela dominical",
+      "icono": "escuela"
+    },
+    {
+      "id": "especiales",
+      "nombre": "Actividades especiales",
+      "corto": "Especiales",
+      "icono": "estrella"
+    }
+  ],
+  "lugares": [
+    {
+      "id": "templo",
+      "nombre": "Templo IEPI LAN-C",
+      "direccion": "Corral 8021, Lan-C, Hualpén",
+      "mapa": "Corral 8021 Lan-C Hualpén"
+    },
+    {
+      "id": "gimnasio-blanca-estela",
+      "nombre": "Gimnasio del Colegio Blanca Estela",
+      "direccion": "Hualpén",
+      "mapa": "Colegio Blanca Estela Hualpén"
+    }
+  ],
+  "cultos_regulares": [
+    {
+      "id": "culto-jueves",
+      "titulo": "Culto",
+      "categoria": "cultos",
+      "dia": "Jueves",
+      "hora": "19:30",
+      "lugar": "templo"
+    },
+    {
+      "id": "culto-sabado",
+      "titulo": "Culto",
+      "categoria": "cultos",
+      "dia": "Sábado",
+      "hora": "19:30",
+      "lugar": "templo"
+    },
+    {
+      "id": "culto-domingo",
+      "titulo": "Culto dominical",
+      "categoria": "cultos",
+      "dia": "Domingo",
+      "hora": "10:30",
+      "lugar": "templo"
+    }
+  ],
+  "asignaciones_cultos": [
+    {
+      "fecha": "2026-10-08",
+      "hora": "19:30",
+      "coordinador": "Rosa Vega",
+      "predicador": "Alfonso Reyes"
+    },
+    {
+      "fecha": "2026-10-10",
+      "hora": "19:30",
+      "coordinador": "Josué Caamaño",
+      "predicador": "Rodrigo Toledo"
+    },
+    {
+      "fecha": "2026-10-11",
+      "hora": "10:30",
+      "coordinador": "Kiarely Zamora",
+      "predicador": "Víctor Panitro"
+    }
+  ],
+  "excepciones_cultos": [],
+  "actividades": [
+    {
+      "id": "2026-10-02-ensayo-coro-ninos",
+      "titulo": "Ensayo del coro de niños",
+      "categoria": "coro",
+      "inicio": "2026-10-02",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-03-ofrenda-dorcas",
+      "titulo": "Ofrenda especial para la Convención de Dorcas",
+      "categoria": "dorcas",
+      "inicio": "2026-10-03",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-09-ensayo-coro",
+      "titulo": "Ensayo del grupo de coro",
+      "categoria": "coro",
+      "inicio": "2026-10-09",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-14-estudio-biblico",
+      "titulo": "Estudio bíblico",
+      "categoria": "estudios",
+      "inicio": "2026-10-14",
+      "expositor": "Hno. Rudy Fuentes",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-16-grupo-jovenes",
+      "titulo": "Actividad del Grupo de Jóvenes",
+      "categoria": "jovenes",
+      "inicio": "2026-10-16",
+      "lugar": "templo",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-21-reunion-asamblea",
+      "titulo": "Reunión de Asamblea",
+      "categoria": "reuniones",
+      "inicio": "2026-10-21T19:00",
+      "descripcion": "«Hagámoslo todo decentemente y con orden» (1 Corintios 14:40). Tu participación es importante.",
+      "imagen": "afiche-asamblea-2026-10-v2.jpg",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-23-ensayo-coro-ninos",
+      "titulo": "Ensayo del coro de niños",
+      "categoria": "coro",
+      "inicio": "2026-10-23",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-24-servicio-primicias",
+      "titulo": "Servicio de Primicias",
+      "categoria": "cultos",
+      "inicio": "2026-10-24",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-31-dia-iglesias-evangelicas",
+      "titulo": "Día Nacional de las Iglesias Evangélicas y Protestantes",
+      "categoria": "especiales",
+      "inicio": "2026-10-31T18:00",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-11-13-convencion-dorcas",
+      "titulo": "Convención de Dorcas 2026",
+      "categoria": "convenciones",
+      "inicio": "2026-11-13",
+      "fin": "2026-11-15",
+      "lugar": "gimnasio-blanca-estela",
+      "descripcion": "Reserva estas fechas en tu calendario.",
+      "estado": "publicada"
+    }
+  ]
+}

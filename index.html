@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
-<link rel="stylesheet" href="css/app.css?v=5">
+<link rel="stylesheet" href="css/app.css?v=6">
 </head>
 <body>
 
@@ -48,6 +48,11 @@
       <div class="skel" style="height:32px;width:70%;margin-top:12px;opacity:.3"></div>
       <div class="skel" style="height:20px;width:30%;margin-top:8px;opacity:.3"></div>
     </article>
+    <button class="acceso-agenda tarjeta" style="margin-top:12px" type="button" id="abrirAgenda">
+      <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span>
+      <span class="acceso-txt"><b>Agenda congregacional</b><span class="muted" id="agendaResumen">Calendario de cultos y actividades</span></span>
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
 
     <section class="bloque" id="destacadosBox" aria-labelledby="tDest">
       <div class="bloque-cab"><h2 id="tDest">Destacados</h2></div>
@@ -60,12 +65,8 @@
     </section>
 
     <section class="bloque" aria-labelledby="tAgenda">
-      <div class="bloque-cab"><h2 id="tAgenda">Próximas actividades</h2><span class="muted" id="mesNombre"></span></div>
+      <div class="bloque-cab"><h2 id="tAgenda">Próximas actividades</h2></div>
       <ul class="agenda" id="agenda"><li class="skel" style="height:72px"></li><li class="skel" style="height:72px"></li></ul>
-      <details class="anteriores" id="anterioresBox" hidden>
-        <summary><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span id="anterioresTit">Actividades anteriores</span></summary>
-        <ul class="agenda" id="anteriores"></ul>
-      </details>
     </section>
 
     <section class="bloque" aria-labelledby="tHorarios">
@@ -233,6 +234,47 @@
   <div class="hoja-cuerpo"><div class="hoja-cuerpo-in" id="hojaCuerpo"></div></div>
 </div>
 
+<!-- Agenda congregacional -->
+<div class="hoja" id="agendaHoja" hidden role="dialog" aria-modal="true" aria-labelledby="agTitulo">
+  <header class="hoja-cab">
+    <div class="hoja-cab-in">
+      <button class="icon-btn" type="button" data-cerrar aria-label="Volver">
+        <svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <h2 id="agTitulo">Agenda congregacional</h2>
+      <button class="icon-btn" type="button" id="agSuscribir" aria-label="Suscribirse al calendario">
+        <svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      </button>
+    </div>
+    <div class="hoja-cab-in ag-controles">
+      <div class="segmentos" role="tablist" aria-label="Vista de la agenda">
+        <button type="button" role="tab" data-vista="mes" aria-selected="false">Mes</button>
+        <button type="button" role="tab" data-vista="semana" aria-selected="false">Semana</button>
+        <button type="button" role="tab" data-vista="lista" aria-selected="true">Agenda</button>
+        <button type="button" role="tab" data-vista="mia" aria-selected="false">Guardadas</button>
+      </div>
+    </div>
+    <div class="hoja-cab-in"><div class="cat-filtros" id="agFiltros" role="group" aria-label="Filtrar por categoría"></div></div>
+  </header>
+  <div class="hoja-cuerpo"><div class="hoja-cuerpo-in" id="agCuerpo"></div></div>
+</div>
+
+<!-- Ficha de actividad -->
+<div class="hoja" id="ficha" hidden role="dialog" aria-modal="true" aria-labelledby="fichaTitulo">
+  <header class="hoja-cab">
+    <div class="hoja-cab-in">
+      <button class="icon-btn" type="button" data-cerrar aria-label="Volver">
+        <svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <h2 id="fichaTitulo">Actividad</h2>
+      <button class="icon-btn" type="button" id="fichaCompartir" aria-label="Compartir actividad">
+        <svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+      </button>
+    </div>
+  </header>
+  <div class="hoja-cuerpo"><div class="hoja-cuerpo-in" id="fichaCuerpo"></div></div>
+</div>
+
 <!-- Visor de imágenes -->
 <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
   <div class="visor-cab">
@@ -251,8 +293,10 @@
 
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-<script src="js/datos.js?v=5"></script>
-<script src="js/app.js?v=5"></script>
+<script src="js/datos.js?v=6"></script>
+<script src="js/agenda-datos.js?v=6"></script>
+<script src="js/app.js?v=6"></script>
+<script src="js/agenda.js?v=6"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>

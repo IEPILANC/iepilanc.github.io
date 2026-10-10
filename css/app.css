@@ -637,3 +637,144 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 @media (max-width: 440px) {
   .barra small { white-space: normal; font-size: .75rem; line-height: 1.25; }
 }
+
+/* =========================================================
+   Agenda congregacional
+   ========================================================= */
+:root {
+  --cat-cultos: #17294B; --cat-estudios: #2F5D8A; --cat-reuniones: #4B5563; --cat-coro: #6B4E9C; --cat-dorcas: #9C3D63;
+  --cat-convenciones: #9A7426; --cat-jovenes: #2F7A52; --cat-escuela: #B0601E; --cat-especiales: #B8892E;
+}
+:root[data-theme="dark"] { --cat-cultos: #8FA8D8; --cat-estudios: #7DB0E0; --cat-reuniones: #A9B2C0; --cat-coro: #B9A2E3; --cat-dorcas: #E49AB7; --cat-convenciones: #D7B76C; --cat-jovenes: #6CC596; --cat-escuela: #E9A56B; --cat-especiales: #E6C47A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --cat-cultos: #8FA8D8; --cat-estudios: #7DB0E0; --cat-reuniones: #A9B2C0; --cat-coro: #B9A2E3; --cat-dorcas: #E49AB7; --cat-convenciones: #D7B76C; --cat-jovenes: #6CC596; --cat-escuela: #E9A56B; --cat-especiales: #E6C47A; } }
+[data-cat="cultos"] { --cat: var(--cat-cultos); } [data-cat="estudios"] { --cat: var(--cat-estudios); } [data-cat="reuniones"] { --cat: var(--cat-reuniones); }
+[data-cat="coro"] { --cat: var(--cat-coro); } [data-cat="dorcas"] { --cat: var(--cat-dorcas); } [data-cat="convenciones"] { --cat: var(--cat-convenciones); }
+[data-cat="jovenes"] { --cat: var(--cat-jovenes); } [data-cat="escuela"] { --cat: var(--cat-escuela); } [data-cat="especiales"] { --cat: var(--cat-especiales); }
+
+/* Acceso desde Inicio */
+.acceso-agenda { width: 100%; display: flex; align-items: center; gap: 14px; padding: 16px; text-align: left; color: var(--texto); border-color: var(--borde); transition: transform var(--dur-rapida) var(--curva), box-shadow var(--dur); -webkit-tap-highlight-color: transparent; }
+.acceso-agenda:active { transform: scale(.985); }
+.acceso-agenda > .ic { color: var(--texto-3); }
+.acceso-ic { flex: none; width: 48px; height: 48px; border-radius: var(--r-md); display: grid; place-items: center; background: var(--marino); color: var(--dorado); }
+:root[data-theme="dark"] .acceso-ic { background: var(--superficie-2); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .acceso-ic { background: var(--superficie-2); } }
+.acceso-txt { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.acceso-txt b { font-family: var(--f-editorial); font-size: var(--t-md); font-weight: 600; }
+@media (hover: hover) { .acceso-agenda:hover { box-shadow: var(--sombra-2); } }
+
+/* Filas de actividad */
+.eventos, .agenda { display: grid; gap: 8px; }
+.evento { width: 100%; display: flex; align-items: center; gap: 14px; padding: 12px 12px 12px 12px; text-align: left; color: var(--texto); position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; transition: transform var(--dur-rapida) var(--curva), box-shadow var(--dur), background var(--dur); }
+.evento::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--cat, var(--marino)); }
+.evento:active { transform: scale(.985); background: var(--superficie-2); }
+@media (hover: hover) { .evento:hover { box-shadow: var(--sombra-2); } }
+.evento .fecha-bloque { margin-left: 2px; }
+.ev-hora { flex: none; width: 48px; margin-left: 4px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--texto); font-size: .9375rem; }
+.ev-cuerpo { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.ev-titulo { font-weight: 600; line-height: 1.3; }
+.ev-meta { display: flex; flex-wrap: wrap; gap: 2px 12px; color: var(--texto-3); font-size: var(--t-sm); }
+.ev-meta > span { display: inline-flex; align-items: center; gap: 5px; }
+.ev-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.ev-flecha { color: var(--texto-3); width: 18px; height: 18px; }
+.ev-cancelada .ev-titulo { text-decoration: line-through; color: var(--texto-3); }
+.ev-cancelada::before { background: var(--borde-fuerte); }
+.ev-pasado { opacity: .62; }
+.ev-hoy { box-shadow: 0 0 0 2px var(--dorado), var(--sombra-1); border-color: transparent; }
+.cat-chip { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 9px 0 7px; border-radius: var(--r-pill); font-size: var(--t-xs); font-weight: 600; color: var(--cat); background: color-mix(in srgb, var(--cat) 12%, transparent); white-space: nowrap; }
+.cat-chip .ic { width: 14px; height: 14px; }
+.chip-error { background: var(--error-suave); color: var(--error); }
+
+/* Controles de la agenda */
+.ag-controles { padding-top: 8px; }
+.segmentos { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); padding: 3px; border-radius: var(--r-md); background: var(--superficie-2); }
+.segmentos button { min-height: 38px; border: 0; border-radius: 9px; background: none; color: var(--texto-2); font-size: var(--t-sm); font-weight: 600; transition: background var(--dur), color var(--dur), box-shadow var(--dur); -webkit-tap-highlight-color: transparent; }
+.segmentos button[aria-selected="true"] { background: var(--superficie); color: var(--acento); box-shadow: var(--sombra-1); }
+.cat-filtros { display: flex; gap: 8px; overflow-x: auto; padding: 10px 2px 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin-inline: -2px; }
+.cat-filtros::-webkit-scrollbar { display: none; }
+.cat-filtro { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: var(--r-pill); border: 1px solid var(--borde-fuerte); background: var(--superficie); color: var(--texto-2); font-size: var(--t-sm); font-weight: 600; transition: background var(--dur), color var(--dur), border-color var(--dur); -webkit-tap-highlight-color: transparent; }
+.cat-filtro .ic { width: 15px; height: 15px; color: var(--cat, currentColor); }
+.cat-filtro[aria-pressed="true"] { background: var(--acento); border-color: var(--acento); color: var(--sobre-acento); }
+.cat-filtro[aria-pressed="true"] .ic { color: currentColor; }
+.dia-tit { font-size: var(--t-sm); font-weight: 700; letter-spacing: .02em; color: var(--texto-2); margin: 22px 0 10px; }
+.dia-tit:first-child { margin-top: 4px; }
+.bloque-sub { font-family: var(--f-editorial); font-size: var(--t-lg); font-weight: 600; margin: 28px 0 0; }
+.anteriores-lista { margin-top: 8px; }
+.nota-personal { display: flex; gap: 8px; align-items: flex-start; padding: 12px 14px; border-radius: var(--r-md); background: var(--dorado-suave); color: var(--texto-2); font-size: var(--t-sm); margin-bottom: 8px; }
+.nota-personal .ic { color: var(--dorado-texto); margin-top: 2px; }
+
+/* Vista mensual */
+.cal-cab { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.cal-cab h3 { font-family: var(--f-editorial); font-size: var(--t-lg); font-weight: 600; text-align: center; flex: 1; }
+.cal { padding: 10px 8px 12px; }
+.cal-sem, .cal-dias { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-sem span { text-align: center; font-size: var(--t-xs); font-weight: 700; color: var(--texto-3); padding-bottom: 8px; }
+.cal-dias { gap: 2px; }
+.cal-dia { aspect-ratio: 1 / 1.05; max-width: 100%; min-height: 44px; border: 0; border-radius: var(--r-md); background: none; color: var(--texto); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-variant-numeric: tabular-nums; font-weight: 500; transition: background var(--dur-rapida), transform var(--dur-rapida); -webkit-tap-highlight-color: transparent; }
+.cal-dia:active { transform: scale(.92); }
+.cal-dia.con { font-weight: 700; }
+.cal-dia.es-hoy > span:first-child { color: var(--dorado-texto); font-weight: 800; }
+.cal-dia.sel { background: var(--marino); color: var(--blanco); }
+.cal-dia.sel.es-hoy > span:first-child { color: var(--dorado); }
+:root[data-theme="dark"] .cal-dia.sel { background: var(--dorado); color: var(--grafito); }
+:root[data-theme="dark"] .cal-dia.sel.es-hoy > span:first-child { color: var(--grafito); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cal-dia.sel { background: var(--dorado); color: var(--grafito); } :root:not([data-theme="light"]) .cal-dia.sel.es-hoy > span:first-child { color: var(--grafito); } }
+@media (hover: hover) { .cal-dia:not(.sel):hover { background: var(--toque); } }
+.puntos { display: flex; gap: 3px; height: 6px; align-items: center; }
+.puntos i, .leyenda i { display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--cat, var(--marino)); }
+.cal-dia.sel .puntos i { box-shadow: 0 0 0 1.5px var(--blanco); }
+.puntos em { font-style: normal; font-size: 9px; line-height: 1; font-weight: 700; }
+.cal-vacio { aspect-ratio: 1; max-width: 100%; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 24px; font-size: var(--t-xs); color: var(--texto-3); }
+.leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Vista semanal */
+.semana { display: grid; gap: 4px; }
+.sem-dia { padding: 10px 0 12px; border-bottom: 1px solid var(--borde); }
+.sem-dia h3 { display: flex; align-items: center; gap: 10px; font-size: .9375rem; font-weight: 600; margin-bottom: 8px; }
+.sem-num { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--superficie-2); font-variant-numeric: tabular-nums; font-weight: 700; }
+.sem-dia.es-hoy .sem-num { background: var(--marino); color: var(--dorado); }
+.sem-vacio { padding-left: 42px; }
+.sem-dia .eventos { padding-left: 0; }
+
+/* Ficha */
+.ficha-cab { padding-bottom: 4px; }
+.ficha-cab .etiquetas { margin-bottom: 10px; }
+.tachado { text-decoration: line-through; color: var(--texto-3); }
+.aviso-estado { display: flex; gap: 12px; margin-top: 16px; padding: 14px 16px; border-radius: var(--r-md); background: var(--acento-suave); color: var(--texto); }
+.aviso-estado.cancelada { background: var(--error-suave); }
+.aviso-estado.cancelada .ic { color: var(--error); }
+.aviso-estado.reprogramada { background: var(--dorado-suave); }
+.aviso-estado.reprogramada .ic { color: var(--dorado-texto); }
+.aviso-estado p { color: var(--texto-2); margin-top: 2px; font-size: .9375rem; }
+.ficha-afiche { display: block; margin-top: 16px; padding: 0; border: 0; background: none; border-radius: var(--r-lg); overflow: hidden; max-width: 320px; width: 100%; box-shadow: var(--sombra-1); }
+.datos { margin-top: 16px; }
+.dato { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; }
+.dato + .dato { border-top: 1px solid var(--borde); }
+.dato > .ic { color: var(--dorado-texto); margin-top: 2px; }
+.dato div { display: grid; gap: 1px; min-width: 0; }
+.dato .muted { font-size: var(--t-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.dato b { font-weight: 600; }
+.enlace { color: var(--acento); font-weight: 600; font-size: var(--t-sm); text-decoration: none; margin-top: 4px; min-height: 32px; display: inline-flex; align-items: center; }
+.ficha-desc { margin-top: 18px; color: var(--texto-2); line-height: 1.65; max-width: var(--ancho-texto); }
+.indicaciones { margin-top: 16px; padding: 14px 16px; border-radius: var(--r-md); background: var(--superficie-2); }
+.indicaciones p { color: var(--texto-2); margin-top: 4px; }
+.ficha-acciones { display: grid; gap: 10px; margin-top: 24px; }
+.cal-personal { padding: 16px; display: grid; gap: 10px; }
+.cal-personal > b { font-weight: 600; }
+.cal-personal > .muted { margin-top: -6px; }
+.campo-linea { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: var(--t-sm); font-weight: 600; }
+.campo-linea select { width: auto; min-width: 0; flex: 1; max-width: 220px; min-height: 44px; padding: 0 12px; }
+.dos-btn { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dos-btn .btn { padding: 0 10px; font-size: var(--t-sm); }
+.mini { font-size: var(--t-xs); }
+.hoja-cab .cat-filtros, .hoja-cab .ag-controles { max-width: var(--ancho); }
+#agendaHoja .hoja-cab { padding-bottom: 10px; }
+@media (max-width: 359px) {
+  .segmentos button { font-size: 12px; }
+  .dos-btn { grid-template-columns: 1fr; }
+  .evento { gap: 10px; }
+}
+.hoja-cab-in > .cat-filtros { flex: 1; min-width: 0; }
+.cal-sem, .cal-dias { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.cal-dia { min-width: 0; }
+@media (max-width: 359px) { .cal { padding: 8px 4px 10px; } .cal-dia { min-height: 40px; aspect-ratio: auto; height: 42px; } }

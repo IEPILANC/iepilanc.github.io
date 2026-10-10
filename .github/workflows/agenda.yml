@@ -1,0 +1,35 @@
+# Revisa la agenda cada vez que cambia y mantiene al día el calendario para suscribirse.
+# Los conflictos aparecen como advertencias en la pestaña "Actions"; no bloquean la publicación.
+name: Agenda congregacional
+on:
+  push:
+    branches: [main]
+    paths: ['agenda.json', 'js/agenda-datos.js', 'herramientas/agenda.mjs', 'pruebas/**']
+  schedule:
+    - cron: '17 9 * * 1'   # lunes, para extender los cultos regulares en el calendario
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  agenda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Pruebas automáticas
+        run: node --test pruebas/agenda.test.mjs
+      - name: Revisar agenda y conflictos
+        run: node herramientas/agenda.mjs revisar
+      - name: Generar agenda.ics
+        run: node herramientas/agenda.mjs ics
+      - name: Guardar agenda.ics si cambió
+        run: |
+          if ! git diff --quiet -- agenda.ics; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add agenda.ics
+            git commit -m "Actualiza agenda.ics"
+            git push
+          fi

@@ -1,9 +1,4 @@
 {
-  "horarios": [
-    { "dia": "Jueves", "hora": "19:30" },
-    { "dia": "Sábado", "hora": "19:30" },
-    { "dia": "Domingo", "hora": "10:30" }
-  ],
   "direccion": "Corral 8021, Lan-C",
   "mapa": "Corral 8021 Lan-C",
   "destacados": [
@@ -22,23 +17,6 @@
       "texto": "Reserva estas fechas en tu calendario.",
       "hasta": "2026-11-15"
     }
-  ],
-  "cultos_semana": [
-    { "fecha": "2026-10-08", "hora": "19:30", "coordinador": "Rosa Vega", "predicador": "Alfonso Reyes" },
-    { "fecha": "2026-10-10", "hora": "19:30", "coordinador": "Josué Caamaño", "predicador": "Rodrigo Toledo" },
-    { "fecha": "2026-10-11", "hora": "10:30", "coordinador": "Kiarely Zamora", "predicador": "Víctor Panitro" }
-  ],
-  "mes": "Octubre 2026",
-  "actividades": [
-    { "fecha": "2026-10-02", "texto": "Ensayo del coro de niños." },
-    { "fecha": "2026-10-03", "texto": "Ofrenda especial para la Convención de Dorcas.", "especial": true },
-    { "fecha": "2026-10-09", "texto": "Ensayo del grupo de coro." },
-    { "fecha": "2026-10-14", "texto": "Estudio bíblico. Expositor: Hno. Rudy Fuentes." },
-    { "fecha": "2026-10-16", "texto": "Actividad del Grupo de Jóvenes en la iglesia." },
-    { "fecha": "2026-10-21", "texto": "Reunión de Asamblea. Inicio: 19:00 horas.", "especial": true },
-    { "fecha": "2026-10-23", "texto": "Ensayo del coro de niños." },
-    { "fecha": "2026-10-24", "texto": "Servicio de Primicias." },
-    { "fecha": "2026-10-31", "texto": "Día Nacional de las Iglesias Evangélicas y Protestantes. Inicio: 18:00 horas.", "especial": true }
   ],
   "diacono": "Hno. Andrés Ramírez"
 }
