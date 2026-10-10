@@ -24,6 +24,12 @@
     imagen: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/>',
     buscar: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
     corazon: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+    iglesia: '<path d="M12 2v4M10 4h4"/><path d="m6 10 6-4 6 4"/><path d="M6 10v11h12V10"/><path d="M10 21v-5h4v5"/>',
+    familia: '<circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 21v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><path d="M15 21v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    sol: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+    luna: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    auto: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"/>',
     diapos: '<rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/>'
   };
   function ic(nombre, clase) { return '<svg class="ic ' + (clase || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONOS[nombre] || '') + '</svg>'; }
@@ -43,6 +49,62 @@
     if (b) b.classList.toggle('con-nuevo', !!hay);
   }
 
+  /* ---------- Aviso breve ---------- */
+  var avisoEl = $('aviso'), avisoT = null;
+  function avisar(msg) {
+    avisoEl.innerHTML = ic('check') + '<span>' + esc(msg) + '</span>';
+    avisoEl.classList.add('ver');
+    clearTimeout(avisoT);
+    avisoT = setTimeout(function () { avisoEl.classList.remove('ver'); }, 2200);
+  }
+
+  /* ---------- Apariencia: automática, clara u oscura ---------- */
+  var temaBtn = $('temaBtn'), temaMenu = $('temaMenu'), metaColor = document.querySelector('meta[name="theme-color"]');
+  var NOMBRE_TEMA = { auto: 'automática', light: 'clara', dark: 'oscura' };
+  function aplicarTema(t) {
+    var root = document.documentElement;
+    if (t === 'light' || t === 'dark') root.dataset.theme = t; else delete root.dataset.theme;
+    var oscuro = t === 'dark' || (t !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+    if (metaColor) metaColor.content = oscuro ? '#0B1220' : '#17294B';
+    $('temaIco').innerHTML = ICONOS[t === 'dark' ? 'luna' : t === 'light' ? 'sol' : 'auto'];
+    temaBtn.setAttribute('aria-label', 'Apariencia: ' + NOMBRE_TEMA[t]);
+    temaMenu.querySelectorAll('[data-tema]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.tema === t); });
+  }
+  function temaActual() { var t = D.store.get('tema'); return t === 'light' || t === 'dark' ? t : 'auto'; }
+  function cerrarMenuTema() { temaMenu.hidden = true; temaBtn.setAttribute('aria-expanded', 'false'); }
+  temaBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var abrir = temaMenu.hidden;
+    temaMenu.hidden = !abrir; temaBtn.setAttribute('aria-expanded', abrir);
+    if (abrir) temaMenu.querySelector('[aria-checked="true"]').focus();
+  });
+  temaMenu.querySelectorAll('[data-tema]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      D.store.set('tema', b.dataset.tema); aplicarTema(b.dataset.tema); cerrarMenuTema(); temaBtn.focus();
+      avisar('Apariencia ' + NOMBRE_TEMA[b.dataset.tema]);
+    });
+  });
+  document.addEventListener('click', function (e) { if (!temaMenu.hidden && !temaMenu.contains(e.target)) cerrarMenuTema(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !temaMenu.hidden) { cerrarMenuTema(); temaBtn.focus(); } });
+  if (window.matchMedia) { var mq = matchMedia('(prefers-color-scheme: dark)'); (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function () { aplicarTema(temaActual()); }); }
+  aplicarTema(temaActual());
+
+  /* ---------- Encabezado compacto al desplazarse ---------- */
+  var barra = document.querySelector('.barra'), compacta = false;
+  window.addEventListener('scroll', function () {
+    var c = window.scrollY > 24;
+    if (c !== compacta) { compacta = c; barra.classList.toggle('compacta', c); }
+  }, { passive: true });
+
+  /* ---------- Fundido suave al cargar imágenes ---------- */
+  var reduceMov = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('load', function (e) {
+    var t = e.target; if (t.tagName === 'IMG' && t.classList.contains('carga')) t.classList.add('cargada');
+  }, true);
+  function img(src, alt, extra) {
+    return '<img class="' + (reduceMov ? '' : 'carga') + '" src="' + esc(src) + '" alt="' + esc(alt || '') + '" decoding="async" ' + (extra || 'loading="lazy"') + '>';
+  }
+
   /* ---------- Capas (hoja de detalle y visor) con botón "atrás" ---------- */
   var pila = [];
   function abrirCapa(el) {
@@ -54,7 +116,10 @@
   }
   function cerrarCapaSuperior() {
     var c = pila.pop(); if (!c) return;
-    c.el.hidden = true;
+    if (c.el === hoja && !reduceMov) {
+      hoja.classList.add('sale');
+      setTimeout(function () { hoja.classList.remove('sale'); if (pila.indexOf(c) === -1 && pila.every(function (x) { return x.el !== hoja; })) hoja.hidden = true; }, 160);
+    } else c.el.hidden = true;
     if (!pila.length) document.body.classList.remove('bloqueo');
     if (c.foco && c.foco.focus) c.foco.focus({ preventScroll: true });
   }
@@ -82,8 +147,9 @@
 
   var visor = $('visor'), visorLista = [], visorIdx = 0;
   function mostrarImagen() {
-    var it = visorLista[visorIdx];
-    $('visorImg').src = it.src; $('visorImg').alt = it.alt || it.titulo || '';
+    var it = visorLista[visorIdx], im = $('visorImg');
+    if (!visor.hidden && !reduceMov) { im.classList.add('cambiando'); im.onload = function () { im.classList.remove('cambiando'); }; }
+    im.src = it.src; $('visorImg').alt = it.alt || it.titulo || '';
     $('visorTxt').textContent = it.titulo || '';
     $('visorCont').textContent = visorLista.length > 1 ? (visorIdx + 1) + ' / ' + visorLista.length : '';
     $('visorPrev').hidden = $('visorNext').hidden = visorLista.length < 2;
@@ -176,7 +242,7 @@
     cont.innerHTML = dest.map(function (a, i) {
       var n = nuevo('d|' + a.titulo + '|' + a.fecha);
       var media = a.imagen
-        ? '<button class="destacado-img" type="button" data-afiche="' + i + '" aria-label="Ver afiche: ' + esc(a.titulo) + '"><img src="' + esc(a.imagen) + '" alt="" loading="lazy" decoding="async"></button>'
+        ? '<button class="destacado-img" type="button" data-afiche="' + i + '" aria-label="Ver afiche: ' + esc(a.titulo) + '">' + img(a.imagen, '') + '</button>'
         : '<div class="destacado-ic">' + ic('calendario', 'ic-lg') + '</div>';
       return '<article class="destacado tarjeta">' + media + '<div class="destacado-cuerpo">' + (n ? '<div>' + CHIP_NUEVO + '</div>' : '') +
         '<h3>' + esc(a.titulo) + '</h3>' +
@@ -228,10 +294,10 @@
     var portada = e.portada || (e.paginas || [])[0];
     var nPag = (e.paginas || []).length;
     return '<article class="estudio tarjeta">' +
-      (portada ? '<button class="estudio-portada" type="button" data-ver="' + i + '" aria-label="Ver estudio: ' + esc(e.titulo) + '"><img src="' + esc(portada) + '" alt="" loading="lazy" decoding="async"></button>' : '') +
+      (portada ? '<button class="estudio-portada" type="button" data-ver="' + i + '" aria-label="Ver estudio: ' + esc(e.titulo) + '">' + img(portada, '') + (e.fecha ? '<span class="portada-fecha">' + ic('calendario') + esc(e.fecha) + '</span>' : '') + '</button>' : '') +
       '<div class="estudio-cuerpo"><div class="etiquetas"><span class="chip">Estudio</span>' + (nuevo ? CHIP_NUEVO : '') + '</div>' +
       '<h3>' + esc(e.titulo) + '</h3>' +
-      '<div class="meta">' + (e.fecha ? '<span>' + ic('calendario', 'ic-sm') + esc(e.fecha) + '</span>' : '') + (e.expositor ? '<span>' + ic('persona', 'ic-sm') + esc(e.expositor) + '</span>' : '') + (nPag ? '<span>' + ic('diapos', 'ic-sm') + nPag + ' diapositivas</span>' : '') + '</div>' +
+      '<div class="meta">' + (e.expositor ? '<span>' + ic('persona', 'ic-sm') + esc(e.expositor) + '</span>' : '') + (nPag ? '<span>' + ic('diapos', 'ic-sm') + nPag + ' diapositivas</span>' : '') + '</div>' +
       (e.descripcion ? '<p>' + esc(e.descripcion) + '</p>' : '') +
       '<div class="estudio-acciones">' + (nPag ? '<button class="btn" type="button" data-ver="' + i + '">Ver estudio</button>' : '') +
       (e.pdf ? '<a class="btn btn-sec" href="' + esc(e.pdf) + '" target="_blank" rel="noopener">' + ic('descarga', 'ic-sm') + 'PDF</a>' : '') + '</div></div></article>';
@@ -241,7 +307,7 @@
     var html = '<p class="kicker">Estudio bíblico</p><h3 class="hoja-titulo">' + esc(e.titulo) + '</h3>' +
       '<div class="meta" style="margin-top:8px">' + (e.fecha ? '<span>' + ic('calendario', 'ic-sm') + esc(e.fecha) + '</span>' : '') + (e.expositor ? '<span>' + ic('persona', 'ic-sm') + esc(e.expositor) + '</span>' : '') + '</div>' +
       '<p class="muted" style="margin-top:12px">Toca una diapositiva para verla en pantalla completa.</p>' +
-      '<div class="diapos">' + lista.map(function (s, k) { return '<button type="button" data-d="' + k + '" aria-label="Ampliar diapositiva ' + (k + 1) + '"><img src="' + esc(s.src) + '" alt="' + esc(s.alt) + '" loading="lazy" decoding="async"></button>'; }).join('') + '</div>' +
+      '<div class="diapos">' + lista.map(function (s, k) { return '<button type="button" data-d="' + k + '" aria-label="Ampliar diapositiva ' + (k + 1) + '">' + img(s.src, s.alt) + '<span class="diapo-num">' + (k + 1) + '/' + lista.length + '</span></button>'; }).join('') + '</div>' +
       (e.pdf ? '<a class="btn btn-sec btn-bloque" style="margin-top:20px" href="' + esc(e.pdf) + '" target="_blank" rel="noopener">' + ic('descarga', 'ic-sm') + 'Descargar PDF</a>' : '');
     var cuerpo = abrirHoja(e.titulo, html);
     cuerpo.querySelectorAll('[data-d]').forEach(function (b) { b.onclick = function () { abrirVisor(lista, +b.dataset.d); }; });
@@ -273,7 +339,7 @@
       $('planCuenta').textContent = n + ' de ' + total;
       $('planMensaje').textContent = n === total ? '¡Terminaste el plan! Gloria a Dios.' : '';
       $('planDias').querySelectorAll('input').forEach(function (c) {
-        c.onchange = function () { D.plan.marcar(+c.dataset.dia, c.checked); render(); var x = $('planDias').querySelector('[data-dia="' + c.dataset.dia + '"]'); if (x) x.focus(); };
+        c.onchange = function () { D.plan.marcar(+c.dataset.dia, c.checked); render(); avisar((c.checked ? 'Día ' : 'Día ') + c.dataset.dia + (c.checked ? ' marcado como leído' : ' desmarcado')); var x = $('planDias').querySelector('[data-dia="' + c.dataset.dia + '"]'); if (x) x.focus(); };
       });
     }
     var btn = $('planReiniciar'), espera = null;
@@ -284,7 +350,7 @@
         return;
       }
       clearTimeout(espera); espera = null; btn.textContent = 'Reiniciar plan';
-      D.plan.reiniciar(); render(); $('planMensaje').textContent = 'Plan reiniciado.';
+      D.plan.reiniciar(); render(); avisar('Plan de lectura reiniciado');
     };
     render();
   }
@@ -313,6 +379,13 @@
      ORACIÓN
      ========================================================= */
   var numeroPeticiones = '56956339029';
+  function iconoCategoria(n) {
+    var k = D.normalizar(n);
+    if (/salud|enferm|sanid/.test(k)) return 'corazon';
+    if (/famil|nino|joven|generac/.test(k)) return 'familia';
+    if (/iglesia|activid|congreg|mision/.test(k)) return 'iglesia';
+    return 'corazon';
+  }
   function dibujarOracion(d) {
     if (d.whatsapp) numeroPeticiones = d.whatsapp;
     var v = D.versiculoDelDia(d.versiculos, ahora);
@@ -323,7 +396,7 @@
     if (!ms.length) { estadoVacio($('motivos'), 'corazon', 'Pronto se publicarán los motivos de oración de la semana.'); }
     else {
       $('motivos').innerHTML = D.agrupar(ms, 'categoria', 'Generales').map(function (g) {
-        return '<div class="categoria"><h3>' + esc(g.nombre) + ' <span class="muted">· ' + g.items.length + '</span></h3><ul class="motivos tarjeta">' +
+        return '<div class="categoria"><h3><span class="cat-ic">' + ic(iconoCategoria(g.nombre)) + '</span>' + esc(g.nombre) + ' <span class="muted">· ' + g.items.length + '</span></h3><ul class="motivos tarjeta">' +
           g.items.map(function (m) { var n = esNuevo(m.texto); if (n) hay = true; return '<li class="motivo"><span>' + esc(m.texto) + '</span>' + (n ? CHIP_NUEVO : '') + '</li>'; }).join('') + '</ul></div>';
       }).join('');
     }
@@ -376,7 +449,7 @@
         '<button class="icon-btn fav" type="button" data-fav="' + h.numero + '" aria-pressed="' + fav + '" aria-label="' + (fav ? 'Quitar de favoritos: ' : 'Agregar a favoritos: ') + esc(h.titulo) + '">' + ic('estrella') + '</button></li>';
     }).join('');
     cont.querySelectorAll('[data-h]').forEach(function (b) { b.onclick = function () { verHimno(+b.dataset.h); }; });
-    cont.querySelectorAll('[data-fav]').forEach(function (b) { b.onclick = function () { D.favoritos.alternar(+b.dataset.fav); dibujarHimnos(); var x = $('himnos').querySelector('[data-fav="' + b.dataset.fav + '"]'); if (x) x.focus(); }; });
+    cont.querySelectorAll('[data-fav]').forEach(function (b) { b.onclick = function () { var es = D.favoritos.alternar(+b.dataset.fav); dibujarHimnos(); var x = $('himnos').querySelector('[data-fav="' + b.dataset.fav + '"]'); if (x) { x.focus(); if (es) x.classList.add('pulso'); } avisar(es ? 'Agregado a favoritos' : 'Quitado de favoritos'); }; });
   }
   function verHimno(num) {
     var h = himnos.filter(function (x) { return x.numero === num; })[0]; if (!h) return;
@@ -384,11 +457,15 @@
     fav.className = 'icon-btn fav'; fav.type = 'button';
     function pintarFav() { var es = D.favoritos.es(h.numero); fav.setAttribute('aria-pressed', es); fav.setAttribute('aria-label', es ? 'Quitar de favoritos' : 'Agregar a favoritos'); }
     fav.innerHTML = ic('estrella', 'ic-lg'); pintarFav();
-    fav.onclick = function () { D.favoritos.alternar(h.numero); pintarFav(); dibujarHimnos(); };
+    fav.onclick = function () { var es = D.favoritos.alternar(h.numero); pintarFav(); dibujarHimnos(); fav.classList.remove('pulso'); void fav.offsetWidth; if (es) fav.classList.add('pulso'); avisar(es ? 'Agregado a favoritos' : 'Quitado de favoritos'); };
     var tieneLetra = h.letra && h.letra.length;
     var html = '<p class="kicker">Himno ' + h.numero + '</p><h3 class="hoja-titulo">' + esc(h.titulo) + '</h3>' + (h.autor ? '<p class="muted" style="margin-top:4px">' + esc(h.autor) + '</p>' : '') +
       (tieneLetra ? '<div class="lectura-ctrl"><span class="muted">Tamaño de letra</span><button class="tam" type="button" data-tam="-1" aria-label="Letra más pequeña">A−</button><button class="tam" type="button" data-tam="1" aria-label="Letra más grande">A+</button></div>' +
-        '<div class="letra" id="letra">' + h.letra.map(function (e) { return '<p>' + esc(Array.isArray(e) ? e.join('\n') : e) + '</p>'; }).join('') + '</div>' : '<div class="vacio" style="margin-top:20px">' + ic('musica') + '<p>La letra de este himno aún no está disponible.</p></div>') +
+        '<div class="letra" id="letra">' + h.letra.map(function (e) {
+          var coro = e && !Array.isArray(e) && typeof e === 'object' && (e.tipo === 'coro' || e.coro);
+          var lineas = Array.isArray(e) ? e : (e && e.lineas) ? e.lineas : [e];
+          return '<p class="estrofa' + (coro ? ' coro' : '') + '">' + esc(lineas.join('\n')) + '</p>';
+        }).join('') + '</div>' : '<div class="vacio" style="margin-top:20px">' + ic('musica') + '<p>La letra de este himno aún no está disponible.</p></div>') +
       (h.nota ? '<p class="muted" style="margin-top:24px">' + esc(h.nota) + '</p>' : '');
     var cuerpo = abrirHoja('Himno ' + h.numero, html, fav);
     if (tieneLetra) {
@@ -423,7 +500,7 @@
     var lista = g.items.map(function (f) { return { src: f.archivo, titulo: f.titulo, alt: f.titulo }; });
     var html = '<p class="kicker">Álbum</p><h3 class="hoja-titulo">' + esc(g.nombre) + '</h3><p class="muted" style="margin:4px 0 16px">' + g.items.length + ' fotos' + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</p>' +
       '<div class="cuadricula">' + g.items.map(function (f, k) {
-        return '<button type="button" data-f="' + k + '" aria-label="Ver foto: ' + esc(f.titulo) + '"><img src="' + esc(f.archivo) + '" alt="" loading="lazy" decoding="async">' + (esNuevo(f.archivo) ? CHIP_NUEVO : '') + '</button>';
+        return '<button type="button" data-f="' + k + '" aria-label="Ver foto: ' + esc(f.titulo) + '">' + img(f.archivo, '') + (esNuevo(f.archivo) ? CHIP_NUEVO : '') + '</button>';
       }).join('') + '</div>';
     var cuerpo = abrirHoja(g.nombre, html);
     cuerpo.querySelectorAll('[data-f]').forEach(function (b) { b.onclick = function () { abrirVisor(lista, +b.dataset.f); }; });
@@ -441,8 +518,8 @@
       if (nuevosPorGrupo[i]) hay = true;
       var pv = g.items.slice(0, 3);
       return '<button class="album tarjeta" type="button" data-a="' + i + '"><div class="album-portada">' +
-        pv.map(function (f, k) { return '<img src="' + esc(f.archivo) + '" alt="" loading="' + (k ? 'lazy' : 'eager') + '" decoding="async"' + (pv.length === 1 ? ' style="grid-column:span 2"' : '') + '>'; }).join('') +
-        '</div><div class="album-cuerpo"><div><h3>' + esc(g.nombre) + '</h3><span class="muted">' + g.items.length + ' fotos' + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</span></div>' +
+        pv.map(function (f, k) { return img(f.archivo, '', (k ? 'loading="lazy"' : 'loading="eager"') + (pv.length === 1 ? ' style="grid-column:span 2"' : '')); }).join('') +
+        '<span class="album-cantidad">' + ic('imagen') + g.items.length + '</span></div><div class="album-cuerpo"><div><h3>' + esc(g.nombre) + '</h3><span class="muted">' + g.items.length + ' fotos' + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</span></div>' +
         (nuevosPorGrupo[i] ? '<span class="chip chip-nuevo">' + nuevosPorGrupo[i] + (nuevosPorGrupo[i] === 1 ? ' nueva' : ' nuevas') + '</span>' : ic('derecha')) + '</div></button>';
     }).join('');
     cont.querySelectorAll('[data-a]').forEach(function (b) { b.onclick = function () { verAlbum(grupos[+b.dataset.a], esNuevo); }; });
