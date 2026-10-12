@@ -103,6 +103,7 @@
   function mostrarSuspendido() {
     var r = registrado();
     $('susCodigo').textContent = r && r.codigo ? 'Código de registro: ' + r.codigo : '';
+    $('susWsp').href = 'https://wa.me/56956339029?text=' + encodeURIComponent('Hola, mi acceso a la app IEPI LAN-C está suspendido.' + (r && r.codigo ? ' Mi código de registro es ' + r.codigo + '.' : '') + (r && r.nombre ? ' Mi nombre es ' + r.nombre + '.' : ''));
     capa.hidden = true;
     $('suspendido').hidden = false;
     document.body.classList.add('bloqueo');

@@ -800,3 +800,8 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .sus-tel { font-size: 1.25rem; font-weight: 700; color: var(--acento); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
 .suspendido-caja .muted { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .06em; }
 .suspendido-caja .confirmacion { text-align: left; }
+.wsp { display: inline-flex; align-items: center; gap: 6px; }
+.credito .wsp { color: var(--exito); }
+.sus-tel.wsp { justify-self: center; gap: 10px; padding: 0 20px; border-radius: var(--r-md); background: #1F8F4E; color: #FFFFFF; font-size: 1rem; min-height: 48px; }
+.sus-tel.wsp .ic { width: 22px; height: 22px; }
+.sus-num { font-variant-numeric: tabular-nums; }
