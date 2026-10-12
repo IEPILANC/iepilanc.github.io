@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
-<link rel="stylesheet" href="css/app.css?v=8">
+<link rel="stylesheet" href="css/app.css?v=9">
 </head>
 <body>
 
@@ -284,6 +284,7 @@
     <p class="kicker">Bienvenido a la app</p>
     <h1 id="regTitulo">Iglesia Evangélica Pentecostés Internacional LAN-C</h1>
     <p class="lead">Antes de comenzar, regístrate una sola vez. Así la iglesia sabe quiénes usan la app.</p>
+    <p class="codigo-reg" id="regCodigo" hidden></p>
     <form id="formRegistro" novalidate>
       <div class="campo">
         <label for="regNombre">Nombre y apellido</label>
@@ -308,6 +309,22 @@
   </div>
 </div>
 
+<!-- Acceso suspendido -->
+<div class="registro" id="suspendido" hidden role="alertdialog" aria-modal="true" aria-labelledby="susTitulo" aria-describedby="susTexto">
+  <div class="registro-in">
+    <img class="registro-logo" src="img/logo.jpg" alt="Logo de la Iglesia Evangélica Pentecostés Internacional LAN-C" width="88" height="88">
+    <h1 id="susTitulo" style="margin-top:32px">Acceso suspendido</h1>
+    <div class="suspendido-caja">
+      <p id="susTexto">Tu acceso a la app fue suspendido porque no pudimos verificar tu registro.</p>
+      <p>Si crees que se trata de un error o quieres actualizar tus datos, comunícate con la iglesia:</p>
+      <a class="sus-tel" href="tel:+56956339029">+56 9 5633 9029</a>
+      <p class="muted" id="susCodigo"></p>
+      <p class="confirmacion" id="susEnviado" hidden role="status"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Enviamos tus datos corregidos. La iglesia revisará tu registro.</span></p>
+      <button class="btn btn-bloque" type="button" id="susCorregir" style="margin-top:20px">Corregir mis datos</button>
+    </div>
+  </div>
+</div>
+
 <!-- Visor de imágenes -->
 <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
   <div class="visor-cab">
@@ -327,11 +344,11 @@
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script data-goatcounter="https://iepilanc.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="js/datos.js?v=8"></script>
-<script src="js/agenda-datos.js?v=8"></script>
-<script src="js/app.js?v=8"></script>
-<script src="js/agenda.js?v=8"></script>
-<script src="js/registro.js?v=8"></script>
+<script src="js/datos.js?v=9"></script>
+<script src="js/agenda-datos.js?v=9"></script>
+<script src="js/app.js?v=9"></script>
+<script src="js/agenda.js?v=9"></script>
+<script src="js/registro.js?v=9"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>
