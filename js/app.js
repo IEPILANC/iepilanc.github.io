@@ -176,6 +176,11 @@
     });
   })();
 
+  /* ---------- Contador de uso anónimo (GoatCounter: sin cookies ni datos personales) ---------- */
+  function contarVisita(ruta, titulo) {
+    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: ruta, title: titulo }); } catch (e) { /* el contador nunca debe afectar la app */ }
+  }
+
   /* ---------- Navegación ---------- */
   var pestanas = document.querySelectorAll('[data-tab]'), paneles = document.querySelectorAll('[data-panel]');
   function mostrar(id, sinAnimar) {
@@ -191,6 +196,7 @@
       t.tabIndex = activo ? 0 : -1;
     });
     D.store.set('tab', id);
+    if (!sinAnimar) contarVisita('/' + id, 'Sección: ' + id);
     window.scrollTo(0, 0);
   }
   pestanas.forEach(function (t) { t.addEventListener('click', function () { mostrar(t.dataset.tab); }); });
@@ -543,7 +549,7 @@
   }
 
   /* ---------- Utilidades compartidas con la agenda ---------- */
-  window.App = { $: $, esc: esc, ic: ic, ICONOS: ICONOS, CHIP_NUEVO: CHIP_NUEVO, avisar: avisar, abrirCapa: abrirCapa, pedirCierre: pedirCierre,
+  window.App = { contarVisita: contarVisita, $: $, esc: esc, ic: ic, ICONOS: ICONOS, CHIP_NUEVO: CHIP_NUEVO, avisar: avisar, abrirCapa: abrirCapa, pedirCierre: pedirCierre,
     abrirVisor: abrirVisor, img: img, estadoVacio: estadoVacio, estadoError: estadoError, enlaceMapa: enlaceMapa, marcarPestana: marcarPestana };
 
   /* ---------- Inicio de la app ---------- */

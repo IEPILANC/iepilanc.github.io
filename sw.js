@@ -1,6 +1,6 @@
 // Guarda la app para que abra sin internet y busca la versión nueva cuando hay conexión.
-const CACHE = 'iepi-lanc-v7';
-const ARCHIVOS = ['./', 'index.html', 'css/app.css?v=7', 'js/datos.js?v=7', 'js/app.js?v=7', 'js/agenda-datos.js?v=7', 'js/agenda.js?v=7', 'js/registro.js?v=7', 'img/logo.jpg', 'manifest.json', 'icono-192.png', 'icono-512.png'];
+const CACHE = 'iepi-lanc-v8';
+const ARCHIVOS = ['./', 'index.html', 'css/app.css?v=8', 'js/datos.js?v=8', 'js/app.js?v=8', 'js/agenda-datos.js?v=8', 'js/agenda.js?v=8', 'js/registro.js?v=8', 'img/logo.jpg', 'manifest.json', 'icono-192.png', 'icono-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ARCHIVOS)));
   self.skipWaiting();
@@ -10,14 +10,13 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET') return;
+  const req = e.request;
+  // Solo se atienden archivos de la propia app; los servicios externos (contador, formulario, fuentes) van directo.
+  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
   e.respondWith(
-    fetch(e.request).then(r => {
-      if (r.ok && new URL(e.request.url).origin === location.origin) {
-        const copia = r.clone();
-        caches.open(CACHE).then(c => c.put(e.request, copia));
-      }
+    fetch(req).then(r => {
+      if (r.ok) { const copia = r.clone(); caches.open(CACHE).then(c => c.put(req, copia)); }
       return r;
-    }).catch(() => caches.match(e.request).then(r => r || caches.match('index.html')))
+    }).catch(() => caches.match(req).then(r => r || (req.mode === 'navigate' ? caches.match('index.html') : Response.error())))
   );
 });

@@ -212,6 +212,7 @@
   });
 
   function abrirAgenda(vista) {
+    if (U.contarVisita) U.contarVisita('/agenda', 'Agenda congregacional');
     var h = hoyIso(), d = D.fecha(h);
     estado.vista = vista || D.store.get('agenda-vista') || 'lista';
     if (!estado.mes) estado.mes = { y: d.getFullYear(), m: d.getMonth() };
