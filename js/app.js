@@ -98,6 +98,34 @@
   if (window.matchMedia) { var mq = matchMedia('(prefers-color-scheme: dark)'); (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function () { aplicarTema(temaActual()); }); }
   aplicarTema(temaActual());
 
+  /* ---------- Tamaño de letra: normal, grande o muy grande ---------- */
+  var letraBtn = $('letraBtn'), letraMenu = $('letraMenu');
+  var NOMBRE_LETRA = { normal: 'normal', grande: 'grande', 'muy-grande': 'muy grande' };
+  function letraActual() { var l = D.store.get('letra'); return NOMBRE_LETRA[l] && l !== 'normal' ? l : 'normal'; }
+  function aplicarLetra(l) {
+    var root = document.documentElement;
+    if (l === 'normal') delete root.dataset.letra; else root.dataset.letra = l;
+    letraBtn.setAttribute('aria-label', 'Tamaño de letra: ' + NOMBRE_LETRA[l]);
+    letraMenu.querySelectorAll('[data-letra]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.letra === l); });
+  }
+  function cerrarMenuLetra() { letraMenu.hidden = true; letraBtn.setAttribute('aria-expanded', 'false'); }
+  letraBtn.addEventListener('click', function (e) {
+    e.stopPropagation(); cerrarMenuTema();
+    var abrir = letraMenu.hidden;
+    letraMenu.hidden = !abrir; letraBtn.setAttribute('aria-expanded', abrir);
+    if (abrir) letraMenu.querySelector('[aria-checked="true"]').focus();
+  });
+  letraMenu.querySelectorAll('[data-letra]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      D.store.set('letra', b.dataset.letra); aplicarLetra(b.dataset.letra); cerrarMenuLetra(); letraBtn.focus();
+      avisar('Letra ' + NOMBRE_LETRA[b.dataset.letra]);
+    });
+  });
+  temaBtn.addEventListener('click', cerrarMenuLetra);
+  document.addEventListener('click', function (e) { if (!letraMenu.hidden && !letraMenu.contains(e.target)) cerrarMenuLetra(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !letraMenu.hidden) { cerrarMenuLetra(); letraBtn.focus(); } });
+  aplicarLetra(letraActual());
+
   /* ---------- Encabezado compacto al desplazarse ---------- */
   var barra = document.querySelector('.barra'), compacta = false;
   window.addEventListener('scroll', function () {

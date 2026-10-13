@@ -6,14 +6,14 @@
 <meta name="theme-color" content="#17294B">
 <meta name="description" content="Anuncios, horarios de culto, estudios bíblicos, oración, cancionero y fotos de la Iglesia Evangélica Pentecostés Internacional LAN-C.">
 <title>IEPI LAN-C</title>
-<script>try{var t=localStorage.getItem("tema");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<script>try{var t=localStorage.getItem("tema");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;var l=localStorage.getItem("letra");if(l==="grande"||l==="muy-grande")document.documentElement.dataset.letra=l;}catch(e){}</script>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icono-192.png">
 <link rel="apple-touch-icon" href="icono-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
-<link rel="stylesheet" href="css/app.css?v=10">
+<link rel="stylesheet" href="css/app.css?v=11">
 </head>
 <body>
 
@@ -24,11 +24,18 @@
       <b>IEPI LAN-C</b>
       <small>Iglesia Evangélica Pentecostés Internacional</small>
     </div>
+    <button class="icon-btn tema-btn letra-btn" type="button" id="letraBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Tamaño de letra: normal"><span aria-hidden="true">A<small>A</small></span></button>
     <button class="icon-btn tema-btn" type="button" id="temaBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Apariencia: automática">
       <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" id="temaIco"></svg>
     </button>
   </div>
 </header>
+<div class="tema-menu letra-menu" id="letraMenu" role="menu" aria-label="Tamaño de letra" hidden>
+  <p class="menu-tit" aria-hidden="true">Tamaño de letra</p>
+  <button type="button" role="menuitemradio" data-letra="normal" aria-checked="true"><span class="muestra" style="font-size:15px">A</span>Normal<svg class="ic ic-sm marca" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+  <button type="button" role="menuitemradio" data-letra="grande" aria-checked="false"><span class="muestra" style="font-size:19px">A</span>Grande<svg class="ic ic-sm marca" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+  <button type="button" role="menuitemradio" data-letra="muy-grande" aria-checked="false"><span class="muestra" style="font-size:23px">A</span>Muy grande<svg class="ic ic-sm marca" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+</div>
 <div class="tema-menu" id="temaMenu" role="menu" aria-label="Apariencia" hidden>
   <button type="button" role="menuitemradio" data-tema="auto" aria-checked="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>Automático<svg class="ic ic-sm marca" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
   <button type="button" role="menuitemradio" data-tema="light" aria-checked="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>Claro<svg class="ic ic-sm marca" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
@@ -345,11 +352,11 @@
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script data-goatcounter="https://iepilanc.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="js/datos.js?v=10"></script>
-<script src="js/agenda-datos.js?v=10"></script>
-<script src="js/app.js?v=10"></script>
-<script src="js/agenda.js?v=10"></script>
-<script src="js/registro.js?v=10"></script>
+<script src="js/datos.js?v=11"></script>
+<script src="js/agenda-datos.js?v=11"></script>
+<script src="js/app.js?v=11"></script>
+<script src="js/agenda.js?v=11"></script>
+<script src="js/registro.js?v=11"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>

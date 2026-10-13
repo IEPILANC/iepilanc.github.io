@@ -223,7 +223,7 @@ main { max-width: var(--ancho); margin: 0 auto; padding-inline: var(--e-4); }
 .hero-hora { font-size: var(--t-lg); font-weight: 600; margin-top: 2px; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .92); }
 .hero-fecha { font-size: var(--t-sm); color: rgba(255, 255, 255, .7); margin-top: 2px; }
 .hero-roles { margin-top: var(--e-4); padding-top: var(--e-4); border-top: 1px solid rgba(255, 255, 255, .14); display: grid; gap: var(--e-2); }
-.rol { display: grid; grid-template-columns: 84px 1fr; gap: var(--e-2); font-size: .9375rem; }
+.rol { display: grid; grid-template-columns: 5.25rem 1fr; gap: var(--e-2); font-size: .9375rem; }
 .rol > span:first-child { color: rgba(255, 255, 255, .62); font-size: var(--t-xs); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding-top: 3px; }
 .hero-acciones { margin-top: var(--e-5); display: flex; flex-wrap: wrap; gap: var(--e-2); }
 .hero .btn-sec { color: var(--blanco); border-color: rgba(255, 255, 255, .28); }
@@ -244,13 +244,13 @@ main { max-width: var(--ancho); margin: 0 auto; padding-inline: var(--e-4); }
 .filas, .agenda { display: grid; gap: var(--e-2); }
 .fila { display: flex; gap: var(--e-4); align-items: center; padding: var(--e-3) var(--e-4) var(--e-3) var(--e-3); }
 .fecha-bloque { flex: none; width: 56px; height: 56px; border-radius: var(--r-md); display: grid; place-content: center; text-align: center; background: var(--acento-suave); color: var(--acento); }
-.fecha-bloque small { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1; }
+.fecha-bloque small { font-size: .625rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; line-height: 1; }
 .fecha-bloque b { font-size: 1.375rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .fila.especial .fecha-bloque { background: var(--dorado-suave); color: var(--dorado-texto); }
 .fila.hoy { box-shadow: 0 0 0 2px var(--dorado), var(--sombra-1); border-color: transparent; }
 .fila.hoy .fecha-bloque { background: var(--marino); color: var(--blanco); }
 .fila-cuerpo { min-width: 0; flex: 1; display: grid; gap: 2px; }
-.fila-cuerpo .rol { grid-template-columns: 72px 1fr; font-size: .9375rem; }
+.fila-cuerpo .rol { grid-template-columns: 4.5rem 1fr; font-size: .9375rem; }
 .fila-cuerpo .rol > span:first-child { color: var(--texto-3); }
 .fila-cuerpo .muted { font-variant-numeric: tabular-nums; }
 .fila-top { display: flex; align-items: center; justify-content: space-between; gap: var(--e-2); flex-wrap: wrap; }
@@ -309,7 +309,7 @@ details.anteriores[open] > summary .ic { transform: rotate(90deg); }
 .dias { margin-top: var(--e-4); display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: var(--e-2); }
 .dia { position: relative; display: grid; place-content: center; text-align: center; min-height: 56px; border-radius: var(--r-md); background: var(--superficie-2); border: 1px solid transparent; cursor: pointer; user-select: none; }
 .dia input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.dia small { font-size: 10px; color: var(--texto-3); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.dia small { font-size: .625rem; color: var(--texto-3); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
 .dia b { font-size: var(--t-md); font-variant-numeric: tabular-nums; }
 .dia.hecho { background: var(--exito-suave); color: var(--exito); }
 .dia.hecho small { color: var(--exito); }
@@ -387,7 +387,7 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .cuadricula { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; border-radius: var(--r-md); overflow: hidden; }
 .cuadricula button { position: relative; padding: 0; border: 0; background: var(--superficie-2); aspect-ratio: 1; max-width: 100%; }
 .cuadricula img { width: 100%; height: 100%; object-fit: cover; }
-.cuadricula .chip { position: absolute; top: 6px; left: 6px; height: 20px; padding: 0 7px; font-size: 10px; }
+.cuadricula .chip { position: absolute; top: 6px; left: 6px; height: 20px; padding: 0 7px; font-size: .625rem; }
 
 /* ---------- Navegación inferior ---------- */
 .nav {
@@ -399,7 +399,7 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .nav button {
   position: relative; border: 0; background: none; color: var(--texto-3);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-  font-size: 11px; font-weight: 500; letter-spacing: .01em; min-width: 0;
+  font-size: .6875rem; font-weight: 500; letter-spacing: .01em; min-width: 0;
 }
 .nav-ico { display: grid; place-items: center; width: 52px; height: 30px; border-radius: var(--r-pill); transition: background var(--dur) var(--curva), color var(--dur); }
 .nav button[aria-selected="true"] { color: var(--acento); font-weight: 650; }
@@ -515,7 +515,7 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 /* ---------- 2. Navegación inferior ---------- */
 .nav { box-shadow: 0 -1px 0 var(--borde), 0 -10px 30px rgba(23, 41, 75, .07); }
 .nav-in { padding-inline: 6px; }
-.nav button { font-size: 11.5px; gap: 4px; -webkit-tap-highlight-color: transparent; }
+.nav button { font-size: .71875rem; gap: 4px; -webkit-tap-highlight-color: transparent; }
 .nav-ico { width: 56px; height: 32px; position: relative; }
 .nav button .ic { transition: transform var(--dur-rapida) var(--curva); }
 .nav button:active .ic { transform: scale(.9); }
@@ -611,8 +611,8 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
   .pagina h1, .saludo h1 { font-size: 1.625rem; }
   .hero { padding: 20px 16px 16px; }
   .hero-dia { font-size: 1.625rem; }
-  .rol { grid-template-columns: 72px 1fr; }
-  .nav button { font-size: 10.5px; }
+  .rol { grid-template-columns: 4.5rem 1fr; }
+  .nav button { font-size: .65625rem; }
   .nav-ico { width: 44px; }
   .nav-txt-largo { display: none; }
   .nav-txt-corto { display: inline; }
@@ -620,7 +620,7 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
   .horario b { font-size: var(--t-base); }
   .destacado-img { width: 76px; }
   .fecha-bloque { width: 50px; height: 50px; }
-  .fila-cuerpo .rol { grid-template-columns: 64px 1fr; }
+  .fila-cuerpo .rol { grid-template-columns: 4rem 1fr; }
   .dias { grid-template-columns: repeat(4, 1fr); }
   .ubicacion { flex-wrap: wrap; }
   .ubicacion .btn { width: 100%; }
@@ -770,7 +770,7 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .hoja-cab .cat-filtros, .hoja-cab .ag-controles { max-width: var(--ancho); }
 #agendaHoja .hoja-cab { padding-bottom: 10px; }
 @media (max-width: 359px) {
-  .segmentos button { font-size: 12px; }
+  .segmentos button { font-size: .75rem; }
   .dos-btn { grid-template-columns: 1fr; }
   .evento { gap: 10px; }
 }
@@ -805,3 +805,23 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .sus-tel.wsp { justify-self: center; gap: 10px; padding: 0 20px; border-radius: var(--r-md); background: #1F8F4E; color: #FFFFFF; font-size: 1rem; min-height: 48px; }
 .sus-tel.wsp .ic { width: 22px; height: 22px; }
 .sus-num { font-variant-numeric: tabular-nums; }
+
+/* =========================================================
+   Tamaño de letra para toda la app (Normal · Grande · Muy grande)
+   Todo el texto usa rem, así que basta con cambiar la base.
+   ========================================================= */
+:root[data-letra="grande"] { font-size: 115%; }
+:root[data-letra="muy-grande"] { font-size: 130%; }
+.letra-btn > span { font-family: var(--f-editorial); font-weight: 700; font-size: 20px; line-height: 1; letter-spacing: -.02em; display: inline-flex; align-items: baseline; }
+.letra-btn > span small { font-size: 14px; margin-left: 1px; }
+.barra-in > .tema-btn + .tema-btn { margin-left: -6px; }
+.letra-menu { width: 230px; right: 60px; }
+.menu-tit { margin: 4px 12px 6px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--texto-3); }
+.tema-menu .muestra { width: 24px; text-align: center; font-family: var(--f-editorial); font-weight: 700; line-height: 1; }
+/* Con letra grande, la barra y la navegación conservan su altura: crecen solo un poco */
+:root[data-letra] .barra small { font-size: 13px; }
+:root[data-letra="grande"] .nav button { font-size: 12.5px; }
+:root[data-letra="muy-grande"] .nav button { font-size: 13px; }
+:root[data-letra] .nav-txt-largo { display: none; }
+:root[data-letra] .nav-txt-corto { display: inline; }
+.aviso { width: max-content; }
