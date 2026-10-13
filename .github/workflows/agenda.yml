@@ -4,7 +4,7 @@ name: Agenda congregacional
 on:
   push:
     branches: [main]
-    paths: ['agenda.json', 'js/agenda-datos.js', 'herramientas/agenda.mjs', 'pruebas/**']
+    paths: ['agenda.json', 'js/agenda-datos.js', 'herramientas/agenda.mjs', 'pruebas/agenda.test.mjs']
   schedule:
     - cron: '17 9 * * 1'   # lunes, para extender los cultos regulares en el calendario
   workflow_dispatch:

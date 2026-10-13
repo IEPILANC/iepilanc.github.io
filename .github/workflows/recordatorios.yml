@@ -1,0 +1,24 @@
+# Cada mañana programa en OneSignal los avisos al celular de los cultos y actividades del día.
+# Culto o actividad con hora: aviso 2 horas antes. Actividad sin hora: aviso a las 9:00.
+# Necesita el secreto ONESIGNAL_REST_KEY (Settings → Secrets and variables → Actions).
+name: Recordatorios al celular
+on:
+  schedule:
+    - cron: '7 9 * * *'   # 9:07 UTC = 6:07 en Chile (5:07 en invierno)
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recordatorios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Pruebas automáticas
+        run: node --test pruebas/recordatorios.test.mjs
+      - name: Programar los avisos de hoy
+        env:
+          ONESIGNAL_REST_KEY: ${{ secrets.ONESIGNAL_REST_KEY }}
+        run: node herramientas/recordatorios.mjs enviar
