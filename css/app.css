@@ -832,3 +832,29 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .avisos-txt b { font-family: var(--f-editorial); font-size: var(--t-md); font-weight: 600; }
 .avisos-txt .dos-btn { margin-top: 10px; }
 .fila-titulo { font-family: var(--f-editorial); font-weight: 600; font-size: var(--t-md); margin: 2px 0 4px; }
+
+/* Radio en vivo */
+.radio-tarjeta { margin-top: 12px; display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+.radio-play { flex: none; width: 48px; height: 48px; border-radius: 50%; border: 0; display: grid; place-items: center; background: var(--dorado); color: var(--grafito); box-shadow: var(--sombra-1); -webkit-tap-highlight-color: transparent; transition: transform var(--dur-rapida) var(--curva), background var(--dur); }
+.radio-play:active { transform: scale(.92); }
+.radio-play .ic { width: 22px; height: 22px; }
+.radio-play.activo { background: var(--marino); color: var(--dorado); }
+:root[data-theme="dark"] .radio-play.activo { background: var(--superficie-2); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .radio-play.activo { background: var(--superficie-2); } }
+.ic.girando { animation: girar 1s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.radio-mini { position: fixed; z-index: 19; left: 8px; right: 8px; bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom, 0px) + 8px); max-width: calc(var(--ancho) - 16px); margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; border-radius: var(--r-lg); background: var(--marino); color: var(--blanco); box-shadow: var(--sombra-2); animation: aparece var(--dur) var(--curva); }
+:root[data-theme="dark"] .radio-mini { background: var(--superficie-2); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .radio-mini { background: var(--superficie-2); } }
+.radio-mini-txt { flex: 1; min-width: 0; display: grid; line-height: 1.25; }
+.radio-mini-txt b { font-size: .9375rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.radio-mini-txt small { font-size: var(--t-xs); color: rgba(255, 255, 255, .72); }
+.radio-mini .radio-play { width: 42px; height: 42px; box-shadow: none; }
+.radio-mini .radio-play.activo { background: var(--dorado); color: var(--grafito); }
+.radio-cerrar { color: rgba(255, 255, 255, .8); }
+.radio-vivo { flex: none; width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, .4); }
+.radio-mini.sonando .radio-vivo { background: #E5484D; box-shadow: 0 0 0 0 rgba(229, 72, 77, .6); animation: latido 1.6s ease-out infinite; }
+@keyframes latido { 70% { box-shadow: 0 0 0 8px rgba(229, 72, 77, 0); } 100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0); } }
+body.con-radio { padding-bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom, 0px) + 96px); }
+body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom, 0px) + 80px); }
+@media (prefers-reduced-motion: reduce) { .ic.girando, .radio-mini.sonando .radio-vivo { animation: none; } }
