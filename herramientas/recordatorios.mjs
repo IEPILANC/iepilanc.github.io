@@ -5,7 +5,7 @@
 // Cada aviso lleva una clave única: si la acción corre dos veces, OneSignal no lo repite.
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 const require = createRequire(import.meta.url);
 const A = require('../js/agenda-datos.js');
 
@@ -96,7 +96,9 @@ async function main() {
   const enviar = process.argv[2] === 'enviar';
   const agenda = JSON.parse(readFileSync(new URL('../agenda.json', import.meta.url), 'utf8'));
   const ahora = new Date(), fecha = process.env.FECHA || hoyEnSantiago(ahora);
-  const avisos = planDelDia(agenda, fecha, ahora);
+  const avisos = process.env.PRUEBA === 'true'
+    ? [{ id: 'prueba', envio: ahora, titulo: 'IEPI LAN-C', mensaje: 'Prueba: los recordatorios automáticos están funcionando. ¡Dios te bendiga!', url: AJUSTES.base, clave: randomUUID() }]
+    : planDelDia(agenda, fecha, ahora);
   const hora = d => new Intl.DateTimeFormat('es-CL', { timeZone: ZONA, hourCycle: 'h23', hour: '2-digit', minute: '2-digit' }).format(d);
   console.log(`Recordatorios para ${fecha}: ${avisos.length}`);
   avisos.forEach(a => console.log(`  ${hora(a.envio)} → ${a.titulo} | ${a.mensaje}`));
