@@ -39,6 +39,7 @@
     compartir: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
     izquierda: '<path d="m15 18-6-6 6-6"/>',
     alerta: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4M12 17h.01"/>',
+    externo: '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
     diapos: '<rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/>'
   };
   function ic(nombre, clase) { return '<svg class="ic ' + (clase || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONOS[nombre] || '') + '</svg>'; }
@@ -385,6 +386,14 @@
       $('planBarra').style.width = (n / total * 100) + '%';
       $('planCuenta').textContent = n + ' de ' + total;
       $('planMensaje').textContent = n === total ? '¡Terminaste el plan! Gloria a Dios.' : '';
+      var sig = 0; for (var k = 1; k <= total; k++) if (!leidos[k]) { sig = k; break; }
+      var cod = window.Biblia && p.libro ? window.Biblia.codigo(p.libro) : null, leer = $('planLeer');
+      leer.hidden = !(cod && sig);
+      if (cod && sig) {
+        leer.href = window.Biblia.enlace(cod, sig);
+        leer.innerHTML = ic('libro') + 'Leer el día ' + sig + ': ' + esc(p.libro) + ' ' + sig;
+        leer.onclick = function () { window.Biblia.recordar(cod, sig); };
+      }
       $('planDias').querySelectorAll('input').forEach(function (c) {
         c.onchange = function () { D.plan.marcar(+c.dataset.dia, c.checked); render(); avisar((c.checked ? 'Día ' : 'Día ') + c.dataset.dia + (c.checked ? ' marcado como leído' : ' desmarcado')); var x = $('planDias').querySelector('[data-dia="' + c.dataset.dia + '"]'); if (x) x.focus(); };
       });
@@ -580,7 +589,7 @@
 
   /* ---------- Utilidades compartidas con la agenda ---------- */
   window.App = { contarVisita: contarVisita, $: $, esc: esc, ic: ic, ICONOS: ICONOS, CHIP_NUEVO: CHIP_NUEVO, avisar: avisar, abrirCapa: abrirCapa, pedirCierre: pedirCierre,
-    abrirVisor: abrirVisor, img: img, estadoVacio: estadoVacio, estadoError: estadoError, enlaceMapa: enlaceMapa, marcarPestana: marcarPestana };
+    abrirVisor: abrirVisor, abrirHoja: abrirHoja, img: img, estadoVacio: estadoVacio, estadoError: estadoError, enlaceMapa: enlaceMapa, marcarPestana: marcarPestana };
 
   /* ---------- Inicio de la app ---------- */
   window.addEventListener('agenda-lista', function () { cargarInicio(); });

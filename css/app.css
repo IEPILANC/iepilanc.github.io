@@ -832,3 +832,26 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .avisos-txt b { font-family: var(--f-editorial); font-size: var(--t-md); font-weight: 600; }
 .avisos-txt .dos-btn { margin-top: 10px; }
 .fila-titulo { font-family: var(--f-editorial); font-weight: 600; font-size: var(--t-md); margin: 2px 0 4px; }
+
+/* Biblia Reina-Valera 1960 */
+.biblia-acceso { margin-bottom: 8px; }
+.biblia-seguir { display: flex; align-items: center; gap: 14px; padding: 14px 16px; color: var(--texto); text-decoration: none; margin-bottom: 16px; }
+.biblia-seguir > .ic { color: var(--texto-3); }
+#bibliaBuscar { width: 100%; }
+.biblia-seg { grid-template-columns: 1fr 1fr; margin-top: 12px; }
+.biblia-libros { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)); gap: 8px; margin-top: 14px; }
+.biblia-lib { display: grid; gap: 2px; text-align: left; padding: 12px 14px; min-height: 56px; border: 1px solid var(--borde); border-radius: var(--r-md); background: var(--superficie); color: var(--texto); -webkit-tap-highlight-color: transparent; }
+.biblia-lib b { font-weight: 600; font-size: .9375rem; line-height: 1.25; }
+.biblia-lib small { color: var(--texto-3); font-size: var(--t-xs); }
+.biblia-lib:active { transform: scale(.98); background: var(--toque); }
+.biblia-volver { border: 0; background: none; padding: 0; gap: 6px; }
+.biblia-libro { font-family: var(--f-editorial); font-size: var(--t-xl); font-weight: 600; margin-top: 8px; }
+.biblia-caps { display: grid; grid-template-columns: repeat(auto-fill, minmax(3.25rem, 1fr)); gap: 8px; margin-top: 14px; }
+.biblia-cap { display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--r-md); border: 1px solid var(--borde); background: var(--superficie); color: var(--texto); font-weight: 600; text-decoration: none; font-variant-numeric: tabular-nums; -webkit-tap-highlight-color: transparent; }
+.biblia-cap:active { background: var(--toque); }
+.biblia-cap.actual { background: var(--marino); color: var(--blanco); border-color: var(--marino); }
+:root[data-theme="dark"] .biblia-cap.actual { background: var(--dorado); color: var(--grafito); border-color: var(--dorado); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .biblia-cap.actual { background: var(--dorado); color: var(--grafito); border-color: var(--dorado); } }
+.biblia-nota { margin-top: 20px; }
+.plan-leer { margin-top: 14px; }
+@media (hover: hover) { .biblia-lib:hover, .biblia-cap:hover { border-color: var(--borde-fuerte); } }
