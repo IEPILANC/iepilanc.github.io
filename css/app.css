@@ -825,3 +825,9 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 :root[data-letra] .nav-txt-largo { display: none; }
 :root[data-letra] .nav-txt-corto { display: inline; }
 .aviso { width: max-content; }
+
+/* Tarjeta para activar los avisos al celular */
+.avisos-push { margin-top: 12px; display: flex; gap: 14px; padding: 16px; align-items: flex-start; }
+.avisos-txt { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.avisos-txt b { font-family: var(--f-editorial); font-size: var(--t-md); font-weight: 600; }
+.avisos-txt .dos-btn { margin-top: 10px; }
