@@ -472,49 +472,64 @@
   /* =========================================================
      CANCIONERO
      ========================================================= */
-  var himnos = [], filtro = 'todos';
+  var himnos = [], secciones = [], porSeccion = {}, filtro = 'todos';
+  function lineasDe(h) { var out = []; (h.letra || []).forEach(function (e) { out = out.concat(Array.isArray(e) ? e : (e && e.lineas) ? e.lineas : [e]); }); return out; }
+  function seccionDe(h) { return porSeccion[h.seccion] || { nombre: 'Cancionero', corto: '', etiqueta: 'Himno' }; }
+  function rotulo(h) { var s = seccionDe(h); return s.etiqueta + (h.numero ? (s.id === 'himnario' ? ' ' : ' Nº ') + h.numero : ''); }
+  function filaHimno(h, favs) {
+    var fav = favs.indexOf(h.id) !== -1, s = seccionDe(h);
+    var sub = filtro === 'favoritos' || (filtro === 'todos' && D.normalizar($('buscar').value)) ? s.corto + (h.numero ? ' Nº ' + h.numero : '') : (h.primera || '');
+    return '<li class="himno"><button class="himno-abrir" type="button" data-h="' + esc(h.id) + '"><span class="himno-num' + (h.numero ? '' : ' sin-num') + '">' + (h.numero ? h.numero : ic('musica')) + '</span><span class="himno-tit"><b>' + esc(h.titulo) + '</b><small>' + esc(sub) + '</small></span></button>' +
+      '<button class="icon-btn fav" type="button" data-fav="' + esc(h.id) + '" aria-pressed="' + fav + '" aria-label="' + (fav ? 'Quitar de favoritos: ' : 'Agregar a favoritos: ') + esc(h.titulo) + '">' + ic('estrella') + '</button></li>';
+  }
   function dibujarHimnos() {
     var q = D.normalizar($('buscar').value);
     var favs = D.favoritos.lista();
     var res = himnos.filter(function (h) {
-      if (filtro === 'favoritos' && favs.indexOf(h.numero) === -1) return false;
+      if (filtro === 'favoritos' && favs.indexOf(h.id) === -1) return false;
+      if (filtro !== 'todos' && filtro !== 'favoritos' && h.seccion !== filtro) return false;
       if (!q) return true;
-      return String(h.numero) === q || D.normalizar(h.numero + ' ' + h.titulo + ' ' + (h.autor || '')).indexOf(q) !== -1;
+      if (/^\d+$/.test(q)) return String(h.numero) === q || (h.tambien || []).map(String).indexOf(q) !== -1;
+      return h.buscar.indexOf(q) !== -1;
     });
     var cont = $('himnos');
-    $('himnosInfo').textContent = res.length + (res.length === 1 ? ' himno' : ' himnos') + (filtro === 'favoritos' ? ' en favoritos' : '');
+    var nombre = filtro === 'himnario' ? ['himno', 'himnos'] : filtro === 'todos' || filtro === 'favoritos' ? ['canto', 'cantos'] : ['alabanza', 'alabanzas'];
+    $('himnosInfo').textContent = res.length + ' ' + (res.length === 1 ? nombre[0] : nombre[1]) + (filtro === 'favoritos' ? ' en favoritos' : '');
     if (!res.length) {
       cont.classList.remove('tarjeta');
       estadoVacio(cont, filtro === 'favoritos' && !q ? 'estrella' : 'buscar',
-        filtro === 'favoritos' && !q ? 'Aún no tienes favoritos. Toca la estrella de un himno para guardarlo aquí.' : 'No encontramos himnos con esa búsqueda. Prueba con otra palabra o número.');
+        filtro === 'favoritos' && !q ? 'Aún no tienes favoritos. Toca la estrella de un canto para guardarlo aquí.' : 'No encontramos cantos con esa búsqueda. Prueba con otra palabra, un verso o el número.');
       return;
     }
     cont.classList.add('tarjeta');
-    cont.innerHTML = res.map(function (h) {
-      var fav = favs.indexOf(h.numero) !== -1;
-      return '<li class="himno"><button class="himno-abrir" type="button" data-h="' + h.numero + '"><span class="himno-num">' + h.numero + '</span><span class="himno-tit"><b>' + esc(h.titulo) + '</b><small>' + esc(h.autor || '') + '</small></span></button>' +
-        '<button class="icon-btn fav" type="button" data-fav="' + h.numero + '" aria-pressed="' + fav + '" aria-label="' + (fav ? 'Quitar de favoritos: ' : 'Agregar a favoritos: ') + esc(h.titulo) + '">' + ic('estrella') + '</button></li>';
-    }).join('');
-    cont.querySelectorAll('[data-h]').forEach(function (b) { b.onclick = function () { verHimno(+b.dataset.h); }; });
-    cont.querySelectorAll('[data-fav]').forEach(function (b) { b.onclick = function () { var es = D.favoritos.alternar(+b.dataset.fav); dibujarHimnos(); var x = $('himnos').querySelector('[data-fav="' + b.dataset.fav + '"]'); if (x) { x.focus(); if (es) x.classList.add('pulso'); } avisar(es ? 'Agregado a favoritos' : 'Quitado de favoritos'); }; });
+    if (filtro === 'todos' && !q) {
+      cont.innerHTML = secciones.map(function (s) {
+        var items = res.filter(function (h) { return h.seccion === s.id; });
+        return items.length ? '<li class="himnos-sec" role="presentation"><span>' + esc(s.nombre) + '</span><small>' + items.length + '</small></li>' + items.map(function (h) { return filaHimno(h, favs); }).join('') : '';
+      }).join('');
+    } else cont.innerHTML = res.map(function (h) { return filaHimno(h, favs); }).join('');
+    cont.querySelectorAll('[data-h]').forEach(function (b) { b.onclick = function () { verHimno(b.dataset.h); }; });
+    cont.querySelectorAll('[data-fav]').forEach(function (b) { b.onclick = function () { var es = D.favoritos.alternar(b.dataset.fav); dibujarHimnos(); var x = $('himnos').querySelector('[data-fav="' + b.dataset.fav + '"]'); if (x) { x.focus(); if (es) x.classList.add('pulso'); } avisar(es ? 'Agregado a favoritos' : 'Quitado de favoritos'); }; });
   }
-  function verHimno(num) {
-    var h = himnos.filter(function (x) { return x.numero === num; })[0]; if (!h) return;
+  function verHimno(id) {
+    var h = himnos.filter(function (x) { return x.id === id; })[0]; if (!h) return;
     var fav = document.createElement('button');
     fav.className = 'icon-btn fav'; fav.type = 'button';
-    function pintarFav() { var es = D.favoritos.es(h.numero); fav.setAttribute('aria-pressed', es); fav.setAttribute('aria-label', es ? 'Quitar de favoritos' : 'Agregar a favoritos'); }
+    function pintarFav() { var es = D.favoritos.es(h.id); fav.setAttribute('aria-pressed', es); fav.setAttribute('aria-label', es ? 'Quitar de favoritos' : 'Agregar a favoritos'); }
     fav.innerHTML = ic('estrella', 'ic-lg'); pintarFav();
-    fav.onclick = function () { var es = D.favoritos.alternar(h.numero); pintarFav(); dibujarHimnos(); fav.classList.remove('pulso'); void fav.offsetWidth; if (es) fav.classList.add('pulso'); avisar(es ? 'Agregado a favoritos' : 'Quitado de favoritos'); };
-    var tieneLetra = h.letra && h.letra.length;
-    var html = '<p class="kicker">Himno ' + h.numero + '</p><h3 class="hoja-titulo">' + esc(h.titulo) + '</h3>' + (h.autor ? '<p class="muted" style="margin-top:4px">' + esc(h.autor) + '</p>' : '') +
+    fav.onclick = function () { var es = D.favoritos.alternar(h.id); pintarFav(); dibujarHimnos(); fav.classList.remove('pulso'); void fav.offsetWidth; if (es) fav.classList.add('pulso'); avisar(es ? 'Agregado a favoritos' : 'Quitado de favoritos'); };
+    var tieneLetra = h.letra && h.letra.length, s = seccionDe(h);
+    var html = '<p class="kicker">' + esc(s.nombre) + (h.numero ? ' · Nº ' + h.numero : '') + '</p><h3 class="hoja-titulo">' + esc(h.titulo) + '</h3>' + (h.autor ? '<p class="muted" style="margin-top:4px">' + esc(h.autor) + '</p>' : '') +
+      (h.tambien && h.tambien.length ? '<p class="muted" style="margin-top:4px">También aparece como Nº ' + h.tambien.join(', ') + '</p>' : '') +
       (tieneLetra ? '<div class="lectura-ctrl"><span class="muted">Tamaño de letra</span><button class="tam" type="button" data-tam="-1" aria-label="Letra más pequeña">A−</button><button class="tam" type="button" data-tam="1" aria-label="Letra más grande">A+</button></div>' +
         '<div class="letra" id="letra">' + h.letra.map(function (e) {
           var coro = e && !Array.isArray(e) && typeof e === 'object' && (e.tipo === 'coro' || e.coro);
           var lineas = Array.isArray(e) ? e : (e && e.lineas) ? e.lineas : [e];
           return '<p class="estrofa' + (coro ? ' coro' : '') + '">' + esc(lineas.join('\n')) + '</p>';
-        }).join('') + '</div>' : '<div class="vacio" style="margin-top:20px">' + ic('musica') + '<p>La letra de este himno aún no está disponible.</p></div>') +
+        }).join('') + '</div>' : '<div class="vacio" style="margin-top:20px">' + ic('musica') + '<p>La letra de este canto aún no está disponible.</p></div>') +
       (h.nota ? '<p class="muted" style="margin-top:24px">' + esc(h.nota) + '</p>' : '');
-    var cuerpo = abrirHoja('Himno ' + h.numero, html, fav);
+    var cuerpo = abrirHoja(rotulo(h), html, fav);
+    contarVisita('/cancionero/' + h.id, h.titulo);
     if (tieneLetra) {
       var letra = cuerpo.querySelector('#letra');
       function aplicar() { letra.style.fontSize = D.tamanoLetra.rem() + 'rem'; cuerpo.querySelector('[data-tam="-1"]').disabled = D.tamanoLetra.min(); cuerpo.querySelector('[data-tam="1"]').disabled = D.tamanoLetra.max(); }
@@ -523,16 +538,37 @@
     }
   }
   $('buscar').addEventListener('input', dibujarHimnos);
-  document.querySelectorAll('[data-filtro]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      filtro = b.dataset.filtro;
-      document.querySelectorAll('[data-filtro]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
-      dibujarHimnos();
+  function enlazarFiltros() {
+    document.querySelectorAll('[data-filtro]').forEach(function (b) {
+      b.onclick = function () {
+        filtro = b.dataset.filtro;
+        document.querySelectorAll('[data-filtro]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        dibujarHimnos();
+      };
     });
-  });
+  }
+  enlazarFiltros();
   function cargarCancionero() {
     D.cargar('cancionero.json').then(function (d) {
-      himnos = (d.himnos || []).slice().sort(function (a, b) { return a.numero - b.numero; });
+      secciones = d.secciones && d.secciones.length ? d.secciones : [{ id: 'himnario', nombre: 'Himnario', corto: 'Himnario', etiqueta: 'Himno' }];
+      porSeccion = {}; secciones.forEach(function (s) { porSeccion[s.id] = s; });
+      var orden = {}; secciones.forEach(function (s, i) { orden[s.id] = i; });
+      himnos = (d.himnos || []).map(function (h) {
+        h.seccion = h.seccion || secciones[0].id;
+        h.id = h.id || (h.seccion.charAt(0) + h.numero);
+        var l = lineasDe(h);
+        h.primera = l[0] || '';
+        h.buscar = D.normalizar((h.numero || '') + ' ' + h.titulo + ' ' + (h.autor || '') + ' ' + l.slice(0, 2).join(' '));
+        return h;
+      }).sort(function (a, b) { return (orden[a.seccion] - orden[b.seccion]) || ((a.numero || 9999) - (b.numero || 9999)) || a.titulo.localeCompare(b.titulo, 'es'); });
+      /* Botones de sección (Todos · Himnario · Ofrendas · … · Favoritos) */
+      var fav = document.querySelector('[data-filtro="favoritos"]');
+      document.querySelectorAll('[data-filtro].sec').forEach(function (x) { x.remove(); });
+      if (secciones.length > 1) secciones.forEach(function (s) {
+        var b = document.createElement('button'); b.className = 'filtro sec'; b.type = 'button'; b.dataset.filtro = s.id;
+        b.setAttribute('aria-pressed', filtro === s.id); b.textContent = s.corto || s.nombre; fav.parentNode.insertBefore(b, fav);
+      });
+      enlazarFiltros();
       dibujarHimnos();
     }).catch(function () {
       $('himnos').classList.remove('tarjeta');

@@ -869,3 +869,12 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .vivo-chip { color: #FF8589; } }
 .vivo-chip .radio-vivo { width: 8px; height: 8px; background: #E5484D; animation: latido 1.6s ease-out infinite; }
 @media (prefers-reduced-motion: reduce) { .vivo-chip .radio-vivo { animation: none; } }
+
+/* Cancionero con secciones */
+.filtros { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin-inline: calc(var(--e-4) * -1); padding-inline: var(--e-4); padding-bottom: 2px; }
+.filtros::-webkit-scrollbar { display: none; }
+.filtros .filtro { flex: none; }
+.himnos-sec { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 14px 16px 8px; background: var(--superficie-2); font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--dorado-texto); }
+.himnos-sec small { color: var(--texto-3); font-weight: 600; letter-spacing: 0; }
+.himno + .himnos-sec, .himnos-sec + .himno { border-top: 1px solid var(--borde); }
+.himno-num.sin-num .ic { width: 18px; height: 18px; }

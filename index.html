@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
-<link rel="stylesheet" href="css/app.css?v=15">
+<link rel="stylesheet" href="css/app.css?v=16">
 </head>
 <body>
 
@@ -196,15 +196,15 @@
   <section id="cancionero" data-panel hidden aria-labelledby="tCancionero">
     <header class="pagina">
       <h1 id="tCancionero">Cancionero</h1>
-      <p class="lead">Himnos y alabanzas de la congregación.</p>
+      <p class="lead">Himnario y alabanzas de la congregación. Busca por título, número o una frase del canto.</p>
     </header>
     <div class="buscador">
       <div class="campo-busqueda">
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <label class="sr-only" for="buscar">Buscar himno por título o número</label>
-        <input class="entrada" id="buscar" type="search" placeholder="Buscar por título o número" autocomplete="off" enterkeyhint="search">
+        <label class="sr-only" for="buscar">Buscar canto por título, número o verso</label>
+        <input class="entrada" id="buscar" type="search" placeholder="Buscar por título, número o verso" autocomplete="off" enterkeyhint="search">
       </div>
-      <div class="filtros" role="group" aria-label="Filtrar himnos">
+      <div class="filtros" role="group" aria-label="Filtrar cantos por sección">
         <button class="filtro" type="button" data-filtro="todos" aria-pressed="true">Todos</button>
         <button class="filtro" type="button" data-filtro="favoritos" aria-pressed="false">
           <svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -375,15 +375,15 @@
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script data-goatcounter="https://iepilanc.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="js/datos.js?v=15"></script>
-<script src="js/agenda-datos.js?v=15"></script>
-<script src="js/app.js?v=15"></script>
-<script src="js/agenda.js?v=15"></script>
-<script src="js/registro.js?v=15"></script>
+<script src="js/datos.js?v=16"></script>
+<script src="js/agenda-datos.js?v=16"></script>
+<script src="js/app.js?v=16"></script>
+<script src="js/agenda.js?v=16"></script>
+<script src="js/registro.js?v=16"></script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script src="js/avisos.js?v=15"></script>
-<script src="js/radio.js?v=15"></script>
-<script src="js/vivo.js?v=15"></script>
+<script src="js/avisos.js?v=16"></script>
+<script src="js/radio.js?v=16"></script>
+<script src="js/vivo.js?v=16"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>
