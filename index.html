@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
-<link rel="stylesheet" href="css/app.css?v=14">
+<link rel="stylesheet" href="css/app.css?v=15">
 </head>
 <body>
 
@@ -50,6 +50,7 @@
       <h1 id="saludo">Bienvenido</h1>
       <p class="lead">Que Dios te bendiga. Aquí está lo que viene en nuestra iglesia.</p>
     </div>
+    <div id="vivoArriba"></div>
     <article class="hero" id="proximo" aria-live="polite">
       <div class="skel" style="height:14px;width:40%;opacity:.3"></div>
       <div class="skel" style="height:32px;width:70%;margin-top:12px;opacity:.3"></div>
@@ -66,6 +67,7 @@
       <span class="acceso-txt"><b>Radio en vivo</b><span class="muted" id="radioNombre"></span></span>
       <button class="radio-play" type="button" id="radioPlay" aria-label="Escuchar la radio"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" id="radioIco"></svg></button>
     </div>
+    <div id="vivoAbajo"></div>
     <div class="tarjeta avisos-push" id="avisosBox" hidden>
       <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>
       <div class="avisos-txt">
@@ -373,14 +375,15 @@
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script data-goatcounter="https://iepilanc.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="js/datos.js?v=14"></script>
-<script src="js/agenda-datos.js?v=14"></script>
-<script src="js/app.js?v=14"></script>
-<script src="js/agenda.js?v=14"></script>
-<script src="js/registro.js?v=14"></script>
+<script src="js/datos.js?v=15"></script>
+<script src="js/agenda-datos.js?v=15"></script>
+<script src="js/app.js?v=15"></script>
+<script src="js/agenda.js?v=15"></script>
+<script src="js/registro.js?v=15"></script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script src="js/avisos.js?v=14"></script>
-<script src="js/radio.js?v=14"></script>
+<script src="js/avisos.js?v=15"></script>
+<script src="js/radio.js?v=15"></script>
+<script src="js/vivo.js?v=15"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>

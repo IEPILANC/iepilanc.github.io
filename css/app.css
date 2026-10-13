@@ -858,3 +858,14 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 body.con-radio { padding-bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom, 0px) + 96px); }
 body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-bottom, 0px) + 80px); }
 @media (prefers-reduced-motion: reduce) { .ic.girando, .radio-mini.sonando .radio-vivo { animation: none; } }
+
+/* Culto en vivo por Facebook */
+.vivo-tarjeta { margin-top: 12px; display: flex; align-items: center; gap: 14px; padding: 14px 16px; color: var(--texto); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.vivo-tarjeta:active { transform: scale(.985); }
+.vivo-btn { flex: none; min-height: 40px; padding: 0 16px; }
+#vivoArriba .vivo-tarjeta { margin: 0 0 16px; border: 2px solid #E5484D; }
+.vivo-chip { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #C9373C; }
+:root[data-theme="dark"] .vivo-chip { color: #FF8589; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .vivo-chip { color: #FF8589; } }
+.vivo-chip .radio-vivo { width: 8px; height: 8px; background: #E5484D; animation: latido 1.6s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) { .vivo-chip .radio-vivo { animation: none; } }
