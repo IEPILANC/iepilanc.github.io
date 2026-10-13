@@ -161,7 +161,8 @@
       "id": "2026-10-16-grupo-jovenes",
       "titulo": "Actividad del Grupo de Jóvenes",
       "categoria": "jovenes",
-      "inicio": "2026-10-16",
+      "inicio": "2026-10-16T17:00",
+      "fin": "2026-10-16T19:30",
       "lugar": "templo",
       "estado": "publicada"
     },
