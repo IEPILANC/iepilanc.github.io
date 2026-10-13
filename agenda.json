@@ -141,10 +141,20 @@
     },
     {
       "id": "2026-10-14-estudio-biblico",
-      "titulo": "Estudio bíblico",
+      "titulo": "Pentecostalismo en Chile: historia, legado y misión",
       "categoria": "estudios",
-      "inicio": "2026-10-14",
-      "expositor": "Hno. Rudy Fuentes",
+      "inicio": "2026-10-14T19:00",
+      "lugar": "templo",
+      "expositor": "Hno. Christian Iturra",
+      "responsables": [
+        {
+          "nombre": "Hno. Rudy Fuentes",
+          "rol": "modera"
+        }
+      ],
+      "descripcion": "En el marco del Mes de la Reforma · Teología y Sociedad. Expone el Hno. Christian Iturra, sociólogo y profesor del Instituto Bíblico Concepción. Modera el Hno. Rudy Fuentes.",
+      "indicaciones": "Entrada liberada. Invitación abierta a todo público.",
+      "imagen": "afiche-pentecostalismo-2026-10-14.jpg",
       "estado": "publicada"
     },
     {

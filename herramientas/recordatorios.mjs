@@ -67,7 +67,7 @@ export function planDelDia(agenda, fecha, ahora = new Date(), ajustes = AJUSTES)
       if (lugar) partes.push(lugar);
       if (o.expositor) partes.push(`Expone: ${o.expositor}`);
       if (o.indicaciones) partes.push(o.indicaciones);
-      mensaje = (partes.length ? partes.join(' · ') + '. ' : '') + 'Toca para ver el detalle en la agenda.';
+      mensaje = (partes.length ? partes.join(' · ').replace(/\.$/, '') + '. ' : '') + 'Toca para ver el detalle en la agenda.';
     }
     if (o.estado === 'reprogramada') titulo = 'Reprogramado · ' + titulo;
     avisos.push({
