@@ -277,6 +277,7 @@
         filaDato('pin', 'Lugar', o.lugar && o.lugar.nombre, lugarExtra) +
         filaDato('persona', 'Coordina', o.coordinador) +
         filaDato('iglesia', 'Predica', o.predicador) +
+        filaDato('reunion', 'A cargo', o.a_cargo) +
         filaDato('libro', 'Expositor', o.expositor) +
         filaDato('reunion', 'Responsables', resp) +
         '</div>' +

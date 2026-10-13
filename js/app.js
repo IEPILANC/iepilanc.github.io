@@ -244,8 +244,10 @@
     var cls = 'fila tarjeta' + (n === 0 ? ' hoy' : '') + (n < 0 ? ' pasada' : '');
     return '<li class="' + cls + '"><div class="fecha-bloque"><small>' + D.DIAS_CORTOS[f.getDay()] + '</small><b>' + f.getDate() + '</b></div>' +
       '<div class="fila-cuerpo"><div class="fila-top"><span class="muted">' + esc(c.hora ? c.hora + ' hrs' : '') + '</span>' + (n === 0 ? '<span class="chip chip-oro">Hoy</span>' : n < 0 ? '<span class="chip">Realizado</span>' : '') + '</div>' +
-      '<div class="rol"><span>Coordina</span><span>' + esc(c.coordinador) + '</span></div>' +
-      '<div class="rol"><span>Predica</span><b>' + esc(c.predicador) + '</b></div></div></li>';
+      (c.titulo ? '<div class="fila-titulo">' + esc(c.titulo) + '</div>' : '') +
+      (c.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(c.coordinador) + '</span></div>' : '') +
+      (c.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(c.predicador) + '</b></div>' : '') +
+      (c.a_cargo ? '<div class="rol"><span>A cargo</span><b>' + esc(c.a_cargo) + '</b></div>' : '') + '</div></li>';
   }
   function dibujarInicio(d, ag) {
     var A = window.AgendaDatos, hoy = D.inicioDia(ahora), hoyIso = D.iso(ahora);
@@ -253,7 +255,7 @@
     var proximas = A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 120)).filter(function (o) { return o.tipo === 'actividad' && o.fechaFin >= hoyIso; });
     var claves = [];
     (d.destacados || []).forEach(function (a) { claves.push('d|' + a.titulo + '|' + a.fecha); });
-    (d.cultos_semana || []).forEach(function (c) { claves.push('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador); });
+    (d.cultos_semana || []).forEach(function (c) { claves.push('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador + (c.a_cargo ? '|' + c.a_cargo : '')); });
     proximas.forEach(function (o) { claves.push('e|' + o.id + '|' + o.fecha + '|' + (o.hora || '') + '|' + o.estado); });
     if (d.diacono) claves.push('x|' + d.diacono);
     var esNuevo = D.marcadorNuevos('visto-anuncios', claves), hayNuevo = false;
@@ -303,7 +305,7 @@
     /* Cultos de la semana */
     var sem = (d.cultos_semana || []).slice().sort(function (a, b) { return a.fecha < b.fecha ? -1 : 1; });
     $('semanaBox').hidden = !sem.length;
-    $('semana').innerHTML = sem.map(function (c) { nuevo('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador); return filaCulto(c, hoy); }).join('');
+    $('semana').innerHTML = sem.map(function (c) { nuevo('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador + (c.a_cargo ? '|' + c.a_cargo : '')); return filaCulto(c, hoy); }).join('');
 
     /* Próximas actividades (desde la agenda) */
     var lista = proximas.slice(0, 4);

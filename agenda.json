@@ -98,22 +98,22 @@
   ],
   "asignaciones_cultos": [
     {
-      "fecha": "2026-10-08",
+      "fecha": "2026-10-15",
       "hora": "19:30",
-      "coordinador": "Rosa Vega",
-      "predicador": "Alfonso Reyes"
+      "coordinador": "Jacqueline Barahona",
+      "predicador": "Bellanir Muñoz"
     },
     {
-      "fecha": "2026-10-10",
+      "fecha": "2026-10-17",
       "hora": "19:30",
-      "coordinador": "Josué Caamaño",
-      "predicador": "Rodrigo Toledo"
+      "titulo": "Servicio especial",
+      "a_cargo": "Grupo de Juventud"
     },
     {
-      "fecha": "2026-10-11",
+      "fecha": "2026-10-18",
       "hora": "10:30",
-      "coordinador": "Kiarely Zamora",
-      "predicador": "Víctor Panitro"
+      "coordinador": "Lino López",
+      "predicador": "Daniela López"
     }
   ],
   "excepciones_cultos": [],

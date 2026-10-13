@@ -58,7 +58,8 @@ export function planDelDia(agenda, fecha, ahora = new Date(), ajustes = AJUSTES)
       titulo = `Hoy hay ${o.titulo.toLowerCase()} · ${o.hora} hrs`;
       const partes = [];
       if (o.predicador) partes.push(`Predica: ${o.predicador}`);
-      if (o.coordinador) partes.push(`Dirige: ${o.coordinador}`);
+      if (o.coordinador) partes.push(`Coordina: ${o.coordinador}`);
+      if (o.a_cargo) partes.push(`A cargo: ${o.a_cargo}`);
       mensaje = (partes.length ? partes.join(' · ') + '. ' : '') + `Te esperamos${lugar ? ' en el ' + lugar.replace(/^Templo.*/, 'templo') : ''}. ¡Dios te bendiga!`;
     } else {
       titulo = `Hoy: ${o.titulo}${o.hora ? ' · ' + o.hora + ' hrs' : ''}`;

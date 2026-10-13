@@ -23,7 +23,7 @@ test('culto: aviso 2 horas antes con predicador y coordinador', () => {
   const [a] = R.planDelDia(base(), '2026-10-15', temprano);
   assert.equal(a.envio.toISOString(), '2026-10-15T20:30:00.000Z');
   assert.match(a.titulo, /culto · 19:30/);
-  assert.match(a.mensaje, /Predica: Hno\. B · Dirige: Hna\. A/);
+  assert.match(a.mensaje, /Predica: Hno\. B · Coordina: Hna\. A/);
   assert.match(a.url, /\?evento=/);
 });
 test('culto cancelado no se avisa', () => {

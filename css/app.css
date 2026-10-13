@@ -831,3 +831,4 @@ textarea.entrada { min-height: 120px; resize: vertical; line-height: 1.5; }
 .avisos-txt { flex: 1; min-width: 0; display: grid; gap: 4px; }
 .avisos-txt b { font-family: var(--f-editorial); font-size: var(--t-md); font-weight: 600; }
 .avisos-txt .dos-btn { margin-top: 10px; }
+.fila-titulo { font-family: var(--f-editorial); font-weight: 600; font-size: var(--t-md); margin: 2px 0 4px; }

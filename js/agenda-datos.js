@@ -63,11 +63,11 @@
         var ex = excepcion(f, r), a = asignacion(f, r);
         var o = {
           id: r.id + '-' + f, tipo: 'culto', regular: r.id,
-          titulo: (ex && ex.titulo) || r.titulo, categoria: r.categoria || 'cultos',
+          titulo: (ex && ex.titulo) || a.titulo || r.titulo, categoria: r.categoria || 'cultos',
           fecha: f, hora: (ex && ex.hora_nueva) || r.hora, fechaFin: f, horaFin: r.hora_fin || null,
           lugar: resolverLugar((ex && ex.lugar) || r.lugar, ix.lugares),
-          coordinador: a.coordinador || null, predicador: a.predicador || null, responsables: a.responsables || [],
-          descripcion: (ex && ex.descripcion) || null, indicaciones: (ex && ex.indicaciones) || null,
+          coordinador: a.coordinador || null, predicador: a.predicador || null, a_cargo: a.a_cargo || null, responsables: a.responsables || [],
+          descripcion: (ex && ex.descripcion) || a.descripcion || null, indicaciones: (ex && ex.indicaciones) || null,
           estado: ex ? (ex.estado || 'cancelada') : 'publicada', nota_cambio: ex ? (ex.motivo || null) : null,
           fecha_original: ex && ex.hora_nueva ? f + 'T' + r.hora : null
         };
@@ -184,6 +184,7 @@
     var c = categorias[o.categoria]; if (c) p.push('Categoría: ' + c.nombre);
     if (o.coordinador) p.push('Coordina: ' + o.coordinador);
     if (o.predicador) p.push('Predica: ' + o.predicador);
+    if (o.a_cargo) p.push('A cargo: ' + o.a_cargo);
     if (o.expositor) p.push('Expositor: ' + o.expositor);
     if (o.responsables && o.responsables.length) p.push('Responsables: ' + o.responsables.map(function (x) { return typeof x === 'object' ? x.nombre : x; }).join(', '));
     if (o.descripcion) p.push(o.descripcion);
