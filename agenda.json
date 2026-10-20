@@ -98,22 +98,21 @@
   ],
   "asignaciones_cultos": [
     {
-      "fecha": "2026-10-15",
+      "fecha": "2026-10-22",
       "hora": "19:30",
-      "coordinador": "Jacqueline Barahona",
-      "predicador": "Bellanir Muñoz"
+      "coordinador": "María Teresa Lepuman",
+      "predicador": "Diego Neira"
     },
     {
-      "fecha": "2026-10-17",
+      "fecha": "2026-10-24",
       "hora": "19:30",
-      "titulo": "Servicio especial",
-      "a_cargo": "Grupo de Juventud"
+      "coordinador": "Jorge Novoa Sáez",
+      "predicador": "Marjorie Cifuentes"
     },
     {
-      "fecha": "2026-10-18",
+      "fecha": "2026-10-25",
       "hora": "10:30",
-      "coordinador": "Lino López",
-      "predicador": "Daniela López"
+      "coordinador": "Virginia Vera"
     }
   ],
   "excepciones_cultos": [],
