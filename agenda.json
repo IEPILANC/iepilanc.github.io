@@ -192,9 +192,11 @@
     },
     {
       "id": "2026-10-31-dia-iglesias-evangelicas",
-      "titulo": "Día Nacional de las Iglesias Evangélicas y Protestantes",
+      "titulo": "Día de las Iglesias Evangélicas y Protestantes",
       "categoria": "especiales",
-      "inicio": "2026-10-31T18:00",
+      "inicio": "2026-10-31T16:00",
+      "descripcion": "Desfile congregacional a las 16:00 hrs y Gran culto de celebración a las 18:00 hrs. Te invitamos a ser parte de este día histórico de fe, gratitud y marcha por nuestra nación.",
+      "imagen": "afiche-dia-iglesias-evangelicas-2026-10-31.jpg",
       "estado": "publicada"
     },
     {
