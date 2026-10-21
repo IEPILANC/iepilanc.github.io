@@ -878,3 +878,11 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 .himnos-sec small { color: var(--texto-3); font-weight: 600; letter-spacing: 0; }
 .himno + .himnos-sec, .himnos-sec + .himno { border-top: 1px solid var(--borde); }
 .himno-num.sin-num .ic { width: 18px; height: 18px; }
+
+/* Destacado del día: arriba, con borde dorado y el afiche completo */
+.destacado.es-hoy { flex-direction: column; border: 2px solid var(--dorado); padding: 12px; }
+.destacado.es-hoy .destacado-img { width: 100%; aspect-ratio: auto; max-height: 70vh; align-self: stretch; }
+.destacado.es-hoy .destacado-img img { height: auto; object-fit: contain; }
+.destacado.es-hoy h3 { font-size: var(--t-lg); }
+.chip-hoy { background: var(--dorado); color: var(--grafito); gap: 4px; }
+.chip-hoy .ic { width: 14px; height: 14px; }

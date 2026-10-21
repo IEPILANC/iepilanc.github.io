@@ -285,13 +285,16 @@
 
     /* Destacados vigentes */
     var dest = D.destacadosVigentes(d.destacados, ahora), cont = $('destacados');
+    /* Un destacado con "dia" igual a hoy sube primero y se muestra grande con el afiche completo */
+    dest = dest.filter(function (a) { return a.dia === hoyIso; }).concat(dest.filter(function (a) { return a.dia !== hoyIso; }));
     $('destacadosBox').hidden = !dest.length;
     cont.innerHTML = dest.map(function (a, i) {
       var n = nuevo('d|' + a.titulo + '|' + a.fecha);
       var media = a.imagen
         ? '<button class="destacado-img" type="button" data-afiche="' + i + '" aria-label="Ver afiche: ' + esc(a.titulo) + '">' + img(a.imagen, '') + '</button>'
         : '<div class="destacado-ic">' + ic('calendario', 'ic-lg') + '</div>';
-      return '<article class="destacado tarjeta">' + media + '<div class="destacado-cuerpo">' + (n ? '<div>' + CHIP_NUEVO + '</div>' : '') +
+      var esHoy = a.dia === hoyIso;
+      return '<article class="destacado tarjeta' + (esHoy ? ' es-hoy' : '') + '">' + media + '<div class="destacado-cuerpo">' + (esHoy ? '<div><span class="chip chip-hoy">' + ic('estrella', 'ic-sm') + 'Hoy</span></div>' : n ? '<div>' + CHIP_NUEVO + '</div>' : '') +
         '<h3>' + esc(a.titulo) + '</h3>' +
         '<div class="meta">' + (a.fecha ? '<span>' + ic('reloj', 'ic-sm') + esc(a.fecha) + '</span>' : '') + (a.lugar ? '<span>' + ic('pin', 'ic-sm') + esc(a.lugar) + '</span>' : '') + '</div>' +
         (a.texto ? '<p>' + esc(a.texto) + '</p>' : '') +
