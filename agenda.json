@@ -115,7 +115,14 @@
       "coordinador": "Virginia Vera"
     }
   ],
-  "excepciones_cultos": [],
+  "excepciones_cultos": [
+    {
+      "fecha": "2026-10-22",
+      "culto": "culto-jueves",
+      "estado": "cancelada",
+      "motivo": "Suspendido por las adversas condiciones climáticas. Cuidemos nuestra seguridad y la de nuestras familias."
+    }
+  ],
   "actividades": [
     {
       "id": "2026-10-02-ensayo-coro-ninos",
