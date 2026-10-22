@@ -8,7 +8,8 @@
       "imagen": "aviso-culto-suspendido-2026-10-22.jpg",
       "texto": "Debido a las adversas condiciones climáticas, el culto de hoy jueves 22 de octubre se suspende. Cuidemos nuestra seguridad y la de nuestras familias. «El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente» (Salmo 91:1).",
       "dia": "2026-10-22",
-      "hasta": "2026-10-22"
+      "hasta": "2026-10-22",
+      "urgente": true
     },
     {
       "titulo": "Reunión de Asamblea",

@@ -283,6 +283,10 @@
       hero.innerHTML = '<p class="kicker">Próximo culto</p><p class="hero-dia">Horario por confirmar</p>';
     }
 
+    /* Aviso urgente del día: arriba de todo, antes del próximo culto */
+    var urg = (d.destacados || []).filter(function (a) { return a.urgente && a.dia === hoyIso; })[0];
+    $('urgente').innerHTML = urg ? '<button class="urgente tarjeta" type="button" id="urgenteBtn">' + ic('alerta', 'ic-lg') + '<span><b>' + esc(urg.titulo) + '</b><small>' + esc(urg.texto ? urg.texto.split('. ')[0] + '.' : '') + '</small></span></button>' : '';
+    if (urg && urg.imagen) $('urgenteBtn').onclick = function () { abrirVisor([{ src: urg.imagen, titulo: urg.titulo, alt: 'Afiche: ' + urg.titulo }], 0); };
     /* Destacados vigentes */
     var dest = D.destacadosVigentes(d.destacados, ahora), cont = $('destacados');
     /* Un destacado con "dia" igual a hoy sube primero y se muestra grande con el afiche completo */

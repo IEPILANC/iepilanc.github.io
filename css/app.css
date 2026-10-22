@@ -886,3 +886,11 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 .destacado.es-hoy h3 { font-size: var(--t-lg); }
 .chip-hoy { background: var(--dorado); color: var(--grafito); gap: 4px; }
 .chip-hoy .ic { width: 14px; height: 14px; }
+
+/* Aviso urgente arriba de Inicio */
+.urgente { width: 100%; display: flex; gap: 12px; align-items: flex-start; text-align: left; padding: 14px 16px; margin: 0 0 16px; border: 2px solid #C9373C; background: #FDECEC; color: #5A1214; -webkit-tap-highlight-color: transparent; }
+.urgente .ic { flex: none; color: #C9373C; }
+.urgente b { display: block; font-size: var(--t-md); }
+.urgente small { display: block; margin-top: 2px; font-size: .9375rem; line-height: 1.4; }
+:root[data-theme="dark"] .urgente { background: #3A1416; color: #FFDADA; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .urgente { background: #3A1416; color: #FFDADA; } }
