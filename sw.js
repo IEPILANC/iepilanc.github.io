@@ -1,5 +1,5 @@
 // Guarda la app para que abra sin internet y busca la versión nueva cuando hay conexión.
-const CACHE = 'iepi-lanc-v18';
+const CACHE = 'iepi-lanc-v19';
 const ARCHIVOS = ['./', 'index.html', 'css/app.css?v=18', 'js/datos.js?v=18', 'js/app.js?v=18', 'js/agenda-datos.js?v=18', 'js/agenda.js?v=18', 'js/registro.js?v=18', 'js/avisos.js?v=18', 'js/radio.js?v=18', 'js/vivo.js?v=18', 'img/logo.jpg', 'manifest.json', 'icono-192.png', 'icono-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ARCHIVOS)));
@@ -13,6 +13,8 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   // Solo se atienden archivos de la propia app; los servicios externos (contador, formulario, fuentes) van directo.
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  // La descarga de la app (APK) no se guarda en el teléfono: va directo.
+  if (new URL(req.url).pathname.indexOf('/descargas/') !== -1) return;
   e.respondWith(
     fetch(req).then(r => {
       if (r.ok) { const copia = r.clone(); caches.open(CACHE).then(c => c.put(req, copia)); }
