@@ -899,3 +899,7 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 .radio-emisoras { display: flex; gap: 8px; margin-top: 8px; overflow-x: auto; scrollbar-width: none; }
 .radio-emisoras::-webkit-scrollbar { display: none; }
 .radio-emisoras .filtro { flex: none; }
+
+.chip-suspendido { background: #FDECEC; color: #B42318; }
+:root[data-theme="dark"] .chip-suspendido { background: #3A1416; color: #FFB4B4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip-suspendido { background: #3A1416; color: #FFB4B4; } }

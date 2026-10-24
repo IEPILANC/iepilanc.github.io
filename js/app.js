@@ -243,7 +243,7 @@
     var f = D.fecha(c.fecha), n = D.diasEntre(hoy, f);
     var cls = 'fila tarjeta' + (n === 0 ? ' hoy' : '') + (n < 0 ? ' pasada' : '');
     return '<li class="' + cls + '"><div class="fecha-bloque"><small>' + D.DIAS_CORTOS[f.getDay()] + '</small><b>' + f.getDate() + '</b></div>' +
-      '<div class="fila-cuerpo"><div class="fila-top"><span class="muted">' + esc(c.hora ? c.hora + ' hrs' : '') + '</span>' + (n === 0 ? '<span class="chip chip-oro">Hoy</span>' : n < 0 ? '<span class="chip">Realizado</span>' : '') + '</div>' +
+      '<div class="fila-cuerpo"><div class="fila-top"><span class="muted">' + esc(c.hora ? c.hora + ' hrs' : '') + '</span>' + (c.estado === 'cancelada' ? '<span class="chip chip-suspendido">Suspendido</span>' : n === 0 ? '<span class="chip chip-oro">Hoy</span>' : n < 0 ? '<span class="chip">Realizado</span>' : '') + '</div>' +
       (c.titulo ? '<div class="fila-titulo">' + esc(c.titulo) + '</div>' : '') +
       (c.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(c.coordinador) + '</span></div>' : '') +
       (c.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(c.predicador) + '</b></div>' : '') +
@@ -311,6 +311,12 @@
 
     /* Cultos de la semana */
     var sem = (d.cultos_semana || []).slice().sort(function (a, b) { return a.fecha < b.fecha ? -1 : 1; });
+    /* Estado real de cada culto (por ejemplo, suspendido) según la agenda */
+    if (sem.length) {
+      var estados = {};
+      A.expandir(ag, sem[0].fecha, sem[sem.length - 1].fecha).forEach(function (o) { if (o.tipo === 'culto') estados[o.fecha + '|' + o.hora] = o.estado; });
+      sem = sem.map(function (c) { var e = estados[c.fecha + '|' + c.hora]; return e ? Object.assign({}, c, { estado: e }) : c; });
+    }
     $('semanaBox').hidden = !sem.length;
     $('semana').innerHTML = sem.map(function (c) { nuevo('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador + (c.a_cargo ? '|' + c.a_cargo : '')); return filaCulto(c, hoy); }).join('');
 

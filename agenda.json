@@ -107,7 +107,9 @@
       "fecha": "2026-10-24",
       "hora": "19:30",
       "coordinador": "Jorge Novoa Sáez",
-      "predicador": "Marjorie Cifuentes"
+      "predicador": "Marjorie Cifuentes",
+      "titulo": "Día de Primicias",
+      "descripcion": "Servicio especial de gratitud. «Honra al Señor con tus bienes y con las primicias de todos tus frutos» (Proverbios 3:9). Te esperamos para exaltar la fidelidad y provisión de Dios en nuestras vidas."
     },
     {
       "fecha": "2026-10-25",
@@ -191,13 +193,6 @@
       "categoria": "coro",
       "inicio": "2026-10-23T19:00",
       "lugar": "templo",
-      "estado": "publicada"
-    },
-    {
-      "id": "2026-10-24-servicio-primicias",
-      "titulo": "Servicio de Primicias",
-      "categoria": "cultos",
-      "inicio": "2026-10-24",
       "estado": "publicada"
     },
     {

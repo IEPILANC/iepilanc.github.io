@@ -55,7 +55,7 @@ export function planDelDia(agenda, fecha, ahora = new Date(), ajustes = AJUSTES)
     const lugar = o.lugar ? o.lugar.nombre : null;
     let titulo, mensaje;
     if (o.tipo === 'culto') {
-      titulo = `Hoy hay ${o.titulo.toLowerCase()} · ${o.hora} hrs`;
+      titulo = /^culto/i.test(o.titulo) ? `Hoy hay ${o.titulo.toLowerCase()} · ${o.hora} hrs` : `Hoy: ${o.titulo} · ${o.hora} hrs`;
       const partes = [];
       if (o.predicador) partes.push(`Predica: ${o.predicador}`);
       if (o.coordinador) partes.push(`Coordina: ${o.coordinador}`);

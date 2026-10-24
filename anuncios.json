@@ -3,13 +3,12 @@
   "mapa": "Corral 8021 Lan-C",
   "destacados": [
     {
-      "titulo": "Aviso: culto suspendido hoy jueves 22",
-      "fecha": "Jueves 22 de octubre",
-      "imagen": "aviso-culto-suspendido-2026-10-22.jpg",
-      "texto": "Debido a las adversas condiciones climáticas, el culto de hoy jueves 22 de octubre se suspende. Cuidemos nuestra seguridad y la de nuestras familias. «El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente» (Salmo 91:1).",
-      "dia": "2026-10-22",
-      "hasta": "2026-10-22",
-      "urgente": true
+      "titulo": "Día de Primicias",
+      "fecha": "Hoy, sábado 24 de octubre · 19:30 hrs",
+      "imagen": "afiche-dia-primicias-2026-10-24.jpg",
+      "texto": "Servicio especial de gratitud. Honrar a Dios con lo primero es confiarle todo lo que vendrá. «Honra al Señor con tus bienes y con las primicias de todos tus frutos» (Proverbios 3:9).",
+      "dia": "2026-10-24",
+      "hasta": "2026-10-24"
     },
     {
       "titulo": "Reunión de Asamblea",
