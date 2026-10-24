@@ -894,3 +894,8 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 .urgente small { display: block; margin-top: 2px; font-size: .9375rem; line-height: 1.4; }
 :root[data-theme="dark"] .urgente { background: #3A1416; color: #FFDADA; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .urgente { background: #3A1416; color: #FFDADA; } }
+
+/* Selector de emisora bajo la tarjeta de radio */
+.radio-emisoras { display: flex; gap: 8px; margin-top: 8px; overflow-x: auto; scrollbar-width: none; }
+.radio-emisoras::-webkit-scrollbar { display: none; }
+.radio-emisoras .filtro { flex: none; }
