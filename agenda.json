@@ -98,24 +98,15 @@
   ],
   "asignaciones_cultos": [
     {
-      "fecha": "2026-10-22",
+      "fecha": "2026-10-29",
       "hora": "19:30",
-      "coordinador": "María Teresa Lepuman",
-      "predicador": "Diego Neira"
+      "titulo": "Semana de Dorcas"
     },
     {
-      "fecha": "2026-10-24",
-      "hora": "19:30",
-      "coordinador": "Jorge Novoa Sáez",
-      "predicador": "Marjorie Cifuentes",
-      "titulo": "Día de Primicias",
-      "descripcion": "Servicio especial de gratitud. «Honra al Señor con tus bienes y con las primicias de todos tus frutos» (Proverbios 3:9). Te esperamos para exaltar la fidelidad y provisión de Dios en nuestras vidas."
-    },
-    {
-      "fecha": "2026-10-25",
-      "hora": "10:30",
-      "coordinador": "Virginia Vera",
-      "predicador": "Iván Donoso"
+      "fecha": "2026-10-31",
+      "hora": "18:00",
+      "titulo": "Gran culto de celebración",
+      "descripcion": "Día de las Iglesias Evangélicas y Protestantes."
     }
   ],
   "excepciones_cultos": [
@@ -124,6 +115,21 @@
       "culto": "culto-jueves",
       "estado": "cancelada",
       "motivo": "Suspendido por las adversas condiciones climáticas. Cuidemos nuestra seguridad y la de nuestras familias."
+    },
+    {
+      "fecha": "2026-10-29",
+      "culto": "culto-jueves",
+      "estado": "publicada",
+      "titulo": "Semana de Dorcas",
+      "descripcion": "Semana de Dorcas: miércoles 28 y jueves 29 de octubre a las 19:30 hrs."
+    },
+    {
+      "fecha": "2026-10-31",
+      "culto": "culto-sabado",
+      "estado": "reprogramada",
+      "hora_nueva": "18:00",
+      "titulo": "Gran culto de celebración",
+      "motivo": "Día de las Iglesias Evangélicas y Protestantes: el culto del sábado se adelanta a las 18:00 hrs, después del desfile de las 16:00 hrs."
     }
   ],
   "actividades": [
@@ -177,17 +183,6 @@
       "estado": "publicada"
     },
     {
-      "id": "2026-10-21-reunion-asamblea",
-      "titulo": "Reunión de Asamblea",
-      "categoria": "reuniones",
-      "inicio": "2026-10-27T19:00",
-      "descripcion": "«Hagámoslo todo decentemente y con orden» (1 Corintios 14:40). Tu participación es importante.",
-      "imagen": "afiche-asamblea-2026-10-27.jpg",
-      "estado": "reprogramada",
-      "fecha_original": "2026-10-21T19:00",
-      "nota_cambio": "La reunión del miércoles 21 de octubre se suspendió y se realizará el martes 27 de octubre."
-    },
-    {
       "id": "2026-10-23-ensayo-coro-ninos",
       "titulo": "Ensayo del coro de niños",
       "categoria": "coro",
@@ -196,11 +191,44 @@
       "estado": "publicada"
     },
     {
+      "id": "2026-10-26-clase-dorcas",
+      "titulo": "Clase de Dorcas",
+      "categoria": "dorcas",
+      "inicio": "2026-10-26T14:00",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-21-reunion-asamblea",
+      "titulo": "Reunión de Asamblea",
+      "categoria": "reuniones",
+      "inicio": "2026-10-27T19:00",
+      "descripcion": "Tema: Convención de Dorcas 2026. «Hagámoslo todo decentemente y con orden» (1 Corintios 14:40). Tu participación es importante.",
+      "imagen": "afiche-asamblea-2026-10-27.jpg",
+      "estado": "reprogramada",
+      "fecha_original": "2026-10-21T19:00",
+      "nota_cambio": "La reunión del miércoles 21 de octubre se suspendió y se realizará el martes 27 de octubre."
+    },
+    {
+      "id": "2026-10-28-semana-dorcas",
+      "titulo": "Semana de Dorcas",
+      "categoria": "dorcas",
+      "inicio": "2026-10-28T19:30",
+      "descripcion": "Semana de Dorcas: miércoles 28 y jueves 29 de octubre a las 19:30 hrs.",
+      "estado": "publicada"
+    },
+    {
+      "id": "2026-10-30-ensayo-general-coro",
+      "titulo": "Ensayo general de coro",
+      "categoria": "coro",
+      "inicio": "2026-10-30T20:00",
+      "estado": "publicada"
+    },
+    {
       "id": "2026-10-31-dia-iglesias-evangelicas",
-      "titulo": "Día de las Iglesias Evangélicas y Protestantes",
+      "titulo": "Desfile congregacional · Día de las Iglesias Evangélicas y Protestantes",
       "categoria": "especiales",
       "inicio": "2026-10-31T16:00",
-      "descripcion": "Desfile congregacional a las 16:00 hrs y Gran culto de celebración a las 18:00 hrs. Te invitamos a ser parte de este día histórico de fe, gratitud y marcha por nuestra nación.",
+      "descripcion": "Desfile congregacional a las 16:00 hrs. Después, Gran culto de celebración a las 18:00 hrs. Te invitamos a ser parte de este día histórico de fe, gratitud y marcha por nuestra nación.",
       "imagen": "afiche-dia-iglesias-evangelicas-2026-10-31.jpg",
       "estado": "publicada"
     },
