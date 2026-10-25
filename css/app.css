@@ -903,3 +903,4 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 .chip-suspendido { background: #FDECEC; color: #B42318; }
 :root[data-theme="dark"] .chip-suspendido { background: #3A1416; color: #FFB4B4; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip-suspendido { background: #3A1416; color: #FFB4B4; } }
+.hero-tit { margin-top: 8px; font-weight: 700; font-size: var(--t-md); color: var(--dorado); letter-spacing: .01em; }

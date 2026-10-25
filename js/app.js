@@ -252,7 +252,7 @@
   function dibujarInicio(d, ag) {
     var A = window.AgendaDatos, hoy = D.inicioDia(ahora), hoyIso = D.iso(ahora);
     d.cultos_semana = ag.asignaciones_cultos || [];
-    var proximas = A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 120)).filter(function (o) { return o.tipo === 'actividad' && o.fechaFin >= hoyIso; });
+    var proximas = A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 120)).filter(function (o) { return o.fechaFin >= hoyIso && (o.tipo === 'actividad' || (o.estado !== 'cancelada' && !/^culto/i.test(o.titulo || ''))); });
     var claves = [];
     (d.destacados || []).forEach(function (a) { claves.push('d|' + a.titulo + '|' + a.fecha); });
     (d.cultos_semana || []).forEach(function (c) { claves.push('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador + (c.a_cargo ? '|' + c.a_cargo : '')); });
@@ -273,6 +273,7 @@
       var cs = px.ocurrencia.coordinador || px.ocurrencia.predicador ? px.ocurrencia : null;
       var dia = D.diaRelativo(px.inicio, ahora);
       hero.innerHTML = '<p class="kicker">' + ic('calendario', 'ic-sm') + (px.enCurso ? 'Culto en curso <span class="chip chip-vivo">Ahora</span>' : 'Próximo culto') + '</p>' +
+        (/^culto/i.test(px.ocurrencia.titulo || 'Culto') ? '' : '<p class="hero-tit">' + esc(px.ocurrencia.titulo) + '</p>') +
         '<p class="hero-dia">' + esc(dia) + '</p>' +
         '<p class="hero-hora">' + esc(px.hora) + ' hrs</p>' + (dia === 'Hoy' || dia === 'Mañana' ? '<p class="hero-fecha">' + esc(D.fechaLarga(px.inicio)) + '</p>' : '') +
         (cs ? '<div class="hero-roles">' + (cs.coordinador ? '<div class="rol"><span>Coordina</span>' + esc(cs.coordinador) + '</div>' : '') + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + '</div>' : '') +
@@ -321,7 +322,7 @@
     $('semana').innerHTML = sem.map(function (c) { nuevo('c|' + c.fecha + '|' + c.coordinador + '|' + c.predicador + (c.a_cargo ? '|' + c.a_cargo : '')); return filaCulto(c, hoy); }).join('');
 
     /* Próximas actividades (desde la agenda) */
-    var lista = proximas.slice(0, 4);
+    var lista = proximas.slice(0, 6);
     proximas.forEach(function (o) { nuevo('e|' + o.id + '|' + o.fecha + '|' + (o.hora || '') + '|' + o.estado); });
     if (lista.length) {
       $('agenda').innerHTML = lista.map(function (o) { return window.Agenda.fila(o, { nuevo: esNuevo('e|' + o.id + '|' + o.fecha + '|' + (o.hora || '') + '|' + o.estado) }); }).join('');
