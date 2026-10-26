@@ -13,21 +13,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap">
-<link rel="stylesheet" href="css/app.css?v=22">
+<link rel="stylesheet" href="css/app.css?v=23">
 </head>
 <body>
 
 <header class="barra">
   <div class="barra-in">
-    <img src="img/logo.jpg" alt="Logo de la Iglesia Evangélica Pentecostés Internacional LAN-C" width="40" height="40">
+    <span class="barra-logo"><img src="img/logo.jpg" alt="Logo de la Iglesia Evangélica Pentecostés Internacional LAN-C" width="44" height="44"></span>
     <div class="barra-txt">
       <b>IEPI LAN-C</b>
       <small>Iglesia Evangélica Pentecostés Internacional</small>
     </div>
-    <button class="icon-btn tema-btn letra-btn" type="button" id="letraBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Tamaño de letra: normal"><span aria-hidden="true">A<small>A</small></span></button>
-    <button class="icon-btn tema-btn" type="button" id="temaBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Apariencia: automática">
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" id="temaIco"></svg>
-    </button>
+    <div class="barra-ajustes" role="group" aria-label="Ajustes de lectura">
+      <button class="icon-btn tema-btn letra-btn" type="button" id="letraBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Tamaño de letra: normal"><span aria-hidden="true">A<small>A</small></span></button>
+      <span class="barra-sep" aria-hidden="true"></span>
+      <button class="icon-btn tema-btn" type="button" id="temaBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Apariencia: automática">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" id="temaIco"></svg>
+      </button>
+    </div>
   </div>
 </header>
 <div class="tema-menu letra-menu" id="letraMenu" role="menu" aria-label="Tamaño de letra" hidden>
@@ -48,7 +51,7 @@
     <div class="saludo">
       <p class="kicker" id="hoyFecha">&nbsp;</p>
       <h1 id="saludo">Bienvenido</h1>
-      <p class="lead">Que Dios te bendiga. Aquí está lo que viene en nuestra iglesia.</p>
+      <p class="lead">Que Dios te bendiga. Esto es lo que viene en nuestra iglesia.</p>
     </div>
     <div id="urgente"></div>
     <div id="vivoArriba"></div>
@@ -57,16 +60,22 @@
       <div class="skel" style="height:32px;width:70%;margin-top:12px;opacity:.3"></div>
       <div class="skel" style="height:20px;width:30%;margin-top:8px;opacity:.3"></div>
     </article>
-    <button class="acceso-agenda tarjeta" style="margin-top:12px" type="button" id="abrirAgenda">
-      <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span>
-      <span class="acceso-txt"><b>Agenda congregacional</b><span class="muted" id="agendaResumen">Calendario de cultos y actividades</span></span>
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-    </button>
+    <div class="accesos" role="group" aria-label="Accesos rápidos">
+      <button class="acceso acceso-agenda tarjeta" type="button" id="abrirAgenda">
+        <span class="acceso-top">
+          <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></span>
+          <span class="acceso-flecha" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </span>
+        <span class="acceso-txt"><b>Agenda congregacional</b><span class="muted" id="agendaResumen">Calendario de cultos y actividades</span></span>
+      </button>
 
-    <div class="tarjeta radio-tarjeta" id="radioBox" hidden>
-      <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.9 19.1a10 10 0 0 1 0-14.2M7.8 16.2a6 6 0 0 1 0-8.4M16.2 7.8a6 6 0 0 1 0 8.4M19.1 4.9a10 10 0 0 1 0 14.2"/><circle cx="12" cy="12" r="2"/></svg></span>
-      <span class="acceso-txt"><b>Radio en vivo</b><span class="muted" id="radioNombre"></span></span>
-      <button class="radio-play" type="button" id="radioPlay" aria-label="Escuchar la radio"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" id="radioIco"></svg></button>
+      <div class="acceso radio-tarjeta tarjeta" id="radioBox" hidden>
+        <span class="acceso-top">
+          <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.9 19.1a10 10 0 0 1 0-14.2M7.8 16.2a6 6 0 0 1 0-8.4M16.2 7.8a6 6 0 0 1 0 8.4M19.1 4.9a10 10 0 0 1 0 14.2"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <button class="radio-play" type="button" id="radioPlay" aria-label="Escuchar la radio"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" id="radioIco"></svg></button>
+        </span>
+        <span class="acceso-txt"><b>Radio en vivo</b><span class="muted" id="radioNombre"></span></span>
+      </div>
     </div>
     <div id="vivoAbajo"></div>
     <div class="tarjeta avisos-push" id="avisosBox" hidden>
@@ -376,15 +385,15 @@
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script data-goatcounter="https://iepilanc.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-<script src="js/datos.js?v=22"></script>
-<script src="js/agenda-datos.js?v=22"></script>
-<script src="js/app.js?v=22"></script>
-<script src="js/agenda.js?v=22"></script>
-<script src="js/registro.js?v=22"></script>
+<script src="js/datos.js?v=23"></script>
+<script src="js/agenda-datos.js?v=23"></script>
+<script src="js/app.js?v=23"></script>
+<script src="js/agenda.js?v=23"></script>
+<script src="js/registro.js?v=23"></script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script src="js/avisos.js?v=22"></script>
-<script src="js/radio.js?v=22"></script>
-<script src="js/vivo.js?v=22"></script>
+<script src="js/avisos.js?v=23"></script>
+<script src="js/radio.js?v=23"></script>
+<script src="js/vivo.js?v=23"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>

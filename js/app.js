@@ -271,17 +271,28 @@
     });
     if (px) {
       var cs = px.ocurrencia.coordinador || px.ocurrencia.predicador ? px.ocurrencia : null;
-      var dia = D.diaRelativo(px.inicio, ahora);
-      hero.innerHTML = '<p class="kicker">' + ic('calendario', 'ic-sm') + (px.enCurso ? 'Culto en curso <span class="chip chip-vivo">Ahora</span>' : 'Próximo culto') + '</p>' +
-        (/^culto/i.test(px.ocurrencia.titulo || 'Culto') ? '' : '<p class="hero-tit">' + esc(px.ocurrencia.titulo) + '</p>') +
-        '<p class="hero-dia">' + esc(dia) + '</p>' +
-        '<p class="hero-hora">' + esc(px.hora) + ' hrs</p>' + (dia === 'Hoy' || dia === 'Mañana' ? '<p class="hero-fecha">' + esc(D.fechaLarga(px.inicio)) + '</p>' : '') +
-        (cs ? '<div class="hero-roles">' + (cs.coordinador ? '<div class="rol"><span>Coordina</span>' + esc(cs.coordinador) + '</div>' : '') + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + '</div>' : '') +
-        '<div class="hero-acciones"><a class="btn btn-oro" target="_blank" rel="noopener" href="' + esc(enlaceMapa(d.mapa || d.direccion || 'Corral 8021 Lan-C')) + '">' + ic('pin', 'ic-sm') + 'Cómo llegar</a>' +
-        '<button class="btn btn-sec" type="button" data-evento="' + esc(px.ocurrencia.id) + '">Ver detalle</button></div>';
+      var o = px.ocurrencia, f = px.inicio, n = D.diasEntre(ahora, f);
+      var titulo = o.titulo || 'Culto';
+      var cuando = n === 0 ? 'Hoy' : n === 1 ? 'Mañana' : n > 1 && n < 7 ? 'En ' + n + ' días' : '';
+      var lugarNom = o.lugar && o.lugar.nombre ? o.lugar.nombre : '';
+      var mapa = o.lugar && (o.lugar.mapa || o.lugar.direccion) || d.mapa || d.direccion || 'Corral 8021 Lan-C';
+      hero.innerHTML =
+        '<div class="hero-cab"><p class="kicker">' + (px.enCurso ? '<span class="radio-vivo" aria-hidden="true"></span>Culto en curso' : 'Próximo culto') + '</p>' +
+          (px.enCurso ? '<span class="chip chip-vivo">Ahora</span>' : cuando ? '<span class="hero-cuando">' + esc(cuando) + '</span>' : '') + '</div>' +
+        '<div class="hero-cuerpo">' +
+          '<div class="hero-medalla" aria-hidden="true"><small>' + esc(D.DIAS_CORTOS[f.getDay()]) + '</small><b>' + f.getDate() + '</b><small>' + esc(D.MESES[f.getMonth()].slice(0, 3)) + '</small></div>' +
+          '<div class="hero-info">' +
+            '<h2 class="hero-titulo">' + esc(titulo) + '</h2>' +
+            '<p class="hero-fecha-larga">' + esc(D.fechaLarga(f)) + '</p>' +
+            '<p class="hero-datos"><span>' + ic('reloj', 'ic-sm') + esc(px.hora) + ' hrs</span>' + (lugarNom ? '<span>' + ic('pin', 'ic-sm') + esc(lugarNom) + '</span>' : '') + '</p>' +
+          '</div>' +
+        '</div>' +
+        (cs ? '<div class="hero-roles">' + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + (cs.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(cs.coordinador) + '</span></div>' : '') + '</div>' : '') +
+        '<div class="hero-acciones"><a class="btn btn-oro" target="_blank" rel="noopener" href="' + esc(enlaceMapa(mapa)) + '">' + ic('pin', 'ic-sm') + 'Cómo llegar</a>' +
+        '<button class="btn btn-sec" type="button" data-evento="' + esc(o.id) + '">Ver detalles</button></div>';
       hero.querySelector('[data-evento]').onclick = function () { window.Agenda.abrirFicha(px.ocurrencia.id); };
     } else {
-      hero.innerHTML = '<p class="kicker">Próximo culto</p><p class="hero-dia">Horario por confirmar</p>';
+      hero.innerHTML = '<div class="hero-cab"><p class="kicker">Próximo culto</p></div><h2 class="hero-titulo">Horario por confirmar</h2><p class="hero-fecha-larga">Revisa la agenda congregacional.</p>';
     }
 
     /* Aviso urgente del día: arriba de todo, antes del próximo culto */
@@ -331,7 +342,7 @@
       estadoVacio($('agenda'), 'calendario', 'No hay actividades próximas publicadas por ahora.');
     }
     var mesAct = A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 30)).filter(function (o) { return o.estado !== 'cancelada'; }).length;
-    $('agendaResumen').textContent = mesAct ? mesAct + ' cultos y actividades en los próximos 30 días' : 'Calendario de cultos y actividades';
+    $('agendaResumen').textContent = mesAct ? mesAct + ' cultos y actividades en 30 días' : 'Calendario de cultos y actividades';
 
     /* Horarios, ubicación y diácono */
     $('horarios').innerHTML = (ag.cultos_regulares || []).map(function (h) { return '<div class="horario"><small>' + esc(h.dia) + '</small><b>' + esc(h.hora) + '</b></div>'; }).join('');
@@ -344,7 +355,7 @@
     Promise.all([D.cargar('anuncios.json'), window.Agenda.cargar()]).then(function (r) { dibujarInicio(r[0], r[1]); }).catch(function () {
       estadoError($('destacados'), 'No se pudieron cargar los anuncios. Revisa tu conexión a internet.', cargarInicio);
       $('agenda').innerHTML = '';
-      $('proximo').innerHTML = '<p class="kicker">Próximo culto</p><p class="hero-dia">Sin conexión</p><p class="hero-hora">Vuelve a intentarlo en un momento.</p>';
+      $('proximo').innerHTML = '<div class="hero-cab"><p class="kicker">Próximo culto</p></div><h2 class="hero-titulo">Sin conexión</h2><p class="hero-fecha-larga">Vuelve a intentarlo en un momento.</p>';
     });
   }
 
