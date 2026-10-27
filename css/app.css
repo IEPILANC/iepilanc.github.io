@@ -1059,3 +1059,8 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 .hero-clima { color: rgba(255, 255, 255, .88); font-weight: 500; }
 @media (max-width: 399px) { .clima-txt { display: none; } }
 :root[data-letra="muy-grande"] .clima-txt { display: none; }
+
+/* ---------- Acceso al chat (ancho completo, horizontal) ---------- */
+.accesos .acceso-chat { grid-column: 1 / -1; min-height: 0; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; text-decoration: none; }
+.accesos .acceso-chat:active { transform: scale(.985); }
+@media (hover: hover) { .accesos .acceso-chat:hover { box-shadow: var(--sombra-2); } .accesos .acceso-chat:hover .acceso-flecha { background: var(--marino); color: var(--dorado); } }

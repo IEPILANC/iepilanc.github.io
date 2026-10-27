@@ -76,6 +76,11 @@
         </span>
         <span class="acceso-txt"><b>Radio en vivo</b><span class="muted" id="radioNombre"></span></span>
       </div>
+      <a class="acceso acceso-chat tarjeta" id="chatAcceso" href="chat/" hidden>
+        <span class="acceso-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></span>
+        <span class="acceso-txt"><b>Chat de la iglesia</b><span class="muted">Conversa con los hermanos: General, Oración y grupos</span></span>
+        <span class="acceso-flecha" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+      </a>
     </div>
     <div id="vivoAbajo"></div>
     <div class="tarjeta avisos-push" id="avisosBox" hidden>
@@ -395,6 +400,7 @@
 <script src="js/radio.js?v=24"></script>
 <script src="js/vivo.js?v=24"></script>
 <script src="js/clima.js?v=24"></script>
+<script src="js/chat-acceso.js?v=25"></script>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js'); }); }
 </script>
