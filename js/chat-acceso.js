@@ -1,6 +1,7 @@
 /* Acceso al chat en Inicio.
    - chat.json { "visible": true } lo muestra a todos.
-   - Mientras está en prueba, se activa en un teléfono abriendo la app con ?chat=prueba
+   - "probadores": nombres de registro que lo ven mientras está en prueba.
+   - También se activa en un teléfono abriendo la app con ?chat=prueba
      (y se desactiva con ?chat=no). */
 (function () {
   'use strict';
@@ -15,5 +16,14 @@
   function mostrar() { el.hidden = false; }
   if (prueba) mostrar();
   fetch('chat.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; })
-    .then(function (c) { if (c && c.visible) mostrar(); }).catch(function () {});
+    .then(function (c) {
+      if (!c) return;
+      if (c.visible) { mostrar(); return; }
+      /* Probadores: se muestra a quienes están registrados con esos nombres */
+      var nom = '';
+      try { var r = JSON.parse(localStorage.getItem('registro') || 'null'); nom = r && r.nombre ? r.nombre : ''; } catch (e) { /* nada */ }
+      var limpio = function (t) { return String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); };
+      nom = limpio(nom);
+      if (nom && (c.probadores || []).some(function (p) { return nom.indexOf(limpio(p)) !== -1; })) mostrar();
+    }).catch(function () {});
 })();
