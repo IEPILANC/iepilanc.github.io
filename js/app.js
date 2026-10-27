@@ -290,6 +290,8 @@
         (cs ? '<div class="hero-roles">' + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + (cs.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(cs.coordinador) + '</span></div>' : '') + '</div>' : '') +
         '<div class="hero-acciones"><a class="btn btn-oro" target="_blank" rel="noopener" href="' + esc(enlaceMapa(mapa)) + '">' + ic('pin', 'ic-sm') + 'Cómo llegar</a>' +
         '<button class="btn btn-sec" type="button" data-evento="' + esc(o.id) + '">Ver detalles</button></div>';
+      hero.dataset.inicio = o.fecha + 'T' + px.hora;
+      if (window.Clima) window.Clima.hero();
       hero.querySelector('[data-evento]').onclick = function () { window.Agenda.abrirFicha(px.ocurrencia.id); };
     } else {
       hero.innerHTML = '<div class="hero-cab"><p class="kicker">Próximo culto</p></div><h2 class="hero-titulo">Horario por confirmar</h2><p class="hero-fecha-larga">Revisa la agenda congregacional.</p>';

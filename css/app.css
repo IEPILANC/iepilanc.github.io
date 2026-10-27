@@ -1048,3 +1048,14 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
   .hero-titulo { font-size: 1.3125rem; }
 }
 @media (min-width: 400px) and (max-width: 719px) { .hero { padding: 22px; } }
+
+/* ---------- Clima ---------- */
+.saludo-fila { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.saludo-fila h1 { min-width: 0; }
+.clima { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; flex: none; display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px 0 10px; border-radius: var(--r-pill); background: var(--superficie); border: 1px solid var(--borde); box-shadow: var(--sombra-1); color: var(--texto-2); font-size: .8125rem; white-space: nowrap; max-width: 55%; }
+.clima .ic { color: var(--dorado-texto); }
+.clima b { color: var(--texto); font-weight: 700; font-variant-numeric: tabular-nums; }
+.clima-txt { overflow: hidden; text-overflow: ellipsis; }
+.hero-clima { color: rgba(255, 255, 255, .88); font-weight: 500; }
+@media (max-width: 399px) { .clima-txt { display: none; } }
+:root[data-letra="muy-grande"] .clima-txt { display: none; }
