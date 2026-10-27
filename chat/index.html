@@ -16,7 +16,7 @@
   [hidden] { display: none !important; }
   button, input, textarea { font: inherit; color: inherit; }
   .ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-  .app { display: flex; flex-direction: column; height: 100dvh; max-width: 640px; margin: 0 auto; }
+  .app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; max-width: 640px; margin: 0 auto; overflow: hidden; }
 
   .cab { flex: none; background: linear-gradient(180deg, var(--marino-alto), var(--marino)); color: #fff; padding: calc(env(safe-area-inset-top,0px) + 10px) 12px 0; box-shadow: inset 0 -1px 0 rgba(197,160,82,.55); }
   .cab-fila { display: flex; align-items: center; gap: 10px; }
@@ -36,7 +36,7 @@
   .fijado .ic { color: var(--dorado-texto); width: 18px; height: 18px; margin-top: 1px; }
   .fijado b { display: block; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--dorado-texto); }
 
-  .mensajes { flex: 1; overflow-y: auto; padding: 12px 12px 8px; display: flex; flex-direction: column; gap: 4px; overscroll-behavior: contain; }
+  .mensajes { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 12px 12px 8px; display: flex; flex-direction: column; gap: 4px; overscroll-behavior: contain; }
   .dia { align-self: center; margin: 10px 0 6px; padding: 4px 12px; border-radius: 999px; background: var(--sup2); color: var(--texto2); font-size: .75rem; font-weight: 600; }
   .msg { max-width: 82%; display: flex; gap: 8px; align-items: flex-end; }
   .msg + .msg.mismo { margin-top: -1px; }
@@ -71,7 +71,7 @@
   .reacciones { display: flex; justify-content: space-around; padding: 4px 0 8px; }
   .reacciones button { width: 52px; height: 52px; justify-content: center; font-size: 1.6rem; padding: 0; }
 
-  .estado { flex: 1; display: grid; place-content: center; text-align: center; gap: 14px; padding: 32px 24px; color: var(--texto2); }
+  .estado { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: grid; place-content: center; text-align: center; gap: 14px; padding: 32px 24px; color: var(--texto2); }
   .estado h2 { margin: 0; font-family: Lora, Georgia, serif; font-size: 1.375rem; color: var(--texto); }
   .estado p { margin: 0; line-height: 1.55; }
   .estado .ic-grande { width: 56px; height: 56px; margin: 0 auto; border-radius: 16px; display: grid; place-items: center; background: var(--dorado-suave); color: var(--dorado-texto); }
@@ -105,6 +105,7 @@
   .menu-in .item .btn-sec { border: 1px solid var(--borde); }
   .menu-in .item .btn:not(.btn-sec) { background: var(--dorado); color: var(--grafito); }
   .menu-in .hoja-tit { margin: 8px 8px 4px; font-family: Lora, Georgia, serif; font-size: 1.125rem; font-weight: 600; color: var(--texto); }
+  @media (max-height: 700px) { .fijado { font-size: .8rem; padding: 8px 10px; } .canales { padding: 8px 4px; } }
 </style>
 </head>
 <body>
@@ -128,6 +129,6 @@
   </form>
 </div>
 <div class="menu" id="hoja" hidden><div class="menu-in" role="dialog" aria-modal="true" id="hojaIn"></div></div>
-<script type="module" src="chat.js?v=1"></script>
+<script type="module" src="chat.js?v=2"></script>
 </body>
 </html>
