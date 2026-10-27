@@ -8,8 +8,8 @@
   var CLAVE = 'chat-prueba', prueba = false;
   try {
     var q = new URLSearchParams(location.search).get('chat');
-    if (q === 'prueba') localStorage.setItem(CLAVE, '1');
-    if (q === 'no') localStorage.removeItem(CLAVE);
+    if (q && /^prueba/i.test(q)) localStorage.setItem(CLAVE, '1');
+    if (q && /^no\b/i.test(q)) localStorage.removeItem(CLAVE);
     prueba = localStorage.getItem(CLAVE) === '1';
   } catch (e) { /* sin almacenamiento */ }
   function mostrar() { el.hidden = false; }
