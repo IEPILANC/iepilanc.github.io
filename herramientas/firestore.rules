@@ -1,0 +1,97 @@
+rules_version = '2';
+// Reglas de seguridad del chat de IEPI LAN-C.
+// Se copian en Firebase → Firestore Database → Reglas → Publicar.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function autenticado() { return request.auth != null; }
+    function ruta(p) { return /databases/$(database)/documents/$(p); }
+    function admin() { return autenticado() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function bloqueado() { return exists(/databases/$(database)/documents/bloqueados/$(request.auth.uid)); }
+    function registrado() { return autenticado() && exists(/databases/$(database)/documents/miembros/$(request.auth.uid)); }
+    function activo() { return registrado() && !bloqueado(); }
+    function miNombre() { return get(/databases/$(database)/documents/miembros/$(request.auth.uid)).data.nombre; }
+    function abierto(g) { return g in ['general', 'oracion']; }
+    function cerrado(g) { return g in ['jovenes', 'coro', 'dorcas']; }
+    function aprobado(g) {
+      return exists(/databases/$(database)/documents/grupos/$(g)/miembros/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/grupos/$(g)/miembros/$(request.auth.uid)).data.estado == 'aprobado';
+    }
+    function puedeLeer(g) { return admin() || (activo() && (abierto(g) || (cerrado(g) && aprobado(g)))); }
+    function puedeEscribir(g) { return activo() && (abierto(g) || (cerrado(g) && (admin() || aprobado(g)))); }
+    function texto(x, max) { return x is string && x.size() > 0 && x.size() <= max; }
+
+    // Administradores: se agregan a mano desde la consola de Firebase.
+    match /admins/{uid} {
+      allow read: if autenticado() && (request.auth.uid == uid || admin());
+      allow write: if false;
+    }
+
+    // Hermanos bloqueados (solo el administrador los agrega o quita).
+    match /bloqueados/{uid} {
+      allow read: if autenticado() && (request.auth.uid == uid || admin());
+      allow create, update, delete: if admin();
+    }
+
+    // Registro de cada teléfono en el chat (nombre y código de la app).
+    match /miembros/{uid} {
+      allow read: if admin() || (autenticado() && request.auth.uid == uid);
+      allow create, update: if autenticado() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['nombre', 'codigo', 'actualizado'])
+        && texto(request.resource.data.nombre, 60) && request.resource.data.nombre.size() >= 3
+        && request.resource.data.codigo is string && request.resource.data.codigo.size() <= 12
+        && request.resource.data.actualizado == request.time;
+      allow delete: if admin();
+    }
+
+    match /grupos/{g} {
+      // Solicitudes para entrar a los grupos cerrados.
+      match /miembros/{uid} {
+        allow read: if admin() || (autenticado() && request.auth.uid == uid);
+        allow create: if activo() && cerrado(g) && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['nombre', 'estado', 'creado'])
+          && request.resource.data.estado == 'pendiente'
+          && request.resource.data.nombre == miNombre()
+          && request.resource.data.creado == request.time;
+        allow update: if admin()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado', 'aprobadoPor'])
+          && request.resource.data.estado == 'aprobado';
+        allow delete: if admin() || (autenticado() && request.auth.uid == uid);
+      }
+
+      // Mensajes.
+      match /mensajes/{id} {
+        allow read: if puedeLeer(g);
+        allow create: if puedeEscribir(g)
+          && request.resource.data.keys().hasOnly(['uid', 'nombre', 'texto', 'creado', 'rol', 'respuesta'])
+          && request.resource.data.uid == request.auth.uid
+          && texto(request.resource.data.texto, 500)
+          && request.resource.data.creado == request.time
+          && request.resource.data.nombre == miNombre()
+          && (!('rol' in request.resource.data) || (admin() && request.resource.data.rol == 'Admin'))
+          && (!('respuesta' in request.resource.data) || (
+               request.resource.data.respuesta is map
+               && request.resource.data.respuesta.keys().hasOnly(['nombre', 'texto'])
+               && texto(request.resource.data.respuesta.nombre, 60)
+               && texto(request.resource.data.respuesta.texto, 120)));
+        // Reacciones (🙏 🙌 ❤️ 👍 🔥): solo cambia el campo "reacciones".
+        allow update: if puedeEscribir(g)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reacciones'])
+          && request.resource.data.reacciones is map
+          && request.resource.data.reacciones.keys().hasOnly(['orar', 'gracias', 'amor', 'bien', 'fuego']);
+        // Borra el autor o el administrador.
+        allow delete: if admin() || (autenticado() && resource.data.uid == request.auth.uid);
+      }
+    }
+
+    // Mensajes reportados al administrador.
+    match /reportes/{id} {
+      allow create: if activo()
+        && request.resource.data.keys().hasOnly(['por', 'porNombre', 'grupo', 'mensaje', 'autor', 'autorUid', 'texto', 'creado'])
+        && request.resource.data.por == request.auth.uid
+        && request.resource.data.creado == request.time
+        && texto(request.resource.data.texto, 500);
+      allow read, delete: if admin();
+    }
+  }
+}

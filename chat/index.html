@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="robots" content="noindex">
+<title>Chat de la iglesia · IEPI LAN-C</title>
+<meta name="theme-color" content="#17294B">
+<link rel="icon" href="../icono-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600&display=swap">
+<style>
+  :root { --marino:#17294B; --marino-alto:#1E3563; --grafito:#111827; --dorado:#C5A052; --dorado-claro:#E4CB8E; --dorado-texto:#8A6A24; --dorado-suave:#F4ECD9; --fondo:#F5F3EE; --sup:#FFFFFF; --sup2:#EFECE4; --texto:#111827; --texto2:#4B5563; --texto3:#6B7280; --borde:#E3DFD5; --error:#B42318; }
+  @media (prefers-color-scheme: dark) { :root { --fondo:#0B1220; --sup:#121C31; --sup2:#18243D; --texto:#EEF1F6; --texto2:#C3CAD6; --texto3:#98A2B3; --borde:#26344F; --dorado-texto:#D7B76C; --dorado-suave:#2B2618; } }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--fondo); color: var(--texto); font-family: Inter, system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+  [hidden] { display: none !important; }
+  button, input, textarea { font: inherit; color: inherit; }
+  .ic { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .app { display: flex; flex-direction: column; height: 100dvh; max-width: 640px; margin: 0 auto; }
+
+  .cab { flex: none; background: linear-gradient(180deg, var(--marino-alto), var(--marino)); color: #fff; padding: calc(env(safe-area-inset-top,0px) + 10px) 12px 0; box-shadow: inset 0 -1px 0 rgba(197,160,82,.55); }
+  .cab-fila { display: flex; align-items: center; gap: 10px; }
+  .volver { width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: #fff; display: grid; place-items: center; }
+  .cab-txt { flex: 1; min-width: 0; }
+  .cab-txt b { display: block; font-family: Lora, Georgia, serif; font-size: 1.125rem; font-weight: 600; }
+  .cab-txt small { display: flex; align-items: center; gap: 6px; font-size: .78rem; color: rgba(255,255,255,.75); }
+  .punto { width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; }
+  .canales { display: flex; gap: 8px; overflow-x: auto; padding: 12px 4px 12px; scrollbar-width: none; }
+  .canales::-webkit-scrollbar { display: none; }
+  .canal { flex: none; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); color: #fff; font-size: .875rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .canal[aria-pressed="true"] { background: var(--dorado); color: var(--grafito); border-color: var(--dorado); }
+  .canal .n { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: #E5484D; color: #fff; font-size: .7rem; display: inline-grid; place-items: center; }
+
+  .prueba-x { flex: none; margin: 10px 12px 0; padding: 8px 12px; border-radius: 12px; background: var(--dorado-suave); color: var(--dorado-texto); font-size: .8rem; font-weight: 600; text-align: center; }
+  .fijado { flex: none; margin: 10px 12px 0; padding: 10px 12px; border-radius: 14px; background: var(--sup); border: 1px solid rgba(197,160,82,.45); display: flex; gap: 10px; align-items: flex-start; font-size: .875rem; }
+  .fijado .ic { color: var(--dorado-texto); width: 18px; height: 18px; margin-top: 1px; }
+  .fijado b { display: block; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--dorado-texto); }
+
+  .mensajes { flex: 1; overflow-y: auto; padding: 12px 12px 8px; display: flex; flex-direction: column; gap: 4px; overscroll-behavior: contain; }
+  .dia { align-self: center; margin: 10px 0 6px; padding: 4px 12px; border-radius: 999px; background: var(--sup2); color: var(--texto2); font-size: .75rem; font-weight: 600; }
+  .msg { max-width: 82%; display: flex; gap: 8px; align-items: flex-end; }
+  .msg + .msg.mismo { margin-top: -1px; }
+  .av { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: .75rem; font-weight: 700; color: #fff; }
+  .msg.mismo .av { visibility: hidden; }
+  .burbuja { padding: 8px 12px 6px; border-radius: 18px 18px 18px 6px; background: var(--sup); border: 1px solid var(--borde); line-height: 1.45; font-size: .9375rem; overflow-wrap: anywhere; position: relative; }
+  .autor { display: block; font-size: .78rem; font-weight: 700; margin-bottom: 2px; }
+  .msg.mismo .autor { display: none; }
+  .rol { margin-left: 6px; padding: 1px 6px; border-radius: 6px; background: var(--dorado-suave); color: var(--dorado-texto); font-size: .66rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; vertical-align: 1px; }
+  .hora { display: block; text-align: right; font-size: .68rem; color: var(--texto3); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .mio { align-self: flex-end; flex-direction: row-reverse; }
+  .mio .av { display: none; }
+  .mio .burbuja { background: var(--marino); color: #fff; border-color: var(--marino); border-radius: 18px 18px 6px 18px; }
+  .mio .hora { color: rgba(255,255,255,.65); }
+  .mio .autor { display: none; }
+  .reacc { position: absolute; bottom: -12px; right: 10px; padding: 1px 6px; border-radius: 999px; background: var(--sup); border: 1px solid var(--borde); font-size: .75rem; color: var(--texto2); }
+  .msg.con-reacc { margin-bottom: 12px; }
+  .borrado .burbuja { font-style: italic; color: var(--texto3); background: transparent; }
+
+  .redactar { flex: none; display: flex; align-items: flex-end; gap: 8px; padding: 8px 10px calc(env(safe-area-inset-bottom,0px) + 10px); background: var(--sup); border-top: 1px solid var(--borde); }
+  .redactar textarea { flex: 1; min-height: 44px; max-height: 120px; resize: none; padding: 11px 14px; border-radius: 22px; border: 1px solid var(--borde); background: var(--fondo); font-size: 1rem; line-height: 1.35; }
+  .redactar textarea:focus { outline: 2px solid var(--dorado); outline-offset: 0; }
+  .enviar { flex: none; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--dorado); color: var(--grafito); display: grid; place-items: center; }
+  .enviar:disabled { opacity: .45; }
+
+  .menu { position: fixed; inset: 0; z-index: 30; background: rgba(11,18,32,.45); display: flex; align-items: flex-end; justify-content: center; }
+  .menu-in { width: 100%; max-width: 640px; background: var(--sup); border-radius: 20px 20px 0 0; padding: 10px 12px calc(env(safe-area-inset-bottom,0px) + 14px); }
+  .menu-in p { margin: 6px 8px 10px; color: var(--texto2); font-size: .85rem; }
+  .menu-in button { width: 100%; min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border: 0; background: none; border-radius: 12px; text-align: left; font-size: 1rem; }
+  .menu-in button:active { background: var(--sup2); }
+  .menu-in .peligro { color: var(--error); }
+  .reacciones { display: flex; justify-content: space-around; padding: 4px 0 8px; }
+  .reacciones button { width: 52px; height: 52px; justify-content: center; font-size: 1.6rem; padding: 0; }
+
+  .estado { flex: 1; display: grid; place-content: center; text-align: center; gap: 14px; padding: 32px 24px; color: var(--texto2); }
+  .estado h2 { margin: 0; font-family: Lora, Georgia, serif; font-size: 1.375rem; color: var(--texto); }
+  .estado p { margin: 0; line-height: 1.55; }
+  .estado .ic-grande { width: 56px; height: 56px; margin: 0 auto; border-radius: 16px; display: grid; place-items: center; background: var(--dorado-suave); color: var(--dorado-texto); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 14px; border: 0; background: var(--dorado); color: var(--grafito); font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; }
+  .btn-sec { background: transparent; color: var(--texto); border: 1px solid var(--borde); }
+  .btn-peq { min-height: 38px; padding: 0 14px; font-size: .875rem; border-radius: 10px; }
+  .cab-btn { width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: #fff; display: grid; place-items: center; position: relative; }
+  .cab-btn .n { position: absolute; top: 6px; right: 6px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: #E5484D; color: #fff; font-size: .65rem; font-weight: 700; display: grid; place-items: center; }
+  .canal .candado { width: 14px; height: 14px; }
+  .resp { display: block; margin: 2px 0 4px; padding: 4px 8px; border-left: 3px solid var(--dorado); border-radius: 6px; background: rgba(197,160,82,.12); font-size: .8rem; color: var(--texto2); }
+  .mio .resp { color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); }
+  .resp b { display: block; font-size: .72rem; }
+  .respondiendo { flex: none; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--sup); border-top: 1px solid var(--borde); font-size: .85rem; color: var(--texto2); }
+  .respondiendo span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .respondiendo button { width: 36px; height: 36px; border: 0; background: none; border-radius: 50%; display: grid; place-items: center; color: var(--texto2); }
+  .reaccs { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .reacc2 { padding: 1px 7px; border-radius: 999px; background: var(--sup2); border: 1px solid var(--borde); font-size: .78rem; color: var(--texto2); }
+  .mio .reacc2 { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.2); color: #fff; }
+  .reacc2.mia { border-color: var(--dorado); }
+  .hoja-lista { max-height: 70vh; overflow-y: auto; }
+  .hoja-lista h3 { margin: 14px 8px 6px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--texto3); }
+  .item { display: flex; align-items: center; gap: 10px; padding: 10px 8px; border-bottom: 1px solid var(--borde); }
+  .item-txt { flex: 1; min-width: 0; font-size: .9rem; }
+  .item-txt b { display: block; }
+  .item-txt small { color: var(--texto3); }
+  .vacio { padding: 10px 8px; color: var(--texto3); font-size: .9rem; }
+  .ident { display: flex; align-items: center; gap: 8px; margin: 6px 8px; padding: 10px 12px; border-radius: 12px; background: var(--sup2); font-family: ui-monospace, monospace; font-size: .85rem; overflow-wrap: anywhere; }
+  .toast { position: fixed; left: 12px; right: 12px; bottom: 96px; z-index: 40; margin: 0 auto; max-width: 480px; padding: 10px 14px; border-radius: 12px; background: var(--grafito); color: #fff; font-size: .9rem; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+  .cargar-mas { align-self: center; margin: 4px 0 8px; }
+  .menu-in .item .btn { width: auto; flex: none; min-height: 40px; padding: 0 14px; justify-content: center; font-size: .875rem; border-radius: 10px; }
+  .menu-in .item .btn-sec { border: 1px solid var(--borde); }
+  .menu-in .item .btn:not(.btn-sec) { background: var(--dorado); color: var(--grafito); }
+  .menu-in .hoja-tit { margin: 8px 8px 4px; font-family: Lora, Georgia, serif; font-size: 1.125rem; font-weight: 600; color: var(--texto); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="cab">
+    <div class="cab-fila">
+      <a class="volver" href="../" aria-label="Volver a la app"><svg class="ic" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></a>
+      <div class="cab-txt"><b>Chat de la iglesia</b><small id="cabSub">Solo miembros registrados</small></div>
+      <button class="cab-btn" type="button" id="btnAdmin" hidden aria-label="Administrar"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="n" id="nAdmin" hidden></span></button>
+      <button class="cab-btn" type="button" id="btnInfo" aria-label="Información del chat"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></button>
+    </div>
+    <div class="canales" role="group" aria-label="Grupos" id="canales"></div>
+  </header>
+  <div class="estado" id="estado"><p>Conectando…</p></div>
+  <div class="fijado" id="fijado" hidden></div>
+  <div class="mensajes" id="mensajes" aria-live="polite" hidden></div>
+  <div class="respondiendo" id="respondiendo" hidden><svg class="ic" viewBox="0 0 24 24"><path d="m9 17-5-5 5-5"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg><span id="respTxt"></span><button type="button" id="respCancelar" aria-label="Cancelar respuesta"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <form class="redactar" id="form" hidden>
+    <textarea id="texto" rows="1" placeholder="Escribe un mensaje…" aria-label="Mensaje" maxlength="500"></textarea>
+    <button class="enviar" type="submit" id="enviar" aria-label="Enviar" disabled><svg class="ic" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/></svg></button>
+  </form>
+</div>
+<div class="menu" id="hoja" hidden><div class="menu-in" role="dialog" aria-modal="true" id="hojaIn"></div></div>
+<script type="module" src="chat.js?v=1"></script>
+</body>
+</html>
