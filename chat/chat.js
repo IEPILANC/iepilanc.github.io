@@ -11,7 +11,7 @@ import {
   initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
   collection, doc, query, orderBy, limitToLast, where, onSnapshot, addDoc, setDoc, getDoc, getDocs,
   updateDoc, deleteDoc, serverTimestamp, arrayUnion, arrayRemove
-} from './firebase-chat.js';
+} from './firebase-chat.js?v=1';
 
 const CONFIG = {
   apiKey: 'AIzaSyBz1npgxLp4CLcJYHJSmFUUTJ3UrdO8bno',
@@ -339,11 +339,11 @@ async function arrancar() {
       '<a class="btn" href="../">Ir a la app</a>');
     return;
   }
-  try {
-    const lista = await fetch('../bloqueados.json', { cache: 'no-store' }).then((r) => r.ok ? r.json() : []);
+  /* La lista de códigos suspendidos se revisa en paralelo, sin hacer esperar al chat */
+  fetch('../bloqueados.json', { cache: 'no-store' }).then((r) => r.ok ? r.json() : []).then((lista) => {
     const codigos = Array.isArray(lista) ? lista : (lista && Array.isArray(lista.codigos) ? lista.codigos : []);
-    if (codigos.includes(codigo)) { pantallaBloqueo(); return; }
-  } catch (e) { /* sin lista */ }
+    if (codigos.includes(codigo)) pantallaBloqueo();
+  }).catch(() => { /* sin lista */ });
 
   const app = initializeApp(CONFIG);
   auth = getAuth(app);
@@ -358,29 +358,55 @@ async function arrancar() {
     }
     if (yo === u.uid) return;
     yo = u.uid;
-    try {
-      const b = await getDoc(doc(db, 'bloqueados', yo));
-      if (b.exists()) { pantallaBloqueo(); return; }
-    } catch (e) { /* aún no está la ficha: sigue */ }
-    try { await setDoc(doc(db, 'miembros', yo), { nombre, codigo, actualizado: serverTimestamp() }); }
-    catch (e) { console.warn(e); estadoSimple(IC.chat, 'No pudimos entrar al chat', 'Inténtalo otra vez en un momento. Si el problema sigue, avísale al Hno. Rudy Fuentes.', '<button class="btn" type="button" onclick="location.reload()">Reintentar</button>'); return; }
-    try { soyAdmin = (await getDoc(doc(db, 'admins', yo))).exists(); } catch (e) { soyAdmin = false; }
-    for (const g of GRUPOS) {
-      if (g.abierto) { acceso[g.id] = 'abierto'; continue; }
-      try { const s = await getDoc(doc(db, 'grupos', g.id, 'miembros', yo)); acceso[g.id] = s.exists() ? s.data().estado : 'no'; }
-      catch (e) { acceso[g.id] = 'no'; }
-      if (acceso[g.id] !== 'aprobado' && acceso[g.id] !== 'pendiente') acceso[g.id] = 'no';
-      // Si me aprueban mientras tengo el chat abierto, se actualiza solo
-      onSnapshot(doc(db, 'grupos', g.id, 'miembros', yo), (s) => {
+
+    /* Ficha del hermano: la primera vez hay que esperarla (sin ella no puede leer);
+       las siguientes se actualiza en segundo plano. */
+    const ficha = setDoc(doc(db, 'miembros', yo), { nombre, codigo, actualizado: serverTimestamp() })
+      .then(() => guardado('chat-miembro', yo));
+    if (guardado('chat-miembro') !== yo) {
+      try { await ficha; }
+      catch (e) { console.warn(e); estadoSimple(IC.chat, 'No pudimos entrar al chat', 'Inténtalo otra vez en un momento. Si el problema sigue, avísale al Hno. Rudy Fuentes.', '<button class="btn" type="button" onclick="location.reload()">Reintentar</button>'); return; }
+    } else ficha.catch((e) => console.warn(e));
+
+    /* Lo ya sabido de la vez anterior se usa de inmediato */
+    GRUPOS.forEach((g) => { acceso[g.id] = g.abierto ? 'abierto' : (guardado('chat-acceso-' + g.id) || 'no'); });
+    soyAdmin = guardado('chat-admin') === yo;
+    if (soyAdmin) iniciarAdmin();
+
+    /* Los grupos abiertos se muestran altiro; uno cerrado espera la comprobación */
+    const grupoActual = grupo(actual);
+    if (grupoActual.abierto || puedeLeer(actual)) abrirGrupo(actual); else dibujarCanales();
+
+    /* Comprobaciones en paralelo */
+    const leer = (ref) => getDoc(ref).catch(() => null);
+    const cerrados = GRUPOS.filter((g) => !g.abierto);
+    const [bloq, adm, ...sol] = await Promise.all([
+      leer(doc(db, 'bloqueados', yo)),
+      leer(doc(db, 'admins', yo)),
+      ...cerrados.map((g) => leer(doc(db, 'grupos', g.id, 'miembros', yo)))
+    ]);
+    if (bloq && bloq.exists()) { pantallaBloqueo(); return; }
+    const eraAdmin = soyAdmin;
+    soyAdmin = !!(adm && adm.exists());
+    guardado('chat-admin', soyAdmin ? yo : '');
+    if (soyAdmin && !eraAdmin) iniciarAdmin();
+    if (!soyAdmin && eraAdmin) { quitarAdmin.forEach((f) => f()); quitarAdmin.length = 0; $('btnAdmin').hidden = true; }
+    cerrados.forEach((g, i) => {
+      const s = sol[i];
+      if (s) acceso[g.id] = s.exists() ? (s.data().estado === 'aprobado' ? 'aprobado' : 'pendiente') : 'no';
+      guardado('chat-acceso-' + g.id, acceso[g.id]);
+      /* Si me aprueban mientras tengo el chat abierto, se actualiza solo */
+      onSnapshot(doc(db, 'grupos', g.id, 'miembros', yo), (x) => {
         const antes = acceso[g.id];
-        acceso[g.id] = s.exists() ? (s.data().estado === 'aprobado' ? 'aprobado' : 'pendiente') : 'no';
+        acceso[g.id] = x.exists() ? (x.data().estado === 'aprobado' ? 'aprobado' : 'pendiente') : 'no';
+        guardado('chat-acceso-' + g.id, acceso[g.id]);
         if (antes !== acceso[g.id]) { dibujarCanales(); if (actual === g.id) abrirGrupo(g.id); }
       }, () => {});
-    }
-    // Si me bloquean mientras estoy en el chat
-    onSnapshot(doc(db, 'bloqueados', yo), (s) => { if (s.exists()) pantallaBloqueo(); }, () => {});
-    if (soyAdmin) iniciarAdmin();
-    abrirGrupo(actual);
+    });
+    /* Si me bloquean mientras estoy en el chat */
+    onSnapshot(doc(db, 'bloqueados', yo), (x) => { if (x.exists()) pantallaBloqueo(); }, () => {});
+    /* Si el grupo actual cambió de estado con la comprobación, se vuelve a abrir */
+    if (!quitarMensajes || (!grupoActual.abierto && !puedeLeer(actual))) abrirGrupo(actual); else dibujarCanales();
     revisarNuevos();
   });
 }
