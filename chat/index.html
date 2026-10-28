@@ -119,17 +119,17 @@
     </div>
     <div class="canales" role="group" aria-label="Grupos" id="canales"></div>
   </header>
-  <div class="estado" id="estado"><p>Conectando…</p></div>
+  <div class="estado" id="estado" hidden><p>Conectando…</p></div>
   <div class="fijado" id="fijado" hidden></div>
   <div class="mensajes" id="mensajes" aria-live="polite" hidden></div>
   <div class="respondiendo" id="respondiendo" hidden><svg class="ic" viewBox="0 0 24 24"><path d="m9 17-5-5 5-5"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg><span id="respTxt"></span><button type="button" id="respCancelar" aria-label="Cancelar respuesta"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
-  <form class="redactar" id="form" hidden>
+  <form class="redactar" id="form">
     <textarea id="texto" rows="1" placeholder="Escribe un mensaje…" aria-label="Mensaje" maxlength="500"></textarea>
     <button class="enviar" type="submit" id="enviar" aria-label="Enviar" disabled><svg class="ic" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/></svg></button>
   </form>
 </div>
 <div class="menu" id="hoja" hidden><div class="menu-in" role="dialog" aria-modal="true" id="hojaIn"></div></div>
 <link rel="modulepreload" href="firebase-chat.js?v=1">
-<script type="module" src="chat.js?v=3"></script>
+<script type="module" src="chat.js?v=4"></script>
 </body>
 </html>

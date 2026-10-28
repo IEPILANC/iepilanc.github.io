@@ -6,12 +6,17 @@
      y bloquea. Los administradores se agregan desde la consola de Firebase
      (colección "admins", documento = identificador del teléfono).
    ========================================================= */
-import {
-  initializeApp, getAuth, signInAnonymously, onAuthStateChanged,
+/* Firebase se carga aparte (es pesado): la pantalla y el cuadro de escribir aparecen antes */
+let initializeApp, getAuth, signInAnonymously, onAuthStateChanged,
   initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
   collection, doc, query, orderBy, limitToLast, where, onSnapshot, addDoc, setDoc, getDoc, getDocs,
-  updateDoc, deleteDoc, serverTimestamp, arrayUnion, arrayRemove
-} from './firebase-chat.js?v=1';
+  updateDoc, deleteDoc, serverTimestamp, arrayUnion, arrayRemove;
+const cargaFirebase = import('./firebase-chat.js?v=1').then((F) => {
+  ({ initializeApp, getAuth, signInAnonymously, onAuthStateChanged,
+    initializeFirestore, persistentLocalCache, persistentMultipleTabManager,
+    collection, doc, query, orderBy, limitToLast, where, onSnapshot, addDoc, setDoc, getDoc, getDocs,
+    updateDoc, deleteDoc, serverTimestamp, arrayUnion, arrayRemove } = F);
+});
 
 const CONFIG = {
   apiKey: 'AIzaSyBz1npgxLp4CLcJYHJSmFUUTJ3UrdO8bno',
@@ -116,6 +121,36 @@ async function revisarNuevos() {
   dibujarCanales();
 }
 
+/* ---------- Copia local de los últimos mensajes (para abrir al instante) ---------- */
+function guardarCopia(id) {
+  try {
+    const lista = mensajes.slice(-40).map((m) => ({ id: m.id, uid: m.uid, nombre: m.nombre, texto: m.texto, rol: m.rol, respuesta: m.respuesta, reacciones: m.reacciones, t: m.creado && m.creado.toMillis ? m.creado.toMillis() : Date.now() }));
+    localStorage.setItem('chat-copia-' + id, JSON.stringify(lista));
+  } catch (e) { /* sin espacio: no pasa nada */ }
+}
+function leerCopia(id) {
+  try {
+    return (JSON.parse(localStorage.getItem('chat-copia-' + id) || '[]') || []).map((m) => {
+      const d = new Date(m.t); return Object.assign({}, m, { creado: { toDate: () => d, toMillis: () => m.t } });
+    });
+  } catch (e) { return []; }
+}
+function borrarCopias() { GRUPOS.forEach((g) => { try { localStorage.removeItem('chat-copia-' + g.id); } catch (e) { /* nada */ } }); }
+
+/* Vista inmediata, antes de conectar: grupos, normas, últimos mensajes y el cuadro de escribir */
+function vistaInicial() {
+  GRUPOS.forEach((g) => { acceso[g.id] = g.abierto ? 'abierto' : (guardado('chat-acceso-' + g.id) || 'no'); });
+  yo = guardado('chat-miembro') || null;
+  soyAdmin = !!yo && guardado('chat-admin') === yo;
+  if (!grupo(actual).abierto && !puedeLeer(actual)) actual = 'general';
+  dibujarCanales();
+  const g = grupo(actual);
+  $('fijado').innerHTML = IC.pin + '<div><b>' + esc(g.fijado[0]) + '</b>' + esc(g.fijado[1]) + '</div>';
+  $('estado').hidden = true; $('fijado').hidden = false; $('mensajes').hidden = false; $('form').hidden = false;
+  mensajes = leerCopia(actual);
+  if (mensajes.length) dibujarMensajes(); else $('mensajes').innerHTML = '<p class="dia">Conectando…</p>';
+}
+
 /* ---------- Abrir un grupo ---------- */
 function abrirGrupo(id) {
   if (quitarMensajes) { quitarMensajes(); quitarMensajes = null; }
@@ -126,11 +161,14 @@ function abrirGrupo(id) {
   $('fijado').innerHTML = IC.pin + '<div><b>' + esc(g.fijado[0]) + '</b>' + esc(g.fijado[1]) + '</div>';
   if (!puedeLeer(id)) { pantallaCerrada(g); return; }
   $('estado').hidden = true; $('fijado').hidden = false; $('mensajes').hidden = false; $('form').hidden = false;
-  $('mensajes').innerHTML = '<p class="dia">Cargando mensajes…</p>';
+  const copia = leerCopia(id);
+  if (copia.length) { mensajes = copia; delete $('mensajes').dataset.listo; dibujarMensajes(); }
+  else $('mensajes').innerHTML = '<p class="dia">Cargando mensajes…</p>';
   const q = query(collection(db, 'grupos', id, 'mensajes'), orderBy('creado'), limitToLast(60));
   quitarMensajes = onSnapshot(q, (s) => {
     mensajes = s.docs.map((d) => ({ id: d.id, ...d.data({ serverTimestamps: 'estimate' }) }));
     dibujarMensajes();
+    guardarCopia(id);
     visto(id);
   }, (e) => {
     console.warn(e);
@@ -197,6 +235,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('hoja
 
 function menuMensaje(m) {
   if (!m) return;
+  if (!conectado) { toast('Conectando…'); return; }
   const mio = m.uid === yo;
   abrirHoja('<div class="reacciones">' + REACC.map(([k, e]) => '<button type="button" data-r="' + k + '" aria-label="Reaccionar ' + e + '">' + e + '</button>').join('') + '</div>' +
     '<p>' + esc(m.nombre) + ' · ' + hora(m.creado && m.creado.toDate ? m.creado.toDate() : new Date()) + '</p>' +
@@ -243,12 +282,14 @@ function cancelarRespuesta() { respondiendoA = null; $('respondiendo').hidden = 
 $('respCancelar').onclick = cancelarRespuesta;
 
 const ta = $('texto');
-function ajustar() { $('enviar').disabled = !ta.value.trim(); ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; }
+let conectado = false;
+function ajustar() { $('enviar').disabled = !ta.value.trim() || !conectado; ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; }
 ta.addEventListener('input', ajustar);
 ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && window.matchMedia('(hover: hover)').matches) { e.preventDefault(); $('form').requestSubmit(); } });
 $('form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const t = ta.value.trim().slice(0, 500); if (!t) return;
+  if (!conectado) { toast('Conectando… inténtalo en un segundo'); return; }
   const datos = { uid: yo, nombre, texto: t, creado: serverTimestamp() };
   if (soyAdmin) datos.rol = 'Admin';
   if (respondiendoA) datos.respuesta = respondiendoA;
@@ -323,6 +364,7 @@ obsHoja.observe($('hoja'), { attributes: true, attributeFilter: ['hidden'] });
 /* ---------- Bloqueo ---------- */
 function pantallaBloqueo() {
   if (quitarMensajes) { quitarMensajes(); quitarMensajes = null; }
+  borrarCopias(); conectado = false;
   $('canales').innerHTML = '';
   estadoSimple(IC.bloquear, 'Acceso al chat suspendido', 'Tu acceso al chat fue suspendido. Si crees que es un error, comunícate con el Hno. Rudy Fuentes.',
     '<a class="btn" href="' + WSP + '" target="_blank" rel="noopener">' + IC.chat + 'Escribir por WhatsApp</a>');
@@ -333,6 +375,7 @@ async function comprobarBloqueo() {
 }
 
 /* ---------- Inicio ---------- */
+let bloqueadoPorCodigo = false;
 async function arrancar() {
   if (!nombre || !codigo) {
     estadoSimple(IC.chat, 'Regístrate primero', 'El chat es solo para los hermanos registrados en la app. Abre la app, completa tu registro con tu nombre y apellido reales, y vuelve aquí.',
@@ -342,9 +385,13 @@ async function arrancar() {
   /* La lista de códigos suspendidos se revisa en paralelo, sin hacer esperar al chat */
   fetch('../bloqueados.json', { cache: 'no-store' }).then((r) => r.ok ? r.json() : []).then((lista) => {
     const codigos = Array.isArray(lista) ? lista : (lista && Array.isArray(lista.codigos) ? lista.codigos : []);
-    if (codigos.includes(codigo)) pantallaBloqueo();
+    if (codigos.includes(codigo)) { bloqueadoPorCodigo = true; pantallaBloqueo(); }
   }).catch(() => { /* sin lista */ });
 
+  vistaInicial();
+  try { await cargaFirebase; }
+  catch (e) { console.warn(e); estadoSimple(IC.chat, 'No pudimos conectar', 'Revisa tu conexión a internet e inténtalo otra vez.', '<button class="btn" type="button" onclick="location.reload()">Reintentar</button>'); return; }
+  if (bloqueadoPorCodigo) return;
   const app = initializeApp(CONFIG);
   auth = getAuth(app);
   try { db = initializeFirestore(app, { localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }) }); }
@@ -356,7 +403,7 @@ async function arrancar() {
       catch (e) { console.warn(e); estadoSimple(IC.chat, 'No pudimos conectar', 'Revisa tu conexión a internet e inténtalo otra vez.', '<button class="btn" type="button" onclick="location.reload()">Reintentar</button>'); }
       return;
     }
-    if (yo === u.uid) return;
+    if (conectado && yo === u.uid) return;
     yo = u.uid;
 
     /* Ficha del hermano: la primera vez hay que esperarla (sin ella no puede leer);
@@ -375,6 +422,7 @@ async function arrancar() {
 
     /* Los grupos abiertos se muestran altiro; uno cerrado espera la comprobación */
     const grupoActual = grupo(actual);
+    conectado = true; ajustar();
     if (grupoActual.abierto || puedeLeer(actual)) abrirGrupo(actual); else dibujarCanales();
 
     /* Comprobaciones en paralelo */
