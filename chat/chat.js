@@ -322,6 +322,7 @@ function contarAdmin() {
 }
 function iniciarAdmin() {
   $('btnAdmin').hidden = false;
+  if (quitarAdmin.length) return;   // ya está escuchando
   GRUPOS.filter((g) => !g.abierto).forEach((g) => {
     quitarAdmin.push(onSnapshot(query(collection(db, 'grupos', g.id, 'miembros'), where('estado', '==', 'pendiente')), (s) => {
       pendientes[g.id] = s.docs.map((d) => ({ uid: d.id, ...d.data() })); contarAdmin(); if (!$('hoja').hidden && $('hojaIn').dataset.panel) panelAdmin();
@@ -397,13 +398,24 @@ async function arrancar() {
   try { db = initializeFirestore(app, { localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }) }); }
   catch (e) { db = initializeFirestore(app, {}); }
 
+  /* Quien ya entró antes no espera la sesión: los mensajes y el envío funcionan de inmediato
+     (Firebase guarda el envío y lo manda apenas la sesión queda confirmada). */
+  if (yo) {
+    conectado = true; ajustar();
+    if (grupo(actual).abierto || puedeLeer(actual)) abrirGrupo(actual);
+    if (soyAdmin) iniciarAdmin();
+  }
+
+  let iniciado = null;
   onAuthStateChanged(auth, async (u) => {
     if (!u) {
       try { await signInAnonymously(auth); }
       catch (e) { console.warn(e); estadoSimple(IC.chat, 'No pudimos conectar', 'Revisa tu conexión a internet e inténtalo otra vez.', '<button class="btn" type="button" onclick="location.reload()">Reintentar</button>'); }
       return;
     }
-    if (conectado && yo === u.uid) return;
+    if (iniciado === u.uid) return;
+    iniciado = u.uid;
+    const cambio = yo !== u.uid;
     yo = u.uid;
 
     /* Ficha del hermano: la primera vez hay que esperarla (sin ella no puede leer);
@@ -419,11 +431,12 @@ async function arrancar() {
     GRUPOS.forEach((g) => { acceso[g.id] = g.abierto ? 'abierto' : (guardado('chat-acceso-' + g.id) || 'no'); });
     soyAdmin = guardado('chat-admin') === yo;
     if (soyAdmin) iniciarAdmin();
+    if (!soyAdmin && quitarAdmin.length) { quitarAdmin.forEach((f) => f()); quitarAdmin.length = 0; $('btnAdmin').hidden = true; }
 
     /* Los grupos abiertos se muestran altiro; uno cerrado espera la comprobación */
     const grupoActual = grupo(actual);
     conectado = true; ajustar();
-    if (grupoActual.abierto || puedeLeer(actual)) abrirGrupo(actual); else dibujarCanales();
+    if (cambio || !quitarMensajes) { if (grupoActual.abierto || puedeLeer(actual)) abrirGrupo(actual); else dibujarCanales(); }
 
     /* Comprobaciones en paralelo */
     const leer = (ref) => getDoc(ref).catch(() => null);
