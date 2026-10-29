@@ -18,7 +18,7 @@ const cargaFirebase = import('./firebase-chat.js?v=1').then((F) => {
     updateDoc, deleteDoc, serverTimestamp, arrayUnion, arrayRemove } = F);
 });
 
-const VERSION = 6;   // súbelo junto con chat/version.json en cada cambio
+const VERSION = 7;   // súbelo junto con chat/version.json en cada cambio
 
 const CONFIG = {
   apiKey: 'AIzaSyBz1npgxLp4CLcJYHJSmFUUTJ3UrdO8bno',
