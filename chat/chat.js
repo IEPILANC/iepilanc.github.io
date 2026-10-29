@@ -18,6 +18,8 @@ const cargaFirebase = import('./firebase-chat.js?v=1').then((F) => {
     updateDoc, deleteDoc, serverTimestamp, arrayUnion, arrayRemove } = F);
 });
 
+const VERSION = 6;   // súbelo junto con chat/version.json en cada cambio
+
 const CONFIG = {
   apiKey: 'AIzaSyBz1npgxLp4CLcJYHJSmFUUTJ3UrdO8bno',
   authDomain: 'iepi-lanc-chat.firebaseapp.com',
@@ -304,6 +306,7 @@ $('btnInfo').onclick = () => {
   abrirHoja('<p class="hoja-tit">Chat de la iglesia</p>' +
     '<p>Escribes como <b>' + esc(nombre) + '</b>. General y Oración están abiertos a todos los hermanos registrados; Jóvenes, Coro y Dorcas son grupos cerrados con aprobación.</p>' +
     '<p>Si ves un mensaje fuera de lugar, tócalo y elige «Reportar».</p>' +
+    '<p>Versión del chat: <b>' + VERSION + '</b></p>' +
     '<p>Identificador de este teléfono (solo para el administrador):</p>' +
     '<div class="ident"><span id="miId" style="flex:1">' + esc(yo || '—') + '</span></div>' +
     '<button type="button" data-acc="copiar">' + IC.copiar + 'Copiar identificador</button>' +
@@ -471,4 +474,13 @@ async function arrancar() {
     revisarNuevos();
   });
 }
+/* Si el teléfono quedó con una versión vieja guardada, se actualiza sola una vez */
+fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then((r) => r.ok ? r.json() : null).then(async (v) => {
+  if (!v || !(v.v > VERSION)) return;
+  try { if (sessionStorage.getItem('chat-actualizado') === String(v.v)) return; sessionStorage.setItem('chat-actualizado', String(v.v)); } catch (e) { return; }
+  try { const ks = await caches.keys(); await Promise.all(ks.map((k) => caches.delete(k))); } catch (e) { /* sin caché */ }
+  try { const rs = await navigator.serviceWorker.getRegistrations(); await Promise.all(rs.map((r) => r.update())); } catch (e) { /* sin service worker */ }
+  location.reload();
+}).catch(() => {});
+
 arrancar();
