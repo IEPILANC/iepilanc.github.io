@@ -1,6 +1,7 @@
 // Recordatorios automáticos al celular (OneSignal) para los cultos y actividades del día.
 //   node herramientas/recordatorios.mjs            → muestra lo que se enviaría hoy (no envía nada)
 //   node herramientas/recordatorios.mjs enviar     → programa los avisos de hoy en OneSignal
+//   AVISO_TITULO=… AVISO_TEXTO=… (y enviar)        → manda ahora un aviso especial, en vez de los del día
 // La acción de GitHub lo ejecuta cada mañana. Necesita el secreto ONESIGNAL_REST_KEY.
 // Cada aviso lleva una clave única: si la acción corre dos veces, OneSignal no lo repite.
 import { readFileSync } from 'node:fs';
@@ -97,7 +98,10 @@ async function main() {
   const enviar = process.argv[2] === 'enviar';
   const agenda = JSON.parse(readFileSync(new URL('../agenda.json', import.meta.url), 'utf8'));
   const ahora = new Date(), fecha = process.env.FECHA || hoyEnSantiago(ahora);
-  const avisos = process.env.PRUEBA === 'true'
+  const especial = (process.env.AVISO_TITULO || '').trim();
+  const avisos = especial
+    ? [{ id: 'especial', envio: ahora, titulo: especial.slice(0, 80), mensaje: (process.env.AVISO_TEXTO || '').trim().slice(0, 240) || '¡Dios te bendiga!', url: (process.env.AVISO_ENLACE || '').trim() || AJUSTES.base, clave: randomUUID() }]
+    : process.env.PRUEBA === 'true'
     ? [{ id: 'prueba', envio: ahora, titulo: 'IEPI LAN-C', mensaje: 'Prueba: los recordatorios automáticos están funcionando. ¡Dios te bendiga!', url: AJUSTES.base, clave: randomUUID() }]
     : planDelDia(agenda, fecha, ahora);
   const hora = d => new Intl.DateTimeFormat('es-CL', { timeZone: ZONA, hourCycle: 'h23', hour: '2-digit', minute: '2-digit' }).format(d);

@@ -22,9 +22,10 @@
       "titulo": "Día de las Iglesias Evangélicas y Protestantes",
       "fecha": "Sábado 31 de octubre · Desfile 16:00 hrs · Gran culto 18:00 hrs",
       "imagen": "afiche-dia-iglesias-evangelicas-2026-10-31.jpg",
-      "texto": "Desfile congregacional y Gran culto de celebración. Te invitamos a ser parte de este día histórico de fe, gratitud y marcha por nuestra nación. ¡Te esperamos!",
+      "texto": "Hoy desfile congregacional a las 16:00 hrs y Gran culto de celebración a las 18:00 hrs en el templo. Te invitamos a ser parte de este día histórico de fe, gratitud y marcha por nuestra nación. ¡Te esperamos!",
       "dia": "2026-10-31",
-      "hasta": "2026-10-31"
+      "hasta": "2026-10-31",
+      "urgente": true
     },
     {
       "titulo": "Convención de Dorcas 2026",

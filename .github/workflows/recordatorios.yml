@@ -11,6 +11,18 @@ on:
         description: 'Enviar ahora un aviso de prueba (en vez de los del día)'
         type: boolean
         default: false
+      titulo:
+        description: 'Aviso especial: título (si se llena, se envía solo este aviso, ahora)'
+        type: string
+        default: ''
+      texto:
+        description: 'Aviso especial: texto'
+        type: string
+        default: ''
+      enlace:
+        description: 'Aviso especial: página que abre al tocarlo (opcional)'
+        type: string
+        default: ''
 permissions:
   contents: read
 jobs:
@@ -27,4 +39,7 @@ jobs:
         env:
           ONESIGNAL_REST_KEY: ${{ secrets.ONESIGNAL_REST_KEY }}
           PRUEBA: ${{ inputs.prueba }}
+          AVISO_TITULO: ${{ inputs.titulo }}
+          AVISO_TEXTO: ${{ inputs.texto }}
+          AVISO_ENLACE: ${{ inputs.enlace }}
         run: node herramientas/recordatorios.mjs enviar
