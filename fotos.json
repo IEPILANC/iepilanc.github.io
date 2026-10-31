@@ -1,6 +1,18 @@
 {
   "fotos": [
     {
+      "archivo": "desfile-2026-10-31-video.jpg",
+      "video": "desfile-2026-10-31.mp4",
+      "titulo": "Video del desfile (1)",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-video-2.jpg",
+      "video": "desfile-2026-10-31-2.mp4",
+      "titulo": "Video del desfile (2): los niños con panderos",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
       "archivo": "desfile-2026-10-31-1.jpg",
       "titulo": "Grupo de Niños encabezando el desfile",
       "album": "Desfile 31 octubre 2026"
@@ -22,81 +34,166 @@
     },
     {
       "archivo": "desfile-2026-10-31-5.jpg",
-      "titulo": "Los niños entran al templo con panderos",
+      "titulo": "El Grupo de Niños inicia la marcha",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-6.jpg",
-      "titulo": "Niños con tambores y guitarras",
+      "titulo": "Niños con su lienzo y panderos",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-7.jpg",
-      "titulo": "Alabanza con guitarras",
+      "titulo": "Tambor y lienzo del Grupo de Niños",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-8.jpg",
-      "titulo": "Músicos y congregación alabando",
+      "titulo": "Los niños cruzan la calle",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-9.jpg",
-      "titulo": "Mensaje en el culto",
+      "titulo": "Hermanas cantando en el desfile",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-10.jpg",
-      "titulo": "Palabra para la congregación",
+      "titulo": "Caminando con el himnario en la mano",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-11.jpg",
-      "titulo": "Alabanza en el templo",
+      "titulo": "Hermanos en la marcha",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-12.jpg",
-      "titulo": "Hermanas en adoración",
+      "titulo": "Alegría en el desfile",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-13.jpg",
-      "titulo": "Adoración con manos alzadas",
+      "titulo": "Hermanas de Dorcas desfilando",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-14.jpg",
-      "titulo": "Alabando juntos",
+      "titulo": "Dorcas avanza por la calle",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-15.jpg",
-      "titulo": "La congregación en adoración",
+      "titulo": "Bombo y trompeta en la marcha",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-16.jpg",
-      "titulo": "Hermanas alabando",
+      "titulo": "Mandolinas en el desfile",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-17.jpg",
-      "titulo": "Músicos y congregación",
+      "titulo": "Hermanas y músicos marchando",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-18.jpg",
-      "titulo": "Adoración congregacional",
+      "titulo": "Guitarra y saxofón al frente",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-19.jpg",
-      "titulo": "Templo lleno de alabanza",
+      "titulo": "Saxofón y mandolinas",
       "album": "Desfile 31 octubre 2026"
     },
     {
       "archivo": "desfile-2026-10-31-20.jpg",
+      "titulo": "Alabanza con guitarra y quitasol",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-21.jpg",
+      "titulo": "Hermanos cantando en la calle",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-22.jpg",
+      "titulo": "Los niños entran al templo con panderos",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-23.jpg",
+      "titulo": "Niños con tambores y guitarras",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-24.jpg",
+      "titulo": "Alabanza con guitarras",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-25.jpg",
+      "titulo": "Músicos y congregación alabando",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-26.jpg",
+      "titulo": "Mensaje en el culto",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-27.jpg",
+      "titulo": "Palabra para la congregación",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-28.jpg",
+      "titulo": "Alabanza en el templo",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-29.jpg",
+      "titulo": "Hermanas en adoración",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-30.jpg",
+      "titulo": "Adoración con manos alzadas",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-31.jpg",
+      "titulo": "Alabando juntos",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-32.jpg",
+      "titulo": "La congregación en adoración",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-33.jpg",
+      "titulo": "Hermanas alabando",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-34.jpg",
+      "titulo": "Músicos y congregación",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-35.jpg",
+      "titulo": "Adoración congregacional",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-36.jpg",
+      "titulo": "Templo lleno de alabanza",
+      "album": "Desfile 31 octubre 2026"
+    },
+    {
+      "archivo": "desfile-2026-10-31-37.jpg",
       "titulo": "Acordeón en la alabanza",
       "album": "Desfile 31 octubre 2026"
     },

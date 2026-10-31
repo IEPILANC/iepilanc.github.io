@@ -153,6 +153,7 @@
   }
   function cerrarCapaSuperior() {
     var c = pila.pop(); if (!c) return;
+    if (c.el === visor) { $('visorVideo').pause(); }
     if (c.el.classList.contains('hoja') && !reduceMov) {
       var el = c.el; el.classList.add('sale');
       setTimeout(function () { el.classList.remove('sale'); if (pila.every(function (x) { return x.el !== el; })) el.hidden = true; }, 160);
@@ -184,9 +185,16 @@
 
   var visor = $('visor'), visorLista = [], visorIdx = 0;
   function mostrarImagen() {
-    var it = visorLista[visorIdx], im = $('visorImg');
-    if (!visor.hidden && !reduceMov) { im.classList.add('cambiando'); im.onload = function () { im.classList.remove('cambiando'); }; }
-    im.src = it.src; $('visorImg').alt = it.alt || it.titulo || '';
+    var it = visorLista[visorIdx], im = $('visorImg'), vid = $('visorVideo');
+    vid.pause();
+    if (it.video) {
+      im.hidden = true; vid.hidden = false;
+      if (vid.getAttribute('src') !== it.video) { vid.poster = it.src; vid.src = it.video; }
+    } else {
+      vid.hidden = true; if (vid.getAttribute('src')) { vid.removeAttribute('src'); vid.load(); } im.hidden = false;
+      if (!visor.hidden && !reduceMov) { im.classList.add('cambiando'); im.onload = function () { im.classList.remove('cambiando'); }; }
+      im.src = it.src; im.alt = it.alt || it.titulo || '';
+    }
     $('visorTxt').textContent = it.titulo || '';
     $('visorCont').textContent = visorLista.length > 1 ? (visorIdx + 1) + ' / ' + visorLista.length : '';
     $('visorPrev').hidden = $('visorNext').hidden = visorLista.length < 2;
@@ -607,10 +615,12 @@
      FOTOS
      ========================================================= */
   function verAlbum(g, esNuevo) {
-    var lista = g.items.map(function (f) { return { src: f.archivo, titulo: f.titulo, alt: f.titulo }; });
-    var html = '<p class="kicker">Álbum</p><h3 class="hoja-titulo">' + esc(g.nombre) + '</h3><p class="muted" style="margin:4px 0 16px">' + g.items.length + ' fotos' + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</p>' +
+    var lista = g.items.map(function (f) { return { src: f.archivo, titulo: f.titulo, alt: f.titulo, video: f.video }; });
+    var nFotos = g.items.filter(function (f) { return !f.video; }).length, nVid = g.items.length - nFotos;
+    var cuenta = nFotos + ' fotos' + (nVid ? ' · ' + nVid + (nVid === 1 ? ' video' : ' videos') : '');
+    var html = '<p class="kicker">Álbum</p><h3 class="hoja-titulo">' + esc(g.nombre) + '</h3><p class="muted" style="margin:4px 0 16px">' + cuenta + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</p>' +
       '<div class="cuadricula">' + g.items.map(function (f, k) {
-        return '<button type="button" data-f="' + k + '" aria-label="Ver foto: ' + esc(f.titulo) + '">' + img(f.archivo, '') + (esNuevo(f.archivo) ? CHIP_NUEVO : '') + '</button>';
+        return '<button type="button" data-f="' + k + '"' + (f.video ? ' class="es-video"' : '') + ' aria-label="' + (f.video ? 'Ver video: ' : 'Ver foto: ') + esc(f.titulo) + '">' + img(f.archivo, '') + (f.video ? '<span class="play-video" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>' : '') + (esNuevo(f.archivo) ? CHIP_NUEVO : '') + '</button>';
       }).join('') + '</div>';
     var cuerpo = abrirHoja(g.nombre, html);
     cuerpo.querySelectorAll('[data-f]').forEach(function (b) { b.onclick = function () { abrirVisor(lista, +b.dataset.f); }; });
@@ -626,10 +636,11 @@
     cont.innerHTML = grupos.map(function (g, i) {
       if (meta[g.nombre] && meta[g.nombre].fecha) g.fecha = meta[g.nombre].fecha;
       if (nuevosPorGrupo[i]) hay = true;
-      var pv = g.items.slice(0, 3);
+      var pv = g.items.filter(function (f) { return !f.video; }).slice(0, 3);
+      var nv = g.items.filter(function (f) { return f.video; }).length;
       return '<button class="album tarjeta" type="button" data-a="' + i + '"><div class="album-portada">' +
         pv.map(function (f, k) { return img(f.archivo, '', (k ? 'loading="lazy"' : 'loading="eager"') + (pv.length === 1 ? ' style="grid-column:span 2"' : '')); }).join('') +
-        '<span class="album-cantidad">' + ic('imagen') + g.items.length + '</span></div><div class="album-cuerpo"><div><h3>' + esc(g.nombre) + '</h3><span class="muted">' + g.items.length + ' fotos' + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</span></div>' +
+        '<span class="album-cantidad">' + ic('imagen') + g.items.length + '</span></div><div class="album-cuerpo"><div><h3>' + esc(g.nombre) + '</h3><span class="muted">' + (g.items.length - nv) + ' fotos' + (nv ? ' · ' + nv + (nv === 1 ? ' video' : ' videos') : '') + (g.fecha ? ' · ' + esc(g.fecha) : '') + '</span></div>' +
         (nuevosPorGrupo[i] ? '<span class="chip chip-nuevo">' + nuevosPorGrupo[i] + (nuevosPorGrupo[i] === 1 ? ' nueva' : ' nuevas') + '</span>' : ic('derecha')) + '</div></button>';
     }).join('');
     cont.querySelectorAll('[data-a]').forEach(function (b) { b.onclick = function () { verAlbum(grupos[+b.dataset.a], esNuevo); }; });
