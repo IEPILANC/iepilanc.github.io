@@ -203,6 +203,12 @@
       "motivo": "Este domingo 1 de noviembre no hay culto dominical."
     },
     {
+      "fecha": "2026-11-12",
+      "culto": "culto-jueves",
+      "estado": "cancelada",
+      "motivo": "Este jueves no hay culto."
+    },
+    {
       "fecha": "2026-11-14",
       "culto": "culto-sabado",
       "estado": "cancelada",
