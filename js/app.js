@@ -272,7 +272,7 @@
 
     /* Próximo culto */
     var px = null, hero = $('proximo');
-    A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 8)).some(function (o) {
+    A.expandir(ag, hoyIso, A.sumarDias(hoyIso, 30)).some(function (o) {
       if (o.tipo !== 'culto' || o.estado === 'cancelada' || !o.hora) return false;
       var hm = o.hora.split(':'), ini = D.fecha(o.fecha); ini.setHours(+hm[0], +hm[1], 0, 0);
       if (ini.getTime() + 2 * 3600e3 <= ahora.getTime()) return false;
@@ -282,7 +282,7 @@
       var cs = px.ocurrencia.coordinador || px.ocurrencia.predicador || px.ocurrencia.devocional ? px.ocurrencia : null;
       var o = px.ocurrencia, f = px.inicio, n = D.diasEntre(ahora, f);
       var titulo = o.titulo || 'Culto';
-      var cuando = n === 0 ? 'Hoy' : n === 1 ? 'Mañana' : n > 1 && n < 7 ? 'En ' + n + ' días' : '';
+      var cuando = n === 0 ? 'Hoy' : n === 1 ? 'Mañana' : n > 1 && n < 31 ? 'En ' + n + ' días' : '';
       var lugarNom = o.lugar && o.lugar.nombre ? o.lugar.nombre : '';
       var mapa = o.lugar && (o.lugar.mapa || o.lugar.direccion) || d.mapa || d.direccion || 'Corral 8021 Lan-C';
       hero.innerHTML =
