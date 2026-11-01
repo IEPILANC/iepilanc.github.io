@@ -364,7 +364,8 @@
     $('agendaResumen').textContent = mesAct ? mesAct + ' cultos y actividades en 30 días' : 'Calendario de cultos y actividades';
 
     /* Horarios, ubicación y diácono */
-    $('horarios').innerHTML = (ag.cultos_regulares || []).map(function (h) { return '<div class="horario"><small>' + esc(h.dia) + '</small><b>' + esc(h.hora) + '</b></div>'; }).join('');
+    /* Solo los cultos fijos de cada semana: los cultos especiales de una fecha (desde/hasta) no se muestran aquí */
+    $('horarios').innerHTML = (ag.cultos_regulares || []).filter(function (h) { return !h.desde && !h.hasta; }).map(function (h) { return '<div class="horario"><small>' + esc(h.dia) + '</small><b>' + esc(h.hora) + '</b></div>'; }).join('');
     if (d.direccion) $('direccion').textContent = d.direccion;
     $('mapa').href = enlaceMapa(d.mapa || d.direccion || 'Corral 8021 Lan-C');
     if (d.diacono) { $('diaconoNom').textContent = d.diacono; $('diaconoTit').textContent = d.diacono_titulo || 'Diácono de turno'; $('diacono').hidden = false; nuevo('x|' + d.diacono); }
