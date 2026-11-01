@@ -145,6 +145,12 @@
       "hora_nueva": "18:00",
       "titulo": "Gran culto de celebración",
       "motivo": "Día de las Iglesias Evangélicas y Protestantes: el culto del sábado se adelanta a las 18:00 hrs, después del desfile de las 16:00 hrs."
+    },
+    {
+      "fecha": "2026-11-01",
+      "culto": "culto-domingo",
+      "estado": "cancelada",
+      "motivo": "Este domingo 1 de noviembre no hay culto dominical."
     }
   ],
   "actividades": [

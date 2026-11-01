@@ -3,6 +3,14 @@
   "mapa": "Corral 8021 Lan-C",
   "destacados": [
     {
+      "titulo": "Hoy domingo 1 de noviembre no hay culto dominical",
+      "fecha": "Domingo 1 de noviembre",
+      "texto": "Este domingo no hay culto dominical. Nos vemos en el próximo culto. ¡Dios les bendiga!",
+      "dia": "2026-11-01",
+      "hasta": "2026-11-01",
+      "urgente": true
+    },
+    {
       "titulo": "Día de Primicias",
       "fecha": "Hoy, sábado 24 de octubre · 19:30 hrs",
       "imagen": "afiche-dia-primicias-2026-10-24.jpg",
