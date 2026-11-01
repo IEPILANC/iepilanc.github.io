@@ -251,9 +251,10 @@
     var f = D.fecha(c.fecha), n = D.diasEntre(hoy, f);
     var cls = 'fila tarjeta' + (n === 0 ? ' hoy' : '') + (n < 0 ? ' pasada' : '');
     return '<li class="' + cls + '"><div class="fecha-bloque"><small>' + D.DIAS_CORTOS[f.getDay()] + '</small><b>' + f.getDate() + '</b></div>' +
-      '<div class="fila-cuerpo"><div class="fila-top"><span class="muted">' + esc(c.hora ? c.hora + ' hrs' : '') + '</span>' + (c.estado === 'cancelada' ? '<span class="chip chip-suspendido">Suspendido</span>' : n === 0 ? '<span class="chip chip-oro">Hoy</span>' : n < 0 ? '<span class="chip">Realizado</span>' : '') + '</div>' +
+      '<div class="fila-cuerpo"><div class="fila-top"><span class="muted">' + esc(c.hora ? c.hora + ' hrs' : '') + '</span>' + (c.estado === 'cancelada' && c.etiqueta ? '<span class="chip chip-oro">' + esc(c.etiqueta) + '</span>' : c.estado === 'cancelada' ? '<span class="chip chip-suspendido">Suspendido</span>' : n === 0 ? '<span class="chip chip-oro">Hoy</span>' : n < 0 ? '<span class="chip">Realizado</span>' : '') + '</div>' +
       (c.titulo ? '<div class="fila-titulo">' + esc(c.titulo) + '</div>' : '') +
       (c.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(c.coordinador) + '</span></div>' : '') +
+      (c.devocional ? '<div class="rol"><span>Devocional</span><span>' + esc(c.devocional) + '</span></div>' : '') +
       (c.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(c.predicador) + '</b></div>' : '') +
       (c.a_cargo ? '<div class="rol"><span>A cargo</span><b>' + esc(c.a_cargo) + '</b></div>' : '') + '</div></li>';
   }
@@ -278,7 +279,7 @@
       px = { inicio: ini, hora: o.hora, enCurso: ahora >= ini, ocurrencia: o }; return true;
     });
     if (px) {
-      var cs = px.ocurrencia.coordinador || px.ocurrencia.predicador ? px.ocurrencia : null;
+      var cs = px.ocurrencia.coordinador || px.ocurrencia.predicador || px.ocurrencia.devocional ? px.ocurrencia : null;
       var o = px.ocurrencia, f = px.inicio, n = D.diasEntre(ahora, f);
       var titulo = o.titulo || 'Culto';
       var cuando = n === 0 ? 'Hoy' : n === 1 ? 'Mañana' : n > 1 && n < 7 ? 'En ' + n + ' días' : '';
@@ -295,7 +296,7 @@
             '<p class="hero-datos"><span>' + ic('reloj', 'ic-sm') + esc(px.hora) + ' hrs</span>' + (lugarNom ? '<span>' + ic('pin', 'ic-sm') + esc(lugarNom) + '</span>' : '') + '</p>' +
           '</div>' +
         '</div>' +
-        (cs ? '<div class="hero-roles">' + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + (cs.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(cs.coordinador) + '</span></div>' : '') + '</div>' : '') +
+        (cs ? '<div class="hero-roles">' + (cs.predicador ? '<div class="rol"><span>Predica</span><b>' + esc(cs.predicador) + '</b></div>' : '') + (cs.devocional ? '<div class="rol"><span>Devocional</span><span>' + esc(cs.devocional) + '</span></div>' : '') + (cs.coordinador ? '<div class="rol"><span>Coordina</span><span>' + esc(cs.coordinador) + '</span></div>' : '') + '</div>' : '') +
         '<div class="hero-acciones"><a class="btn btn-oro" target="_blank" rel="noopener" href="' + esc(enlaceMapa(mapa)) + '">' + ic('pin', 'ic-sm') + 'Cómo llegar</a>' +
         '<button class="btn btn-sec" type="button" data-evento="' + esc(o.id) + '">Ver detalles</button></div>';
       hero.dataset.inicio = o.fecha + 'T' + px.hora;
@@ -332,7 +333,15 @@
     });
 
     /* Cultos de la semana */
-    var sem = (d.cultos_semana || []).slice().sort(function (a, b) { return a.fecha < b.fecha ? -1 : 1; });
+    /* Solo la semana en curso (lunes a domingo); el domingo ya se muestra también la semana siguiente */
+    var dw = ahora.getDay(), lunes = A.sumarDias(hoyIso, dw === 0 ? -6 : 1 - dw), finSem = A.sumarDias(lunes, dw === 0 ? 13 : 6);
+    if (dw === 0) lunes = hoyIso;
+    var sem = (d.cultos_semana || []).filter(function (c) { return c.fecha >= lunes && c.fecha <= finSem; }).sort(function (a, b) { return a.fecha < b.fecha ? -1 : 1; });
+    /* Los cultos suspendidos de la semana también se muestran */
+    A.expandir(ag, lunes, finSem).forEach(function (o) {
+      if (o.tipo === 'culto' && o.estado === 'cancelada' && !sem.some(function (c) { return c.fecha === o.fecha; })) sem.push({ fecha: o.fecha, hora: o.etiqueta ? null : o.hora, titulo: o.titulo === 'Culto' ? null : o.titulo, etiqueta: o.etiqueta, estado: o.estado });
+    });
+    sem.sort(function (a, b) { return a.fecha < b.fecha ? -1 : 1; });
     /* Estado real de cada culto (por ejemplo, suspendido) según la agenda */
     if (sem.length) {
       var estados = {};

@@ -1,6 +1,6 @@
 // Guarda la app para que abra sin internet y busca la versión nueva cuando hay conexión.
-const CACHE = 'iepi-lanc-v31';
-const ARCHIVOS = ['./', 'index.html', 'css/app.css?v=25', 'js/datos.js?v=25', 'js/app.js?v=25', 'js/agenda-datos.js?v=25', 'js/agenda.js?v=25', 'js/registro.js?v=25', 'js/avisos.js?v=25', 'js/radio.js?v=25', 'js/vivo.js?v=25', 'js/clima.js?v=25', 'js/chat-acceso.js?v=27', 'img/logo.jpg', 'manifest.json', 'icono-192.png', 'icono-512.png'];
+const CACHE = 'iepi-lanc-v32';
+const ARCHIVOS = ['./', 'index.html', 'css/app.css?v=26', 'js/datos.js?v=26', 'js/app.js?v=26', 'js/agenda-datos.js?v=26', 'js/agenda.js?v=26', 'js/registro.js?v=26', 'js/avisos.js?v=26', 'js/radio.js?v=26', 'js/vivo.js?v=26', 'js/clima.js?v=26', 'js/chat-acceso.js?v=27', 'img/logo.jpg', 'manifest.json', 'icono-192.png', 'icono-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ARCHIVOS)));
   self.skipWaiting();

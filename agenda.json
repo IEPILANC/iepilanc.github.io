@@ -141,6 +141,37 @@
       "hora": "10:30",
       "coordinador": "Jóvenes",
       "predicador": "Coro de niños"
+    },
+    {
+      "fecha": "2026-11-21",
+      "hora": "19:30",
+      "coordinador": "Diáconos",
+      "predicador": "Diáconos"
+    },
+    {
+      "fecha": "2026-11-22",
+      "hora": "10:30",
+      "coordinador": "Braulio Gómez",
+      "predicador": "Josué Ramírez"
+    },
+    {
+      "fecha": "2026-11-26",
+      "hora": "19:30",
+      "coordinador": "Patricio Maldonado",
+      "devocional": "Eva Ortiz",
+      "predicador": "Fabiola Valenzuela"
+    },
+    {
+      "fecha": "2026-11-28",
+      "hora": "19:30",
+      "coordinador": "Jordan Aguayo",
+      "predicador": "Juan Morales"
+    },
+    {
+      "fecha": "2026-11-29",
+      "hora": "10:30",
+      "coordinador": "Jorge Novoa",
+      "predicador": "Jorge Novoa"
     }
   ],
   "excepciones_cultos": [
@@ -170,6 +201,28 @@
       "culto": "culto-domingo",
       "estado": "cancelada",
       "motivo": "Este domingo 1 de noviembre no hay culto dominical."
+    },
+    {
+      "fecha": "2026-11-14",
+      "culto": "culto-sabado",
+      "estado": "cancelada",
+      "titulo": "Convención Nacional de Dorcas",
+      "motivo": "Esta semana no hay culto en el templo: la iglesia participa en la Convención Nacional de Dorcas, en el Colegio Blanca Estela.",
+      "etiqueta": "Colegio Blanca Estela"
+    },
+    {
+      "fecha": "2026-11-15",
+      "culto": "culto-domingo",
+      "estado": "cancelada",
+      "titulo": "Término de la Convención",
+      "motivo": "Esta semana no hay culto en el templo: la iglesia participa en la Convención Nacional de Dorcas, en el Colegio Blanca Estela.",
+      "etiqueta": "Colegio Blanca Estela"
+    },
+    {
+      "fecha": "2026-11-19",
+      "culto": "culto-jueves",
+      "estado": "cancelada",
+      "motivo": "Este jueves no hay servicio."
     }
   ],
   "actividades": [
@@ -266,12 +319,12 @@
     },
     {
       "id": "2026-11-13-convencion-dorcas",
-      "titulo": "Convención de Dorcas 2026",
+      "titulo": "Convención Nacional de Dorcas",
       "categoria": "convenciones",
       "inicio": "2026-11-13",
       "fin": "2026-11-15",
       "lugar": "gimnasio-blanca-estela",
-      "descripcion": "Reserva estas fechas en tu calendario.",
+      "descripcion": "Viernes 13 y sábado 14: Convención Nacional de Dorcas. Domingo 15: término de la Convención. En el Colegio Blanca Estela.",
       "estado": "publicada"
     }
   ]

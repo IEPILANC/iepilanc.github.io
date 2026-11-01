@@ -276,6 +276,7 @@
         filaDato('reloj', 'Horario', horario(o)) +
         filaDato('pin', 'Lugar', o.lugar && o.lugar.nombre, lugarExtra) +
         filaDato('persona', 'Coordina', o.coordinador) +
+        filaDato('libro', 'Devocional', o.devocional) +
         filaDato('iglesia', 'Predica', o.predicador) +
         filaDato('reunion', 'A cargo', o.a_cargo) +
         filaDato('libro', 'Expositor', o.expositor) +
