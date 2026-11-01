@@ -104,24 +104,43 @@
       "lugar": "templo",
       "desde": "2026-10-28",
       "hasta": "2026-10-28"
+    },
+    {
+      "id": "oracion-congregacional-2026-11-04",
+      "titulo": "Oración congregacional",
+      "categoria": "cultos",
+      "dia": "Miércoles",
+      "hora": "20:00",
+      "hora_fin": "21:00",
+      "lugar": "templo",
+      "desde": "2026-11-04",
+      "hasta": "2026-11-04"
     }
   ],
   "asignaciones_cultos": [
     {
-      "fecha": "2026-10-28",
-      "hora": "19:30",
-      "titulo": "Semana de Dorcas"
+      "fecha": "2026-11-04",
+      "hora": "20:00",
+      "titulo": "Oración congregacional",
+      "descripcion": "Oración especial con motivo de la Convención. De 20:00 a 21:00 hrs en el templo."
     },
     {
-      "fecha": "2026-10-29",
+      "fecha": "2026-11-05",
       "hora": "19:30",
-      "titulo": "Semana de Dorcas"
+      "coordinador": "Voluntarios",
+      "predicador": "Ciclistas"
     },
     {
-      "fecha": "2026-10-31",
-      "hora": "18:00",
-      "titulo": "Gran culto de celebración",
-      "descripcion": "Día de las Iglesias Evangélicas y Protestantes."
+      "fecha": "2026-11-07",
+      "hora": "19:30",
+      "coordinador": "Coro",
+      "predicador": "Coro"
+    },
+    {
+      "fecha": "2026-11-08",
+      "hora": "10:30",
+      "coordinador": "Jóvenes",
+      "predicador": "Coro de niños"
     }
   ],
   "excepciones_cultos": [
