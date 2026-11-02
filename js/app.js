@@ -318,18 +318,19 @@
     cont.innerHTML = dest.map(function (a, i) {
       var n = nuevo('d|' + a.titulo + '|' + a.fecha);
       var media = a.imagen
-        ? '<button class="destacado-img" type="button" data-afiche="' + i + '" aria-label="Ver afiche: ' + esc(a.titulo) + '">' + img(a.imagen, '') + '</button>'
+        ? '<button class="destacado-img' + (a.video ? ' es-video' : '') + '" type="button" data-afiche="' + i + '" aria-label="' + (a.video ? 'Ver video: ' : 'Ver afiche: ') + esc(a.titulo) + '">' + img(a.imagen, '') + (a.video ? '<span class="play-video" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>' : '') + '</button>'
         : '<div class="destacado-ic">' + ic('calendario', 'ic-lg') + '</div>';
       var esHoy = a.dia === hoyIso;
       return '<article class="destacado tarjeta' + (esHoy ? ' es-hoy' : '') + '">' + media + '<div class="destacado-cuerpo">' + (esHoy ? '<div><span class="chip chip-hoy">' + ic('estrella', 'ic-sm') + 'Hoy</span></div>' : n ? '<div>' + CHIP_NUEVO + '</div>' : '') +
         '<h3>' + esc(a.titulo) + '</h3>' +
         '<div class="meta">' + (a.fecha ? '<span>' + ic('reloj', 'ic-sm') + esc(a.fecha) + '</span>' : '') + (a.lugar ? '<span>' + ic('pin', 'ic-sm') + esc(a.lugar) + '</span>' : '') + '</div>' +
         (a.texto ? '<p>' + esc(a.texto) + '</p>' : '') +
+        (a.video ? '<button class="btn" type="button" data-afiche="' + i + '"><svg class="ic ic-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></svg>Ver video</button>' : '') +
         (a.mapa ? '<a class="btn btn-sec" target="_blank" rel="noopener" href="' + esc(enlaceMapa(a.mapa)) + '">Cómo llegar</a>' : '') +
         '</div></article>';
     }).join('');
     cont.querySelectorAll('[data-afiche]').forEach(function (b) {
-      b.onclick = function () { var a = dest[+b.dataset.afiche]; abrirVisor([{ src: a.imagen, titulo: a.titulo, alt: 'Afiche: ' + a.titulo }], 0); };
+      b.onclick = function () { var a = dest[+b.dataset.afiche]; abrirVisor([{ src: a.imagen, titulo: a.titulo, alt: 'Afiche: ' + a.titulo, video: a.video }], 0); };
     });
 
     /* Cultos de la semana */
