@@ -25,19 +25,8 @@ TZNAME:-03
 END:DAYLIGHT
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:culto-domingo-2026-10-18@iepilanc.github.io
-DTSTAMP:20261101T032550Z
-DTSTART;TZID=America/Santiago:20261018T103000
-SUMMARY:Culto dominical
-DESCRIPTION:Categoría: Cultos generales
-LOCATION:Templo IEPI LAN-C\, Corral 8021\, Lan-C\, Hualpén
-CATEGORIES:Cultos generales
-STATUS:CONFIRMED
-URL:https://iepilanc.github.io/?evento=culto-domingo-2026-10-18
-END:VEVENT
-BEGIN:VEVENT
 UID:culto-jueves-2026-10-22@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261022T193000
 SUMMARY:CANCELADA: Culto
 DESCRIPTION:Categoría: Cultos generales\nAviso: Suspendido por las adversa
@@ -50,7 +39,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-10-22
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-10-23-ensayo-coro-ninos@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261023T190000
 SUMMARY:Ensayo del coro de niños
 DESCRIPTION:Categoría: Coro y ensayos
@@ -61,7 +50,7 @@ URL:https://iepilanc.github.io/?evento=2026-10-23-ensayo-coro-ninos
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-10-24@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261024T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -72,7 +61,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-10-24
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-10-25@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261025T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -83,7 +72,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-10-25
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-10-26-clase-dorcas@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261026T140000
 SUMMARY:Clase de Dorcas
 DESCRIPTION:Categoría: Dorcas
@@ -93,7 +82,7 @@ URL:https://iepilanc.github.io/?evento=2026-10-26-clase-dorcas
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-10-21-reunion-asamblea@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261027T190000
 SUMMARY:Reunión de Asamblea
 DESCRIPTION:Categoría: Reuniones administrativas\nTema: Convención de Dorc
@@ -106,7 +95,7 @@ URL:https://iepilanc.github.io/?evento=2026-10-21-reunion-asamblea
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-semana-dorcas-2026-2026-10-28@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261028T193000
 SUMMARY:Semana de Dorcas
 DESCRIPTION:Categoría: Cultos generales
@@ -117,7 +106,7 @@ URL:https://iepilanc.github.io/?evento=culto-semana-dorcas-2026-2026-10-28
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-10-29@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261029T193000
 SUMMARY:Semana de Dorcas
 DESCRIPTION:Categoría: Cultos generales\nSemana de Dorcas: miércoles 28 y 
@@ -129,7 +118,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-10-29
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-10-30-ensayo-general-coro@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261030T200000
 SUMMARY:Ensayo general de coro
 DESCRIPTION:Categoría: Coro y ensayos
@@ -139,7 +128,7 @@ URL:https://iepilanc.github.io/?evento=2026-10-30-ensayo-general-coro
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-10-31-dia-iglesias-evangelicas@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261031T160000
 SUMMARY:Desfile congregacional · Día de las Iglesias Evangélicas y Protest
  antes
@@ -153,7 +142,7 @@ URL:https://iepilanc.github.io/?evento=2026-10-31-dia-iglesias-evangelicas
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-10-31@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261031T180000
 SUMMARY:Gran culto de celebración
 DESCRIPTION:Categoría: Cultos generales\nAviso: Día de las Iglesias Evangé
@@ -166,7 +155,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-10-31
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-11-01@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261101T103000
 SUMMARY:CANCELADA: Culto dominical
 DESCRIPTION:Categoría: Cultos generales\nAviso: Este domingo 1 de noviembr
@@ -178,7 +167,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-11-01
 END:VEVENT
 BEGIN:VEVENT
 UID:oracion-congregacional-2026-11-04-2026-11-04@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261104T200000
 DTEND;TZID=America/Santiago:20261104T210000
 SUMMARY:Oración congregacional
@@ -192,7 +181,7 @@ URL:https://iepilanc.github.io/?evento=oracion-congregacional-2026-11-04-2
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-11-05@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261105T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Voluntarios\nPredica: C
@@ -204,7 +193,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-11-05
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-11-07@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261107T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Coro\nPredica: Coro
@@ -215,7 +204,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-11-07
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-11-08@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261108T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Jóvenes\nPredica: Coro 
@@ -227,7 +216,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-11-08
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-11-12@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261112T193000
 SUMMARY:CANCELADA: Culto
 DESCRIPTION:Categoría: Cultos generales\nAviso: Este jueves no hay culto.
@@ -238,7 +227,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-11-12
 END:VEVENT
 BEGIN:VEVENT
 UID:2026-11-13-convencion-dorcas@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;VALUE=DATE:20261113
 DTEND;VALUE=DATE:20261116
 SUMMARY:Convención Nacional de Dorcas
@@ -252,7 +241,7 @@ URL:https://iepilanc.github.io/?evento=2026-11-13-convencion-dorcas
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-11-14@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261114T193000
 SUMMARY:CANCELADA: Convención Nacional de Dorcas
 DESCRIPTION:Categoría: Cultos generales\nAviso: Esta semana no hay culto e
@@ -265,7 +254,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-11-14
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-11-15@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261115T103000
 SUMMARY:CANCELADA: Término de la Convención
 DESCRIPTION:Categoría: Cultos generales\nAviso: Esta semana no hay culto e
@@ -278,7 +267,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-11-15
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-11-19@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261119T193000
 SUMMARY:CANCELADA: Culto
 DESCRIPTION:Categoría: Cultos generales\nAviso: Este jueves no hay servici
@@ -290,7 +279,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-11-19
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-11-21@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261121T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Diáconos\nPredica: Diác
@@ -302,7 +291,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-11-21
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-11-22@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261122T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Braulio Gómez\nPredica:
@@ -314,7 +303,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-11-22
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-11-26@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261126T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Patricio Maldonado\nPre
@@ -326,7 +315,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-11-26
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-11-28@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261128T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Jordan Aguayo\nPredica:
@@ -338,7 +327,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-11-28
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-11-29@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261129T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales\nCoordina: Jorge Novoa\nPredica: J
@@ -350,7 +339,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-11-29
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-12-03@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261203T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -361,7 +350,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-12-03
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-12-05@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261205T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -372,7 +361,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-12-05
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-12-06@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261206T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -383,7 +372,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-12-06
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-12-10@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261210T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -394,7 +383,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-12-10
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-12-12@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261212T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -405,7 +394,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-12-12
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-12-13@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261213T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -416,7 +405,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-12-13
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-12-17@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261217T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -427,7 +416,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-12-17
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-12-19@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261219T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -438,7 +427,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-12-19
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-12-20@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261220T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -449,7 +438,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-12-20
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-12-24@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261224T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -460,7 +449,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-12-24
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2026-12-26@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261226T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -471,7 +460,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2026-12-26
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2026-12-27@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261227T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -482,7 +471,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2026-12-27
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2026-12-31@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20261231T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -493,7 +482,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2026-12-31
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-01-02@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270102T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -504,7 +493,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-01-02
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-01-03@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270103T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -515,7 +504,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-01-03
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-01-07@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270107T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -526,7 +515,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-01-07
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-01-09@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270109T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -537,7 +526,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-01-09
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-01-10@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270110T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -548,7 +537,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-01-10
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-01-14@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270114T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -559,7 +548,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-01-14
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-01-16@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270116T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -570,7 +559,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-01-16
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-01-17@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270117T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -581,7 +570,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-01-17
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-01-21@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270121T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -592,7 +581,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-01-21
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-01-23@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270123T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -603,7 +592,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-01-23
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-01-24@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270124T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -614,7 +603,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-01-24
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-01-28@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270128T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -625,7 +614,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-01-28
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-01-30@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270130T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -636,7 +625,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-01-30
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-01-31@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270131T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -647,7 +636,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-01-31
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-02-04@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270204T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -658,7 +647,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-02-04
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-02-06@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270206T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -669,7 +658,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-02-06
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-02-07@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270207T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -680,7 +669,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-02-07
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-02-11@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270211T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -691,7 +680,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-02-11
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-02-13@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270213T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -702,7 +691,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-02-13
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-02-14@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270214T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -713,7 +702,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-02-14
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-02-18@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270218T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -724,7 +713,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-02-18
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-02-20@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270220T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -735,7 +724,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-02-20
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-02-21@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270221T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -746,7 +735,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-02-21
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-02-25@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270225T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -757,7 +746,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-02-25
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-02-27@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270227T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -768,7 +757,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-02-27
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-02-28@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270228T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -779,7 +768,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-02-28
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-03-04@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270304T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -790,7 +779,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-03-04
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-03-06@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270306T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -801,7 +790,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-03-06
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-03-07@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270307T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -812,7 +801,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-03-07
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-03-11@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270311T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -823,7 +812,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-03-11
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-03-13@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270313T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -834,7 +823,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-03-13
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-03-14@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270314T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -845,7 +834,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-03-14
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-03-18@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270318T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -856,7 +845,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-03-18
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-03-20@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270320T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -867,7 +856,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-03-20
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-03-21@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270321T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -878,7 +867,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-03-21
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-03-25@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270325T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -889,7 +878,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-03-25
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-03-27@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270327T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -900,7 +889,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-03-27
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-03-28@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270328T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -911,7 +900,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-03-28
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-04-01@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270401T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -922,7 +911,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-04-01
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-04-03@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270403T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -933,7 +922,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-04-03
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-04-04@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270404T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -944,7 +933,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-04-04
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-04-08@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270408T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -955,7 +944,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-04-08
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-04-10@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270410T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -966,7 +955,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-04-10
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-04-11@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270411T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -977,7 +966,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-04-11
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-04-15@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270415T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -988,7 +977,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-04-15
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-04-17@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270417T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -999,7 +988,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-04-17
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-04-18@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270418T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1010,7 +999,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-04-18
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-04-22@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270422T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1021,7 +1010,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-04-22
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-04-24@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270424T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1032,7 +1021,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-04-24
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-04-25@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270425T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1043,7 +1032,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-04-25
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-04-29@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270429T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1054,7 +1043,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-04-29
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-05-01@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270501T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1065,7 +1054,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-05-01
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-05-02@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270502T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1076,7 +1065,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-05-02
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-05-06@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270506T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1087,7 +1076,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-05-06
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-05-08@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270508T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1098,7 +1087,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-05-08
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-05-09@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270509T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1109,7 +1098,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-05-09
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-05-13@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270513T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1120,7 +1109,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-05-13
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-05-15@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270515T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1131,7 +1120,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-05-15
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-05-16@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270516T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1142,7 +1131,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-05-16
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-05-20@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270520T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1153,7 +1142,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-05-20
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-05-22@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270522T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1164,7 +1153,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-05-22
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-05-23@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270523T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1175,7 +1164,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-05-23
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-05-27@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270527T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1186,7 +1175,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-05-27
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-05-29@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270529T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1197,7 +1186,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-05-29
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-05-30@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270530T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1208,7 +1197,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-05-30
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-06-03@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270603T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1219,7 +1208,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-06-03
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-06-05@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270605T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1230,7 +1219,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-06-05
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-06-06@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270606T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1241,7 +1230,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-06-06
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-06-10@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270610T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1252,7 +1241,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-06-10
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-06-12@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270612T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1263,7 +1252,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-06-12
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-06-13@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270613T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1274,7 +1263,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-06-13
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-06-17@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270617T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1285,7 +1274,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-06-17
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-06-19@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270619T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1296,7 +1285,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-06-19
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-06-20@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270620T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1307,7 +1296,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-06-20
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-06-24@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270624T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1318,7 +1307,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-06-24
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-06-26@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270626T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1329,7 +1318,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-06-26
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-06-27@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270627T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1340,7 +1329,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-06-27
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-07-01@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270701T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1351,7 +1340,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-07-01
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-07-03@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270703T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1362,7 +1351,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-07-03
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-07-04@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270704T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1373,7 +1362,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-07-04
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-07-08@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270708T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1384,7 +1373,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-07-08
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-07-10@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270710T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1395,7 +1384,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-07-10
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-07-11@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270711T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1406,7 +1395,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-07-11
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-07-15@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270715T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1417,7 +1406,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-07-15
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-07-17@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270717T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1428,7 +1417,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-07-17
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-07-18@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270718T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1439,7 +1428,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-07-18
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-07-22@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270722T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1450,7 +1439,7 @@ URL:https://iepilanc.github.io/?evento=culto-jueves-2027-07-22
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-sabado-2027-07-24@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270724T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
@@ -1461,7 +1450,7 @@ URL:https://iepilanc.github.io/?evento=culto-sabado-2027-07-24
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-domingo-2027-07-25@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270725T103000
 SUMMARY:Culto dominical
 DESCRIPTION:Categoría: Cultos generales
@@ -1472,7 +1461,7 @@ URL:https://iepilanc.github.io/?evento=culto-domingo-2027-07-25
 END:VEVENT
 BEGIN:VEVENT
 UID:culto-jueves-2027-07-29@iepilanc.github.io
-DTSTAMP:20261101T032550Z
+DTSTAMP:20261102T101219Z
 DTSTART;TZID=America/Santiago:20270729T193000
 SUMMARY:Culto
 DESCRIPTION:Categoría: Cultos generales
