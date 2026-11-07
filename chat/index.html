@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Chat de la iglesia · IEPI LAN-C</title>
 <meta name="theme-color" content="#17294B">
+<script>try{if(Date.now()<Date.parse("2026-11-15T15:00:00-03:00")){document.documentElement.dataset.temporada="dorcas";document.querySelector('meta[name="theme-color"]').content="#3D1F5C";}}catch(e){}</script>
 <link rel="icon" href="../icono-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600&display=swap" media="print" onload="this.media='all'">
@@ -107,6 +108,8 @@
   .menu-in .item .btn:not(.btn-sec) { background: var(--dorado); color: var(--grafito); }
   .menu-in .hoja-tit { margin: 8px 8px 4px; font-family: Lora, Georgia, serif; font-size: 1.125rem; font-weight: 600; color: var(--texto); }
   @media (max-height: 700px) { .fijado { font-size: .8rem; padding: 8px 10px; } .canales { padding: 8px 4px; } }
+:root[data-temporada="dorcas"] { --marino:#3D1F5C; --marino-alto:#57307E; --fondo:#F6F2F9; --sup2:#EFE8F4; --borde:#E4DAEC; }
+  @media (prefers-color-scheme: dark) { :root[data-temporada="dorcas"] { --fondo:#120A1C; --sup:#1C1229; --sup2:#251836; --borde:#33244A; } }
 </style>
 </head>
 <body>

@@ -1074,3 +1074,35 @@ body.con-radio .aviso { bottom: calc(var(--alto-nav) + env(safe-area-inset-botto
 /* Destacado con video */
 .destacado-img.es-video { position: relative; }
 .destacado-img .play-video svg { width: 40px; height: 40px; padding: 10px 8px 10px 12px; }
+
+/* =========================================================
+   Temporada Convención de Dorcas (lila / púrpura)
+   Se activa sola hasta el 15-11-2026 15:00 (ver index.html).
+   Para terminarla antes, basta borrar ese script.
+   ========================================================= */
+:root[data-temporada="dorcas"] {
+  --marino: #3D1F5C;
+  --marino-2: #4E2A72;
+  --marino-alto: #57307E;
+  --marino-bajo: #28123F;
+  --fondo: #F6F2F9;
+  --superficie-2: #EFE8F4;
+  --borde: #E4DAEC;
+  --borde-fuerte: #CDBEDB;
+  --acento: #3D1F5C;
+  --acento-suave: #EEE5F6;
+  --sombra-2: 0 4px 16px rgba(61, 31, 92, .10);
+  --sombra-nav: 0 -1px 0 var(--borde), 0 -8px 24px rgba(61, 31, 92, .07);
+  --toque: rgba(61, 31, 92, .06);
+}
+:root[data-temporada="dorcas"][data-theme="dark"] {
+  --fondo: #120A1C; --superficie: #1C1229; --superficie-2: #251836; --borde: #33244A; --borde-fuerte: #463463; --acento-suave: #2B1D42; --acento: #D7B76C;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-temporada="dorcas"]:not([data-theme="light"]) {
+    --fondo: #120A1C; --superficie: #1C1229; --superficie-2: #251836; --borde: #33244A; --borde-fuerte: #463463; --acento-suave: #2B1D42; --acento: #D7B76C;
+  }
+}
+:root[data-temporada="dorcas"] .hero { box-shadow: 0 14px 32px rgba(61, 31, 92, .28), inset 0 1px 0 rgba(255, 255, 255, .06); }
+:root[data-temporada="dorcas"] .nav { box-shadow: 0 -1px 0 var(--borde), 0 -10px 30px rgba(61, 31, 92, .08); }
+:root[data-temporada="dorcas"] .barra { box-shadow: inset 0 -1px 0 rgba(197, 160, 82, .55); }

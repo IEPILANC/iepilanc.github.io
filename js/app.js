@@ -74,7 +74,7 @@
     var root = document.documentElement;
     if (t === 'light' || t === 'dark') root.dataset.theme = t; else delete root.dataset.theme;
     var oscuro = t === 'dark' || (t !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
-    if (metaColor) metaColor.content = oscuro ? '#0B1220' : '#17294B';
+    if (metaColor) metaColor.content = oscuro ? (root.dataset.temporada === 'dorcas' ? '#140C1F' : '#0B1220') : (root.dataset.temporada === 'dorcas' ? '#3D1F5C' : '#17294B');
     $('temaIco').innerHTML = ICONOS[t === 'dark' ? 'luna' : t === 'light' ? 'sol' : 'auto'];
     temaBtn.setAttribute('aria-label', 'Apariencia: ' + NOMBRE_TEMA[t]);
     temaMenu.querySelectorAll('[data-tema]').forEach(function (b) { b.setAttribute('aria-checked', b.dataset.tema === t); });
