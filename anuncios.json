@@ -3,6 +3,23 @@
   "mapa": "Corral 8021 Lan-C",
   "destacados": [
     {
+      "titulo": "Última ofrenda especial · Convención de Dorcas",
+      "fecha": "Hoy, sábado 7 de noviembre · culto 19:30 hrs",
+      "imagen": "afiche-ofrenda-dorcas-2026-11-07.jpg",
+      "texto": "Hoy es la última ofrenda especial para la Convención de Dorcas. «Vino todo aquel a quien su corazón estimuló, y conmovidos trajeron ofrenda a Jehová» (Éxodo 35:21).",
+      "dia": "2026-11-07",
+      "hasta": "2026-11-07"
+    },
+    {
+      "titulo": "Video: Coro IEPI LAN-C",
+      "fecha": "Hoy sábado 7 · el culto está a cargo del Coro · 19:30 hrs",
+      "imagen": "coro-iepi-2026-11-07-video.jpg",
+      "video": "coro-iepi-2026-11-07.mp4",
+      "texto": "Un saludo del Coro IEPI LAN-C. ¡Te esperamos hoy en el culto!",
+      "dia": "2026-11-07",
+      "hasta": "2026-11-14"
+    },
+    {
       "titulo": "Video: Desfile del 31 de octubre",
       "fecha": "Día de las Iglesias Evangélicas y Protestantes",
       "imagen": "desfile-2026-10-31-video-3.jpg",

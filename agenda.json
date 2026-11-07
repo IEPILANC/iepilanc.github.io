@@ -332,6 +332,16 @@
       "lugar": "gimnasio-blanca-estela",
       "descripcion": "Viernes 13 y sábado 14: Convención Nacional de Dorcas. Domingo 15: término de la Convención. En el Colegio Blanca Estela.",
       "estado": "publicada"
+    },
+    {
+      "id": "2026-11-07-ultima-ofrenda-dorcas",
+      "titulo": "Última ofrenda especial para la Convención de Dorcas",
+      "categoria": "dorcas",
+      "inicio": "2026-11-07",
+      "lugar": "templo",
+      "descripcion": "Hoy en el culto de las 19:30 hrs: última ofrenda especial para la Convención de Dorcas.",
+      "imagen": "afiche-ofrenda-dorcas-2026-11-07.jpg",
+      "estado": "publicada"
     }
   ]
 }
