@@ -213,16 +213,16 @@
       "culto": "culto-sabado",
       "estado": "cancelada",
       "titulo": "Convención Nacional de Dorcas",
-      "motivo": "Esta semana no hay culto en el templo: la iglesia participa en la Convención Nacional de Dorcas, en el Colegio Blanca Estela.",
-      "etiqueta": "Colegio Blanca Estela"
+      "motivo": "Este fin de semana el culto es en el Gimnasio Blanca Estela, en la Convención Nacional de Dorcas (13, 14 y 15 de noviembre).",
+      "etiqueta": "Gimnasio Blanca Estela"
     },
     {
       "fecha": "2026-11-15",
       "culto": "culto-domingo",
       "estado": "cancelada",
       "titulo": "Término de la Convención",
-      "motivo": "Esta semana no hay culto en el templo: la iglesia participa en la Convención Nacional de Dorcas, en el Colegio Blanca Estela.",
-      "etiqueta": "Colegio Blanca Estela"
+      "motivo": "Este fin de semana el culto es en el Gimnasio Blanca Estela, en la Convención Nacional de Dorcas (13, 14 y 15 de noviembre).",
+      "etiqueta": "Gimnasio Blanca Estela"
     },
     {
       "fecha": "2026-11-19",
@@ -330,7 +330,7 @@
       "inicio": "2026-11-13",
       "fin": "2026-11-15",
       "lugar": "gimnasio-blanca-estela",
-      "descripcion": "Viernes 13 y sábado 14: Convención Nacional de Dorcas. Domingo 15: término de la Convención. En el Colegio Blanca Estela.",
+      "descripcion": "Viernes 13, sábado 14 y domingo 15 de noviembre: los cultos de la Convención Nacional de Dorcas son en el Gimnasio Blanca Estela. Domingo 15: término de la Convención.",
       "estado": "publicada"
     },
     {
