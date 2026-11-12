@@ -115,6 +115,16 @@
       "lugar": "templo",
       "desde": "2026-11-04",
       "hasta": "2026-11-04"
+    },
+    {
+      "id": "culto-convencion-2026-11-13",
+      "titulo": "Culto · Convención Nacional de Dorcas",
+      "categoria": "cultos",
+      "dia": "Viernes",
+      "hora": "19:30",
+      "lugar": "gimnasio-blanca-estela",
+      "desde": "2026-11-13",
+      "hasta": "2026-11-13"
     }
   ],
   "asignaciones_cultos": [
