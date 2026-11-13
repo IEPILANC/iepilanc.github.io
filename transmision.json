@@ -3,5 +3,12 @@
   "plataforma": "Facebook",
   "url": "https://www.facebook.com/groups/642060623026177",
   "minutos_antes": 15,
-  "duracion_min": 120
+  "duracion_min": 120,
+  "temporal": {
+    "nombre": "Convención Nacional de Dorcas",
+    "plataforma": "Facebook",
+    "url": "https://www.facebook.com/share/1Sihd2WmaB/",
+    "detalle": "transmisión de la Convención",
+    "hasta": "2026-11-15T23:59:00-03:00"
+  }
 }

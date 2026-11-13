@@ -37,7 +37,7 @@
     tarjeta.setAttribute('aria-label', (c ? 'Ahora: culto en vivo. ' : '') + 'Ver transmisión en ' + cfg.plataforma + ': ' + cfg.nombre);
     tarjeta.innerHTML = '<span class="acceso-ic vivo-ic"><svg class="ic ic-lg" viewBox="0 0 24 24" aria-hidden="true">' + CAMARA + '</svg></span>' +
       '<span class="acceso-txt">' + (c ? '<span class="vivo-chip"><span class="radio-vivo"></span>Ahora: ' + esc((c.titulo || 'Culto').toLowerCase()) + ' en vivo</span>' : '') +
-      '<b>Culto en vivo por ' + esc(cfg.plataforma) + '</b><span class="muted">' + esc(cfg.nombre) + ' · grupo privado</span></span>' +
+      '<b>Culto en vivo por ' + esc(cfg.plataforma) + '</b><span class="muted">' + esc(cfg.nombre) + ' · ' + esc(cfg.detalle || 'grupo privado') + '</span></span>' +
       '<span class="btn ' + (c ? 'btn-oro' : 'btn-sec') + ' vivo-btn">Ver</span>';
     var destino = $(c ? 'vivoArriba' : 'vivoAbajo');
     if (tarjeta.parentNode !== destino) destino.appendChild(tarjeta);
@@ -46,6 +46,11 @@
   Promise.all([D.cargar('transmision.json'), D.cargar('agenda.json').catch(function () { return null; })]).then(function (r) {
     if (!r[0] || !/^https:\/\//.test(r[0].url || '')) return;
     cfg = r[0]; agenda = r[1];
+    /* Transmisión temporal (otra página) hasta una fecha; después vuelve sola a la de siempre */
+    var t = cfg.temporal;
+    if (t && /^https:\/\//.test(t.url || '') && Date.now() < Date.parse(t.hasta)) {
+      cfg = Object.assign({}, cfg, { url: t.url, nombre: t.nombre || cfg.nombre, plataforma: t.plataforma || cfg.plataforma, detalle: t.detalle, siempre: t.siempre });
+    }
     dibujar();
     setInterval(dibujar, 60000);
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') dibujar(); });
