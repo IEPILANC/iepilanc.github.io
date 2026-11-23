@@ -352,6 +352,23 @@
       "descripcion": "Hoy en el culto de las 19:30 hrs: última ofrenda especial para la Convención de Dorcas.",
       "imagen": "afiche-ofrenda-dorcas-2026-11-07.jpg",
       "estado": "publicada"
+    },
+    {
+      "id": "2026-11-27-pentecostalismo-chile",
+      "titulo": "Charla: Pentecostalismo en Chile, historia, legado y misión",
+      "categoria": "estudios",
+      "inicio": "2026-11-27T18:00",
+      "lugar": "templo",
+      "expositor": "Hno. Christian Iturra",
+      "responsables": [
+        {
+          "nombre": "Hno. Rudy Fuentes",
+          "rol": "Modera"
+        }
+      ],
+      "descripcion": "Charla de Teología y Sociedad. Entrada liberada, invitación abierta a todo público.",
+      "imagen": "afiche-pentecostalismo-2026-11-27.jpg",
+      "estado": "publicada"
     }
   ]
 }
